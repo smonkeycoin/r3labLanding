@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>R³ LAB — Clinical Intelligence Studio</title>
+  <meta name="description" content="R³ LAB desarrolla software clínico, inteligencia artificial médica y flujos digitales para profesionales de la salud." />
+  <meta property="og:title" content="R³ LAB — Clinical Intelligence Studio" />
+  <meta property="og:description" content="Building clinical software, AI workflows and medical intelligence systems." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0F172A" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --navy:#0F172A;
+      --navy2:#020617;
+      --cyan:#06B6D4;
+      --cyan2:#22D3EE;
+      --violet:#7C3AED;
+      --violet2:#A78BFA;
+      --white:#F8FAFC;
+      --muted:#94A3B8;
+      --text:#E5E7EB;
+      --line:rgba(148,163,184,.18);
+      --glass:rgba(15,23,42,.64);
+      --card:rgba(15,23,42,.48);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(6,182,212,.20), transparent 34%),
+        radial-gradient(circle at 80% 20%, rgba(124,58,237,.22), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(6,182,212,.12), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #08111f 42%, #020617 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.25;
+      background-image:
+        linear-gradient(rgba(34,211,238,.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,.14) 1px, transparent 1px);
+      background-size:72px 72px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.8), transparent 70%);
+      z-index:-3;
+    }
+
+    .orb{
+      position:fixed;
+      width:520px;
+      height:520px;
+      border-radius:999px;
+      filter:blur(90px);
+      opacity:.22;
+      pointer-events:none;
+      z-index:-2;
+      animation:float 16s ease-in-out infinite;
+    }
+    .orb.cyan{background:var(--cyan); left:-220px; top:80px;}
+    .orb.violet{background:var(--violet); right:-220px; top:320px; animation-delay:-7s;}
+    @keyframes float{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(50px,-35px,0) scale(1.08)}
+    }
+
+    .wrap{width:min(1180px, calc(100% - 40px)); margin:0 auto;}
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(180deg, rgba(2,6,23,.86), rgba(2,6,23,.52));
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--white);
+      letter-spacing:.02em;
+      font-weight:800;
+    }
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(6,182,212,.18), rgba(124,58,237,.18));
+      border:1px solid rgba(34,211,238,.34);
+      box-shadow:0 0 30px rgba(6,182,212,.18);
+      font-family:"Space Grotesk",sans-serif;
+    }
+    .brand span{font-family:"Space Grotesk",sans-serif; font-size:1.05rem;}
+    .brand sup{color:var(--cyan2)}
+    .nav-links{display:flex; gap:22px; align-items:center;}
+    .nav-links a{
+      color:rgba(226,232,240,.76);
+      text-decoration:none;
+      font-size:.92rem;
+      font-weight:600;
+    }
+    .nav-links a:hover{color:var(--cyan2)}
+    .pill{
+      border:1px solid rgba(34,211,238,.34);
+      color:var(--white)!important;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(6,182,212,.08);
+      box-shadow:0 0 24px rgba(6,182,212,.12);
+    }
+
+    .hero{
+      min-height:calc(100vh - 78px);
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      align-items:center;
+      gap:54px;
+      padding:64px 0 70px;
+      position:relative;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:#BAE6FD;
+      border:1px solid rgba(34,211,238,.26);
+      background:rgba(6,182,212,.08);
+      padding:9px 13px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .pulse{
+      width:8px;height:8px;border-radius:50%;background:var(--cyan2);
+      box-shadow:0 0 0 0 rgba(34,211,238,.7);
+      animation:pulse 1.8s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(34,211,238,.7)}
+      70%{box-shadow:0 0 0 14px rgba(34,211,238,0)}
+      100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
+    }
+    h1{
+      margin:24px 0 20px;
+      font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(3.2rem, 8vw, 7.8rem);
+      line-height:.88;
+      letter-spacing:-.075em;
+      color:var(--white);
+    }
+    .grad{
+      background:linear-gradient(90deg, #fff 0%, #67E8F9 42%, #A78BFA 78%, #fff 105%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 60px rgba(34,211,238,.12);
+    }
+    .hero p{
+      max-width:680px;
+      margin:0;
+      color:rgba(226,232,240,.74);
+      font-size:clamp(1.06rem, 1.7vw, 1.28rem);
+      line-height:1.7;
+    }
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      min-height:52px;
+      padding:0 20px;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      border:1px solid transparent;
+      transition:.25s ease;
+    }
+    .btn-primary{
+      color:#020617;
+      background:linear-gradient(90deg, var(--cyan2), var(--violet2));
+      box-shadow:0 0 44px rgba(34,211,238,.22);
+    }
+    .btn-primary:hover{transform:translateY(-2px); box-shadow:0 0 70px rgba(34,211,238,.32);}
+    .btn-ghost{
+      color:var(--white);
+      border-color:rgba(148,163,184,.25);
+      background:rgba(15,23,42,.42);
+    }
+    .btn-ghost:hover{border-color:rgba(34,211,238,.55); color:var(--cyan2);}
+
+    .hero-card{
+      position:relative;
+      border:1px solid rgba(34,211,238,.22);
+      background:linear-gradient(180deg, rgba(15,23,42,.68), rgba(2,6,23,.52));
+      border-radius:36px;
+      padding:22px;
+      box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:conic-gradient(from 180deg, transparent, rgba(34,211,238,.45), rgba(124,58,237,.55), transparent 35%);
+      opacity:.26;
+      filter:blur(18px);
+      z-index:0;
+    }
+    .screen{
+      position:relative;
+      z-index:1;
+      border-radius:26px;
+      border:1px solid rgba(148,163,184,.16);
+      background:#020617;
+      overflow:hidden;
+      min-height:520px;
+    }
+    .screen-top{
+      height:50px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:0 18px;
+      border-bottom:1px solid rgba(148,163,184,.15);
+      background:rgba(15,23,42,.72);
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(148,163,184,.4)}
+    .dot:nth-child(1){background:#22D3EE}.dot:nth-child(2){background:#7C3AED}.dot:nth-child(3){background:#E2E8F0}
+    .dashboard{padding:24px;}
+    .status-line{font-family:"Space Grotesk"; color:#67E8F9; font-size:.84rem; letter-spacing:.15em; text-transform:uppercase;}
+    .big-metric{font-family:"Space Grotesk"; font-size:3.7rem; letter-spacing:-.07em; margin:18px 0 6px;}
+    .submetric{color:var(--muted); line-height:1.6;}
+    .grid-mini{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px;}
+    .mini{
+      min-height:112px;
+      border:1px solid rgba(148,163,184,.16);
+      background:linear-gradient(180deg, rgba(15,23,42,.8), rgba(15,23,42,.35));
+      border-radius:22px;
+      padding:16px;
+    }
+    .mini b{display:block; color:var(--white); margin-bottom:9px;}
+    .bar{height:8px; border-radius:99px; background:rgba(148,163,184,.18); overflow:hidden; margin-top:18px;}
+    .bar span{display:block; height:100%; width:72%; border-radius:99px; background:linear-gradient(90deg,var(--cyan2),var(--violet2)); box-shadow:0 0 18px rgba(34,211,238,.4);}
+    .terminal{
+      margin-top:14px;
+      border-radius:20px;
+      border:1px solid rgba(34,211,238,.18);
+      background:rgba(2,6,23,.72);
+      padding:15px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      color:#BAE6FD;
+      font-size:.76rem;
+      line-height:1.8;
+    }
+    .terminal .violet{color:#C4B5FD}.terminal .muted{color:#64748B}
+
+    section{padding:90px 0; position:relative;}
+    .section-head{max-width:760px; margin-bottom:34px;}
+    .kicker{
+      color:var(--cyan2);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-size:.78rem;
+      margin-bottom:14px;
+    }
+    h2{
+      font-family:"Space Grotesk";
+      color:var(--white);
+      font-size:clamp(2rem, 4vw, 4rem);
+      line-height:1;
+      letter-spacing:-.055em;
+      margin:0 0 16px;
+    }
+    .lead{color:rgba(226,232,240,.7); font-size:1.08rem; line-height:1.75; margin:0;}
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+    .card{
+      border:1px solid rgba(148,163,184,.16);
+      background:linear-gradient(180deg, rgba(15,23,42,.72), rgba(15,23,42,.30));
+      border-radius:var(--radius);
+      padding:26px;
+      min-height:230px;
+      box-shadow:0 20px 60px rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:after{
+      content:"";
+      position:absolute;
+      inset:auto -80px -90px auto;
+      width:190px;height:190px;border-radius:999px;
+      background:radial-gradient(circle, rgba(6,182,212,.18), transparent 70%);
+    }
+    .icon{
+      width:48px;height:48px;border-radius:16px;
+      display:grid;place-items:center;
+      color:var(--cyan2);
+      background:rgba(6,182,212,.08);
+      border:1px solid rgba(34,211,238,.22);
+      margin-bottom:20px;
+      font-weight:900;
+      font-family:"Space Grotesk";
+    }
+    .card h3{font-family:"Space Grotesk"; font-size:1.35rem; margin:0 0 12px; color:var(--white);}
+    .card p{margin:0; color:rgba(226,232,240,.66); line-height:1.65;}
+
+    .product-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:18px;}
+    .product{
+      border:1px solid rgba(148,163,184,.16);
+      background:linear-gradient(145deg, rgba(15,23,42,.82), rgba(2,6,23,.58));
+      border-radius:32px;
+      padding:30px;
+      min-height:300px;
+      position:relative;
+      overflow:hidden;
+    }
+    .product.main{min-height:420px;}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(34,211,238,.24);
+      color:#BAE6FD;
+      background:rgba(6,182,212,.07);
+      font-weight:800;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .product h3{
+      font-family:"Space Grotesk";
+      font-size:clamp(2rem, 3.4vw, 4.2rem);
+      line-height:.95;
+      letter-spacing:-.06em;
+      margin:24px 0 14px;
+    }
+    .product p{color:rgba(226,232,240,.67); line-height:1.75; max-width:680px;}
+    .launch{
+      position:absolute;
+      right:24px;
+      bottom:24px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--cyan2);
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.78rem;
+    }
+    .loader{
+      width:82px;height:8px;border-radius:999px; background:rgba(148,163,184,.18); overflow:hidden;
+    }
+    .loader span{
+      display:block;height:100%;width:38%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--cyan2),var(--violet2));
+      animation:load 2.4s infinite ease-in-out;
+    }
+    @keyframes load{
+      0%{transform:translateX(-110%)}
+      55%{transform:translateX(160%)}
+      100%{transform:translateX(260%)}
+    }
+    .product-list{display:grid; gap:18px;}
+    .small-product h4{font-family:"Space Grotesk"; font-size:1.55rem; margin:16px 0 10px;}
+    .small-product{min-height:201px;}
+
+    .matrix{
+      border:1px solid rgba(34,211,238,.18);
+      border-radius:36px;
+      overflow:hidden;
+      background:rgba(2,6,23,.42);
+    }
+    .row{
+      display:grid;
+      grid-template-columns:.8fr 1.2fr 1fr;
+      border-bottom:1px solid rgba(148,163,184,.13);
+    }
+    .row:last-child{border-bottom:0}
+    .cell{padding:22px; color:rgba(226,232,240,.68); line-height:1.55;}
+    .cell strong{color:var(--white); font-family:"Space Grotesk"; font-size:1.1rem;}
+    .cell:nth-child(1){color:#BAE6FD; font-weight:900; letter-spacing:.05em;}
+
+    .final{
+      text-align:center;
+      padding:110px 0 95px;
+    }
+    .logo-hero{
+      width:min(380px, 78vw);
+      border-radius:34px;
+      border:1px solid rgba(34,211,238,.18);
+      box-shadow:0 30px 110px rgba(6,182,212,.14);
+      margin-bottom:34px;
+    }
+    .final h2{font-size:clamp(2.6rem, 7vw, 6.8rem);}
+    .final p{max-width:760px; margin:0 auto 34px; color:rgba(226,232,240,.68); line-height:1.8; font-size:1.08rem;}
+    footer{
+      border-top:1px solid rgba(148,163,184,.13);
+      padding:30px 0;
+      color:rgba(148,163,184,.74);
+      font-size:.92rem;
+    }
+    .foot{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+    .tiny-links{display:flex; gap:16px; flex-wrap:wrap;}
+    .tiny-links a{color:rgba(226,232,240,.66); text-decoration:none}
+    .tiny-links a:hover{color:var(--cyan2)}
+
+    .reveal{opacity:0; transform:translateY(18px); transition:.7s ease;}
+    .reveal.on{opacity:1; transform:none;}
+
+    @media (max-width:920px){
+      .nav-links a:not(.pill){display:none}
+      .hero{grid-template-columns:1fr; padding-top:42px;}
+      .hero-card{order:-1}
+      .screen{min-height:430px}
+      .cards,.product-grid{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      .cell{border-bottom:1px solid rgba(148,163,184,.1)}
+      h1{font-size:clamp(3.2rem, 18vw, 5.4rem)}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb cyan"></div>
+  <div class="orb violet"></div>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">
+        <div class="brand-mark">R<sup>3</sup></div>
+        <span>R<sup>3</sup> LAB</span>
+      </a>
+      <div class="nav-links">
+        <a href="#studio">Studio</a>
+        <a href="#products">Products</a>
+        <a href="#architecture">Architecture</a>
+        <a class="pill" href="#contact">Enter the Lab</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="wrap hero">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Clinical Intelligence Studio</div>
+        <h1>Building the<br><span class="grad">clinical OS</span><br>for modern medicine.</h1>
+        <p>
+          R³ LAB diseña software médico, inteligencia artificial clínica y flujos digitales para que los profesionales de la salud dediquen menos tiempo a capturar datos y más tiempo a practicar medicina.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">Explore products →</a>
+          <a class="btn btn-ghost" href="#studio">What we build</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="screen">
+          <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="dashboard">
+            <div class="status-line">R³ SYSTEM // ONLINE</div>
+            <div class="big-metric">Less admin.<br><span class="grad">More medicine.</span></div>
+            <div class="submetric">
+              Clinical workflows, AI copilots, specialty templates, medical records, imaging and operational intelligence.
+            </div>
+
+            <div class="grid-mini">
+              <div class="mini">
+                <b>Clinical AI</b>
+                SOAP, summaries, pattern recognition.
+                <div class="bar"><span></span></div>
+              </div>
+              <div class="mini">
+                <b>Workflow Engine</b>
+                Intake, follow-up, prescriptions, studies.
+                <div class="bar"><span style="width:61%"></span></div>
+              </div>
+              <div class="mini">
+                <b>Specialty Layer</b>
+                Pediatrics, adult pulmonology, sleep, imaging.
+                <div class="bar"><span style="width:48%"></span></div>
+              </div>
+              <div class="mini">
+                <b>Medical Ops</b>
+                Agenda, billing, roles, clinic intelligence.
+                <div class="bar"><span style="width:78%"></span></div>
+              </div>
+            </div>
+
+            <div class="terminal">
+              <span class="muted">r3@lab:</span> initializing product stack...<br>
+              <span class="violet">→</span> NeumoPractice Pediatrics <span class="muted">/ beta</span><br>
+              <span class="violet">→</span> NeumoPractice Adults <span class="muted">/ upcoming</span><br>
+              <span class="violet">→</span> Imaging AI <span class="muted">/ research</span><br>
+              <span class="violet">→</span> Sleep Platform <span class="muted">/ loading</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="studio" class="wrap reveal">
+      <div class="section-head">
+        <div class="kicker">The Studio</div>
+        <h2>Not another software company. A clinical product laboratory.</h2>
+        <p class="lead">
+          Construimos herramientas junto a especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para estorbarlo.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">01</div>
+          <h3>Clinical-first design</h3>
+          <p>Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, estudios, recetas, equipo y operación diaria.</p>
+        </article>
+        <article class="card">
+          <div class="icon">02</div>
+          <h3>AI that assists</h3>
+          <p>IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.</p>
+        </article>
+        <article class="card">
+          <div class="icon">03</div>
+          <h3>Specialty engines</h3>
+          <p>Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="products" class="wrap reveal">
+      <div class="section-head">
+        <div class="kicker">Product Stack</div>
+        <h2>One lab. Multiple clinical systems.</h2>
+        <p class="lead">
+          R³ LAB es la casa detrás de productos médicos especializados. Algunos ya están en beta. Otros están cargando.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product main">
+          <span class="tag">Beta active</span>
+          <h3>NeumoPractice<br><span class="grad">Pediatrics</span></h3>
+          <p>
+            Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, estudios, calculadoras, timeline y operación de clínica.
+          </p>
+          <div class="launch"><div class="loader"><span></span></div>Founder beta</div>
+        </article>
+
+        <div class="product-list">
+          <article class="product small-product">
+            <span class="tag">Upcoming</span>
+            <h4>NeumoPractice Adults</h4>
+            <p>Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.</p>
+          </article>
+          <article class="product small-product">
+            <span class="tag">Loading</span>
+            <h4>Sleep Intelligence</h4>
+            <p>Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="wrap reveal">
+      <div class="section-head">
+        <div class="kicker">Architecture</div>
+        <h2>A clinical operating layer for specialists.</h2>
+        <p class="lead">
+          La visión no es crear apps aisladas. Es construir un núcleo clínico reusable que permita lanzar productos especializados más rápido y con mayor precisión.
+        </p>
+      </div>
+
+      <div class="matrix">
+        <div class="row">
+          <div class="cell"><strong>Core SaaS</strong></div>
+          <div class="cell">Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.</div>
+          <div class="cell">Base común para todos los productos.</div>
+        </div>
+        <div class="row">
+          <div class="cell"><strong>Specialty Layer</strong></div>
+          <div class="cell">Templates, calculadoras, formularios, labels, estudios y flujos por especialidad.</div>
+          <div class="cell">Pediatría, adultos, alergia, sueño, imagen.</div>
+        </div>
+        <div class="row">
+          <div class="cell"><strong>Clinical AI</strong></div>
+          <div class="cell">SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.</div>
+          <div class="cell">Diseñada para asistir, no sustituir.</div>
+        </div>
+        <div class="row">
+          <div class="cell"><strong>Real Practice</strong></div>
+          <div class="cell">Productos construidos con feedback de especialistas y uso real en consulta.</div>
+          <div class="cell">Menos captura. Más medicina.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="wrap final reveal">
+      <img class="logo-hero" src="r3-lab-logo.png" alt="R3 LAB logo">
+      <h2>R<sup>3</sup> LAB</h2>
+      <p>
+        Clinical Intelligence Studio. Construyendo la siguiente generación de software médico especializado, IA clínica y sistemas operativos para la práctica moderna.
+      </p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-primary" href="mailto:hola@neuropractice.com?subject=R3%20LAB">Contact the Lab →</a>
+        <a class="btn btn-ghost" href="#products">View roadmap</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="year"></span> R³ LAB. Clinical Intelligence Studio.</div>
+      <div class="tiny-links">
+        <a href="#">Healthcare AI</a>
+        <a href="#">Clinical Software</a>
+        <a href="#">Medical Workflows</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add("on");
+      });
+    }, {threshold:.14});
+
+    document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
