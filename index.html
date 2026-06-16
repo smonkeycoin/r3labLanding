@@ -124,6 +124,24 @@
       font-size:.92rem;
       font-weight:600;
     }
+    .lang-switch{display:flex; gap:8px; margin-left:auto;}
+    .lang-btn{
+      border:1px solid rgba(148,163,184,.35);
+      background:rgba(15,23,42,.72);
+      color:rgba(226,232,240,.86);
+      border-radius:999px;
+      padding:8px 13px;
+      font-size:.85rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      cursor:pointer;
+    }
+    .lang-btn.active{
+      color:var(--cyan2);
+      border-color:rgba(34,211,238,.6);
+      background:rgba(6,182,212,.18);
+      box-shadow:0 0 22px rgba(34,211,238,.24);
+    }
     .nav-links a:hover{color:var(--cyan2)}
     .pill{
       border:1px solid rgba(34,211,238,.34);
@@ -460,10 +478,30 @@
         <span>R<sup>3</sup> LAB</span>
       </a>
       <div class="nav-links">
-        <a href="#studio">Studio</a>
-        <a href="#products">Products</a>
-        <a href="#architecture">Architecture</a>
-        <a class="pill" href="#contact">Enter the Lab</a>
+        <a href="#studio" data-i18n="nav_studio">Studio</a>
+        <a href="#products" data-i18n="nav_products">Products</a>
+        <a href="#architecture" data-i18n="nav_architecture">Architecture</a>
+        <a class="pill" href="#contact" data-i18n="nav_cta">Enter the Lab</a>
+        <div class="lang-switch">
+          <button
+            type="button"
+            class="lang-btn"
+            id="lang-es"
+            data-lang="es"
+            data-i18n="lang_es"
+            aria-pressed="true"
+            aria-label="Switch language to Spanish"
+          >ES</button>
+          <button
+            type="button"
+            class="lang-btn"
+            id="lang-en"
+            data-lang="en"
+            data-i18n="lang_en"
+            aria-pressed="false"
+            aria-label="Switch language to English"
+          >EN</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -471,14 +509,14 @@
   <main>
     <header class="wrap hero">
       <div>
-        <div class="eyebrow"><span class="pulse"></span> Clinical Intelligence Studio</div>
-        <h1>Building the<br><span class="grad">clinical OS</span><br>for modern medicine.</h1>
-        <p>
+        <div class="eyebrow"><span class="pulse"></span> <span data-i18n="hero_eyebrow">Clinical Intelligence Studio</span></div>
+        <h1 data-i18n="hero_title" data-i18n-html="true">Building the<br><span class="grad">clinical OS</span><br>for modern medicine.</h1>
+        <p data-i18n="hero_desc">
           R³ LAB diseña software médico, inteligencia artificial clínica y flujos digitales para que los profesionales de la salud dediquen menos tiempo a capturar datos y más tiempo a practicar medicina.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#products">Explore products →</a>
-          <a class="btn btn-ghost" href="#studio">What we build</a>
+          <a class="btn btn-primary" href="#products" data-i18n="hero_primary">Explore products →</a>
+          <a class="btn btn-ghost" href="#studio" data-i18n="hero_secondary">What we build</a>
         </div>
       </div>
 
@@ -486,41 +524,41 @@
         <div class="screen">
           <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
           <div class="dashboard">
-            <div class="status-line">R³ SYSTEM // ONLINE</div>
-            <div class="big-metric">Less admin.<br><span class="grad">More medicine.</span></div>
-            <div class="submetric">
+            <div class="status-line" data-i18n="dashboard_status">R³ SYSTEM // ONLINE</div>
+            <div class="big-metric" data-i18n="dashboard_metric" data-i18n-html="true">Less admin.<br><span class="grad">More medicine.</span></div>
+            <div class="submetric" data-i18n="dashboard_submetric">
               Clinical workflows, AI copilots, specialty templates, medical records, imaging and operational intelligence.
             </div>
 
             <div class="grid-mini">
               <div class="mini">
-                <b>Clinical AI</b>
-                SOAP, summaries, pattern recognition.
+                <b data-i18n="mini1_title">Clinical AI</b>
+                <span data-i18n="mini1_text">SOAP, summaries, pattern recognition.</span>
                 <div class="bar"><span></span></div>
               </div>
               <div class="mini">
-                <b>Workflow Engine</b>
-                Intake, follow-up, prescriptions, studies.
+                <b data-i18n="mini2_title">Workflow Engine</b>
+                <span data-i18n="mini2_text">Intake, follow-up, prescriptions, studies.</span>
                 <div class="bar"><span style="width:61%"></span></div>
               </div>
               <div class="mini">
-                <b>Specialty Layer</b>
-                Pediatrics, adult pulmonology, sleep, imaging.
+                <b data-i18n="mini3_title">Specialty Layer</b>
+                <span data-i18n="mini3_text">Pediatrics, adult pulmonology, sleep, imaging.</span>
                 <div class="bar"><span style="width:48%"></span></div>
               </div>
               <div class="mini">
-                <b>Medical Ops</b>
-                Agenda, billing, roles, clinic intelligence.
+                <b data-i18n="mini4_title">Medical Ops</b>
+                <span data-i18n="mini4_text">Agenda, billing, roles, clinic intelligence.</span>
                 <div class="bar"><span style="width:78%"></span></div>
               </div>
             </div>
 
             <div class="terminal">
-              <span class="muted">r3@lab:</span> initializing product stack...<br>
-              <span class="violet">→</span> NeumoPractice Pediatrics <span class="muted">/ beta</span><br>
-              <span class="violet">→</span> NeumoPractice Adults <span class="muted">/ upcoming</span><br>
-              <span class="violet">→</span> Imaging AI <span class="muted">/ research</span><br>
-              <span class="violet">→</span> Sleep Platform <span class="muted">/ loading</span>
+              <span class="muted" data-i18n="terminal_line1_prefix">r3@lab:</span><span data-i18n="terminal_line1" class="muted"> initializing product stack...</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_line2">NeumoPractice Pediatrics</span> <span class="muted" data-i18n="terminal_line2_status">/ beta</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_line3">NeumoPractice Adults</span> <span class="muted" data-i18n="terminal_line3_status">/ upcoming</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_line4">Imaging AI</span> <span class="muted" data-i18n="terminal_line4_status">/ research</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_line5">Sleep Platform</span> <span class="muted" data-i18n="terminal_line5_status">/ loading</span>
             </div>
           </div>
         </div>
@@ -529,9 +567,9 @@
 
     <section id="studio" class="wrap reveal">
       <div class="section-head">
-        <div class="kicker">The Studio</div>
-        <h2>Not another software company. A clinical product laboratory.</h2>
-        <p class="lead">
+        <div class="kicker" data-i18n="studio_kicker">The Studio</div>
+        <h2 data-i18n="studio_title">Not another software company. A clinical product laboratory.</h2>
+        <p class="lead" data-i18n="studio_lead">
           Construimos herramientas junto a especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para estorbarlo.
         </p>
       </div>
@@ -539,51 +577,51 @@
       <div class="cards">
         <article class="card">
           <div class="icon">01</div>
-          <h3>Clinical-first design</h3>
-          <p>Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, estudios, recetas, equipo y operación diaria.</p>
+          <h3 data-i18n="card1_title">Clinical-first design</h3>
+          <p data-i18n="card1_text">Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, estudios, recetas, equipo y operación diaria.</p>
         </article>
         <article class="card">
           <div class="icon">02</div>
-          <h3>AI that assists</h3>
-          <p>IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.</p>
+          <h3 data-i18n="card2_title">AI that assists</h3>
+          <p data-i18n="card2_text">IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.</p>
         </article>
         <article class="card">
           <div class="icon">03</div>
-          <h3>Specialty engines</h3>
-          <p>Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.</p>
+          <h3 data-i18n="card3_title">Specialty engines</h3>
+          <p data-i18n="card3_text">Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.</p>
         </article>
       </div>
     </section>
 
     <section id="products" class="wrap reveal">
       <div class="section-head">
-        <div class="kicker">Product Stack</div>
-        <h2>One lab. Multiple clinical systems.</h2>
-        <p class="lead">
+        <div class="kicker" data-i18n="products_kicker">Product Stack</div>
+        <h2 data-i18n="products_title">One lab. Multiple clinical systems.</h2>
+        <p class="lead" data-i18n="products_lead">
           R³ LAB es la casa detrás de productos médicos especializados. Algunos ya están en beta. Otros están cargando.
         </p>
       </div>
 
       <div class="product-grid">
         <article class="product main">
-          <span class="tag">Beta active</span>
-          <h3>NeumoPractice<br><span class="grad">Pediatrics</span></h3>
-          <p>
+          <span class="tag" data-i18n="tag_beta_active">Beta active</span>
+          <h3 data-i18n="product_primary_title" data-i18n-html="true">NeumoPractice<br><span class="grad">Pediatrics</span></h3>
+          <p data-i18n="product_primary_text">
             Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, estudios, calculadoras, timeline y operación de clínica.
           </p>
-          <div class="launch"><div class="loader"><span></span></div>Founder beta</div>
+          <div class="launch"><div class="loader"><span></span></div><span data-i18n="product_primary_launch">Founder beta</span></div>
         </article>
 
         <div class="product-list">
           <article class="product small-product">
-            <span class="tag">Upcoming</span>
-            <h4>NeumoPractice Adults</h4>
-            <p>Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.</p>
+            <span class="tag" data-i18n="tag_upcoming">Upcoming</span>
+            <h4 data-i18n="product_secondary_title">NeumoPractice Adults</h4>
+            <p data-i18n="product_secondary_text">Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.</p>
           </article>
           <article class="product small-product">
-            <span class="tag">Loading</span>
-            <h4>Sleep Intelligence</h4>
-            <p>Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.</p>
+            <span class="tag" data-i18n="tag_loading">Loading</span>
+            <h4 data-i18n="product_tertiary_title">Sleep Intelligence</h4>
+            <p data-i18n="product_tertiary_text">Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.</p>
           </article>
         </div>
       </div>
@@ -591,9 +629,9 @@
 
     <section id="architecture" class="wrap reveal">
       <div class="section-head">
-        <div class="kicker">Architecture</div>
-        <h2>A clinical operating layer for specialists.</h2>
-        <p class="lead">
+        <div class="kicker" data-i18n="architecture_kicker">Architecture</div>
+        <h2 data-i18n="architecture_title">A clinical operating layer for specialists.</h2>
+        <p class="lead" data-i18n="architecture_lead">
           La visión no es crear apps aisladas. Es construir un núcleo clínico reusable que permita lanzar productos especializados más rápido y con mayor precisión.
         </p>
       </div>
@@ -601,23 +639,23 @@
       <div class="matrix">
         <div class="row">
           <div class="cell"><strong>Core SaaS</strong></div>
-          <div class="cell">Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.</div>
-          <div class="cell">Base común para todos los productos.</div>
+          <div class="cell" data-i18n="matrix_core_desc">Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.</div>
+          <div class="cell" data-i18n="matrix_core_benefit">Base común para todos los productos.</div>
         </div>
         <div class="row">
-          <div class="cell"><strong>Specialty Layer</strong></div>
-          <div class="cell">Templates, calculadoras, formularios, labels, estudios y flujos por especialidad.</div>
-          <div class="cell">Pediatría, adultos, alergia, sueño, imagen.</div>
+          <div class="cell"><strong data-i18n="matrix_specialty_title">Specialty Layer</strong></div>
+          <div class="cell" data-i18n="matrix_specialty_desc">Templates, calculadoras, formularios, labels, estudios y flujos por especialidad.</div>
+          <div class="cell" data-i18n="matrix_specialty_benefit">Pediatría, adultos, alergia, sueño, imagen.</div>
         </div>
         <div class="row">
           <div class="cell"><strong>Clinical AI</strong></div>
-          <div class="cell">SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.</div>
-          <div class="cell">Diseñada para asistir, no sustituir.</div>
+          <div class="cell" data-i18n="matrix_ai_desc">SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.</div>
+          <div class="cell" data-i18n="matrix_ai_benefit">Diseñada para asistir, no sustituir.</div>
         </div>
         <div class="row">
-          <div class="cell"><strong>Real Practice</strong></div>
-          <div class="cell">Productos construidos con feedback de especialistas y uso real en consulta.</div>
-          <div class="cell">Menos captura. Más medicina.</div>
+          <div class="cell" data-i18n="matrix_real_practice_title">Real Practice</div>
+          <div class="cell" data-i18n="matrix_real_practice_desc">Productos construidos con feedback de especialistas y uso real en consulta.</div>
+          <div class="cell" data-i18n="matrix_real_practice_benefit">Menos captura. Más medicina.</div>
         </div>
       </div>
     </section>
@@ -625,29 +663,251 @@
     <section id="contact" class="wrap final reveal">
       <img class="logo-hero" src="r3-lab-logo.png" alt="R3 LAB logo">
       <h2>R<sup>3</sup> LAB</h2>
-      <p>
+      <p data-i18n="final_cta_text">
         Clinical Intelligence Studio. Construyendo la siguiente generación de software médico especializado, IA clínica y sistemas operativos para la práctica moderna.
       </p>
       <div class="hero-actions" style="justify-content:center">
-        <a class="btn btn-primary" href="mailto:hola@neuropractice.com?subject=R3%20LAB">Contact the Lab →</a>
-        <a class="btn btn-ghost" href="#products">View roadmap</a>
+        <a class="btn btn-primary" href="mailto:hola@neuropractice.com?subject=R3%20LAB" data-i18n="final_cta_primary">Contact the Lab →</a>
+        <a class="btn btn-ghost" href="#products" data-i18n="final_cta_secondary">View roadmap</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap foot">
-      <div>© <span id="year"></span> R³ LAB. Clinical Intelligence Studio.</div>
+      <div>© <span id="year"></span> <span data-i18n="footer_text">R³ LAB. Clinical Intelligence Studio.</span></div>
       <div class="tiny-links">
-        <a href="#">Healthcare AI</a>
-        <a href="#">Clinical Software</a>
-        <a href="#">Medical Workflows</a>
+        <a href="#" data-i18n="footer_link_health">Healthcare AI</a>
+        <a href="#" data-i18n="footer_link_software">Clinical Software</a>
+        <a href="#" data-i18n="footer_link_workflows">Medical Workflows</a>
       </div>
     </div>
   </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+    const translations = {
+      es: {
+        lang: "es",
+        page_title: "R³ LAB — Clinical Intelligence Studio",
+        meta_description: "R³ LAB desarrolla software médico de nueva generación, IA clínica y flujos digitales para que los especialistas dediquen más tiempo a la práctica clínica.",
+        og_title: "R³ LAB — Clinical Intelligence Studio",
+        og_description: "R³ LAB desarrolla software médico, IA clínica y flujos digitales para transformar la práctica médica.",
+        nav_studio: "El Estudio",
+        nav_products: "Productos",
+        nav_architecture: "Arquitectura",
+        nav_cta: "Entrar al Lab",
+        lang_es: "ES",
+        lang_en: "EN",
+        lang_es_aria: "Cambiar idioma a español",
+        lang_en_aria: "Cambiar idioma a inglés",
+        hero_eyebrow: "Clinical Intelligence Studio",
+        hero_title: "Construyendo la<br><span class=\"grad\">operación clínica</span><br>para la medicina moderna.",
+        hero_desc: "R³ LAB diseña software médico, inteligencia artificial clínica y flujos digitales para que especialistas y equipos dediquen menos tiempo a captura de datos y más a práctica médica de calidad.",
+        hero_primary: "Explorar productos →",
+        hero_secondary: "Qué construimos",
+        dashboard_status: "R³ SYSTEM // EN LÍNEA",
+        dashboard_metric: "Menos admin.<br><span class=\"grad\">Más medicina.</span>",
+        dashboard_submetric: "Workflows clínicos, copilotos de IA, plantillas por especialidad, expediente, imagenología e inteligencia operativa.",
+        mini1_title: "Clinical AI",
+        mini1_text: "SOAP, resúmenes y reconocimiento de patrones.",
+        mini2_title: "Workflow Engine",
+        mini2_text: "Ingreso, seguimiento, recetas, estudios.",
+        mini3_title: "Specialty Layer",
+        mini3_text: "Pediatría, neumología de adultos, sueño e imagen.",
+        mini4_title: "Medical Ops",
+        mini4_text: "Agenda, facturación, roles, inteligencia de clínica.",
+        terminal_line1_prefix: "r3@lab:",
+        terminal_line1: " inicializando stack clínico...",
+        terminal_line2: "NeumoPractice Pediatrics",
+        terminal_line2_status: "/ beta",
+        terminal_line3: "NeumoPractice Adults",
+        terminal_line3_status: "/ próximo",
+        terminal_line4: "Imaging AI",
+        terminal_line4_status: "/ investigación",
+        terminal_line5: "Sleep Platform",
+        terminal_line5_status: "/ cargando",
+        studio_kicker: "El Estudio",
+        studio_title: "No somos una empresa de software más. Somos un laboratorio clínico de producto.",
+        studio_lead: "Construimos herramientas con especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para frenar su trabajo.",
+        card1_title: "Diseño orientado a lo clínico",
+        card1_text: "Interfaces diseñadas desde el flujo real de consulta: primera visita, seguimiento, estudios, recetas, equipo y operación diaria.",
+        card2_title: "IA que asiste",
+        card2_text: "IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.",
+        card3_title: "Motores por especialidad",
+        card3_text: "Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagenología y más.",
+        products_kicker: "Stack de producto",
+        products_title: "Un laboratorio. Múltiples sistemas clínicos.",
+        products_lead: "R³ LAB es la base detrás de productos médicos especializados. Algunos ya están en beta. Otros están en ejecución.",
+        tag_beta_active: "Beta activa",
+        product_primary_title: "NeumoPractice<br><span class=\"grad\">Pediatrics</span>",
+        product_primary_text: "Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, estudios, calculadoras, timeline y operación de clínica.",
+        product_primary_launch: "Founder beta",
+        tag_upcoming: "Próximamente",
+        product_secondary_title: "NeumoPractice Adults",
+        product_secondary_text: "Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.",
+        tag_loading: "Cargando",
+        product_tertiary_title: "Sleep Intelligence",
+        product_tertiary_text: "Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.",
+        architecture_kicker: "Arquitectura",
+        architecture_title: "Una capa operativa clínica para especialistas.",
+        architecture_lead: "No diseñamos apps aisladas. Construimos un núcleo clínico reutilizable para lanzar productos especializados más rápido y con mayor precisión.",
+        matrix_core_desc: "Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.",
+        matrix_core_benefit: "Base común para toda la plataforma.",
+        matrix_specialty_title: "Specialty Layer",
+        matrix_specialty_desc: "Plantillas, calculadoras, formularios, etiquetas, estudios y flujos por especialidad.",
+        matrix_specialty_benefit: "Pediatría, adultos, alergia, sueño e imagenología.",
+        matrix_ai_desc: "SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.",
+        matrix_ai_benefit: "Diseñada para asistir, no para sustituir.",
+        matrix_real_practice_title: "Real Practice",
+        matrix_real_practice_desc: "Productos construidos con feedback continuo de especialistas y uso real en consulta.",
+        matrix_real_practice_benefit: "Menos captura. Más medicina.",
+        final_cta_text: "Clinical Intelligence Studio. Construyendo la siguiente generación de software médico especializado, IA clínica y sistemas operativos para la práctica moderna.",
+        final_cta_primary: "Contactar al Lab →",
+        final_cta_secondary: "Ver roadmap",
+        footer_text: "R³ LAB. Clinical Intelligence Studio.",
+        footer_link_health: "IA en salud",
+        footer_link_software: "Software clínico",
+        footer_link_workflows: "Flujos clínicos"
+      },
+      en: {
+        lang: "en",
+        page_title: "R³ LAB — Clinical Intelligence Studio",
+        meta_description: "R³ LAB builds medical software, clinical AI and digital workflows for healthcare teams to spend less time on data capture and more time on care.",
+        og_title: "R³ LAB — Clinical Intelligence Studio",
+        og_description: "Build clinical software, AI assistants, and operational stacks for modern medical practice.",
+        nav_studio: "Studio",
+        nav_products: "Products",
+        nav_architecture: "Architecture",
+        nav_cta: "Enter the Lab",
+        lang_es: "ES",
+        lang_en: "EN",
+        lang_es_aria: "Switch language to Spanish",
+        lang_en_aria: "Switch language to English",
+        hero_eyebrow: "Clinical Intelligence Studio",
+        hero_title: "Building the<br><span class=\"grad\">clinical OS</span><br>for modern medicine.",
+        hero_desc: "R³ LAB builds medical software, clinical AI, and digital workflows so healthcare professionals spend less time capturing data and more time delivering care.",
+        hero_primary: "Explore products →",
+        hero_secondary: "What we build",
+        dashboard_status: "R³ SYSTEM // ONLINE",
+        dashboard_metric: "Less admin.<br><span class=\"grad\">More medicine.</span>",
+        dashboard_submetric: "Clinical workflows, AI copilots, specialty templates, medical records, imaging, and operational intelligence.",
+        mini1_title: "Clinical AI",
+        mini1_text: "SOAP, summaries, pattern recognition.",
+        mini2_title: "Workflow Engine",
+        mini2_text: "Intake, follow-up, prescriptions, studies.",
+        mini3_title: "Specialty Layer",
+        mini3_text: "Pediatrics, adult pulmonology, sleep, imaging.",
+        mini4_title: "Medical Ops",
+        mini4_text: "Agenda, billing, roles, clinic intelligence.",
+        terminal_line1_prefix: "r3@lab:",
+        terminal_line1: " initializing product stack...",
+        terminal_line2: "NeumoPractice Pediatrics",
+        terminal_line2_status: "/ beta",
+        terminal_line3: "NeumoPractice Adults",
+        terminal_line3_status: "/ upcoming",
+        terminal_line4: "Imaging AI",
+        terminal_line4_status: "/ research",
+        terminal_line5: "Sleep Platform",
+        terminal_line5_status: "/ loading",
+        studio_kicker: "The Studio",
+        studio_title: "Not another software company. A clinical product laboratory.",
+        studio_lead: "We build products with specialists, validated in real clinical care, designed to fit naturally into a physician's workflow rather than disrupt it.",
+        card1_title: "Clinical-first design",
+        card1_text: "Interfaces shaped by real clinical flow: visits, follow-ups, studies, prescriptions, team coordination, and daily operations.",
+        card2_title: "AI that assists",
+        card2_text: "Structured clinical AI support that summarizes, prioritizes, suggests, and reduces administrative load without replacing medical judgment.",
+        card3_title: "Specialty engines",
+        card3_text: "A shared technology foundation with specialty layers for pediatric pulmonology, adults, sleep, imaging, and future specialties.",
+        products_kicker: "Product Stack",
+        products_title: "One lab. Multiple clinical systems.",
+        products_lead: "R³ LAB is the foundation for focused clinical products. Some are in beta. Others are in active development.",
+        tag_beta_active: "Beta active",
+        product_primary_title: "NeumoPractice<br><span class=\"grad\">Pediatrics</span>",
+        product_primary_text: "Clinical platform for pediatric pulmonology: scheduling, charting, prescribing, clinical AI, studies, calculators, timeline, and clinic operations.",
+        product_primary_launch: "Founder beta",
+        tag_upcoming: "Upcoming",
+        product_secondary_title: "NeumoPractice Adults",
+        product_secondary_text: "Core platform for adult pulmonology: COPD, asthma, sleep, respiratory studies, longitudinal follow-up, and clinical AI support.",
+        tag_loading: "Loading",
+        product_tertiary_title: "Sleep Intelligence",
+        product_tertiary_text: "Flows for sleep risk, monitoring, CPAP guidance, reporting, and assisted clinical analysis.",
+        architecture_kicker: "Architecture",
+        architecture_title: "A clinical operating layer for specialists.",
+        architecture_lead: "The objective is not isolated apps. It is a reusable clinical core that enables faster launch of specialized products with higher precision.",
+        matrix_core_desc: "Auth, roles, multi-clinic, scheduling, patients, prescriptions, finance, file storage, and billing.",
+        matrix_core_benefit: "A shared foundation for every product.",
+        matrix_specialty_title: "Specialty Layer",
+        matrix_specialty_desc: "Templates, calculators, forms, labels, studies, and specialty-specific clinical flows.",
+        matrix_specialty_benefit: "Pediatrics, adults, allergy, sleep, imaging.",
+        matrix_ai_desc: "SOAP, clinical summaries, checklists, contextual interpretation, and document support.",
+        matrix_ai_benefit: "Built to assist, not replace.",
+        matrix_real_practice_title: "Real Practice",
+        matrix_real_practice_desc: "Products shaped with specialist feedback and validated in real clinical environments.",
+        matrix_real_practice_benefit: "Less capture. More medicine.",
+        final_cta_text: "Clinical Intelligence Studio. Building the next generation of specialized medical software, clinical AI, and operating systems for modern care.",
+        final_cta_primary: "Contact the Lab →",
+        final_cta_secondary: "View roadmap",
+        footer_text: "R³ LAB. Clinical Intelligence Studio.",
+        footer_link_health: "Healthcare AI",
+        footer_link_software: "Clinical Software",
+        footer_link_workflows: "Medical Workflows"
+      }
+    };
+
+    const langStorageKey = "r3lab_lang";
+    const localeEls = document.querySelectorAll("[data-i18n]");
+    const langButtons = document.querySelectorAll(".lang-btn");
+    const storedLang = localStorage.getItem(langStorageKey);
+    const browserLang = (navigator.language || "en").toLowerCase();
+    const initialLang = storedLang === "es" || storedLang === "en"
+      ? storedLang
+      : (browserLang.startsWith("es") ? "es" : "en");
+
+    function setLanguage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.documentElement.lang = dict.lang;
+      document.title = dict.page_title;
+
+      document.querySelector('meta[name="description"]').setAttribute("content", dict.meta_description);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogTitle) ogTitle.setAttribute("content", dict.og_title);
+      if (ogDescription) ogDescription.setAttribute("content", dict.og_description);
+
+      localeEls.forEach((el) => {
+        const key = el.dataset.i18n;
+        const value = dict[key];
+        if (value === undefined) return;
+        if (el.dataset.i18nHtml === "true") {
+          el.innerHTML = value;
+        } else {
+          el.textContent = value;
+        }
+      });
+
+      langButtons.forEach((button) => {
+        const isActive = button.dataset.lang === lang;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      const esButton = document.getElementById("lang-es");
+      const enButton = document.getElementById("lang-en");
+      if (esButton) esButton.setAttribute("aria-label", dict.lang_es_aria);
+      if (enButton) enButton.setAttribute("aria-label", dict.lang_en_aria);
+
+      localStorage.setItem(langStorageKey, lang);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selected = button.dataset.lang;
+        setLanguage(selected);
+      });
+    });
 
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
@@ -656,6 +916,8 @@
     }, {threshold:.14});
 
     document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+    setLanguage(initialLang);
   </script>
 </body>
 </html>
