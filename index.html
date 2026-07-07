@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="lang-es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,6 +33,12 @@
     }
 
     *{box-sizing:border-box}
+    *, *::before, *::after {box-sizing:border-box}
+    html, body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
     html{scroll-behavior:smooth}
     body{
       margin:0;
@@ -161,6 +167,7 @@
       padding:64px 0 70px;
       position:relative;
     }
+    .hero-content{min-width:0;}
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -185,13 +192,17 @@
       70%{box-shadow:0 0 0 14px rgba(34,211,238,0)}
       100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
     }
-    h1{
+    .hero-title{
       margin:24px 0 20px;
       font-family:"Space Grotesk",Inter,sans-serif;
       font-size:clamp(3.2rem, 8vw, 7.8rem);
-      line-height:.88;
+      line-height:.92;
       letter-spacing:-.075em;
       color:var(--white);
+    }
+    .lang-es .hero-title{
+      font-size:clamp(3.7rem, 6.7vw, 6.8rem);
+      line-height:.96;
     }
     .grad{
       background:linear-gradient(90deg, #fff 0%, #67E8F9 42%, #A78BFA 78%, #fff 105%);
@@ -200,12 +211,56 @@
       color:transparent;
       text-shadow:0 0 60px rgba(34,211,238,.12);
     }
+    .hero-dynamic,
+    .metric-dynamic{
+      display:inline-block;
+      min-height:1em;
+      white-space:nowrap;
+      vertical-align:baseline;
+    }
+    .hero-market{
+      max-width:100%;
+    }
+    .hero-market-line{
+      display:inline-block;
+      margin-top:.05em;
+      max-width:100%;
+    }
+    .hero-dynamic{
+      min-width:0;
+      max-width:100%;
+      white-space:normal;
+    }
+    .typewriter-cursor::after{
+      content:"|";
+      display:inline-block;
+      margin-left:.04em;
+      color:#67E8F9;
+      -webkit-text-fill-color:#67E8F9;
+      background:none;
+      text-shadow:0 0 24px rgba(34,211,238,.34);
+      animation:cursorBlink 1.05s steps(2,end) infinite;
+    }
+    @keyframes cursorBlink{
+      0%,48%{opacity:1}
+      49%,100%{opacity:.18}
+    }
+    .metric-line{
+      display:inline-block;
+      max-width:100%;
+      white-space:nowrap;
+    }
+    .metric-line [data-i18n="dashboard_metric_prefix"]{margin-right:.18em;}
     .hero p{
       max-width:680px;
       margin:0;
       color:rgba(226,232,240,.74);
       font-size:clamp(1.06rem, 1.7vw, 1.28rem);
       line-height:1.7;
+    }
+    .lang-es .hero p{
+      max-width:730px;
+      line-height:1.68;
     }
     .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;}
     .btn{
@@ -271,7 +326,17 @@
     .dot:nth-child(1){background:#22D3EE}.dot:nth-child(2){background:#7C3AED}.dot:nth-child(3){background:#E2E8F0}
     .dashboard{padding:24px;}
     .status-line{font-family:"Space Grotesk"; color:#67E8F9; font-size:.84rem; letter-spacing:.15em; text-transform:uppercase;}
-    .big-metric{font-family:"Space Grotesk"; font-size:3.7rem; letter-spacing:-.07em; margin:18px 0 6px;}
+    .big-metric{
+      font-family:"Space Grotesk";
+      font-size:clamp(2.8rem, 4.4vw, 4.8rem);
+      line-height:1.05;
+      letter-spacing:-.07em;
+      margin:18px 0 8px;
+      max-width:100%;
+      text-wrap:balance;
+    }
+    .lang-es .big-metric{font-size:clamp(2.4rem, 4vw, 4.2rem);}
+    .metric-dynamic{min-width:0;}
     .submetric{color:var(--muted); line-height:1.6;}
     .grid-mini{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px;}
     .mini{
@@ -296,6 +361,9 @@
       line-height:1.8;
     }
     .terminal .violet{color:#C4B5FD}.terminal .muted{color:#64748B}
+
+    .lang-es .grid-mini{gap:11px;}
+    .lang-es .mini{min-height:auto;}
 
     section{padding:90px 0; position:relative;}
     .section-head{max-width:760px; margin-bottom:34px;}
@@ -454,7 +522,7 @@
     .reveal{opacity:0; transform:translateY(18px); transition:.7s ease;}
     .reveal.on{opacity:1; transform:none;}
 
-    @media (max-width:920px){
+    @media (max-width:900px){
       .nav-links a:not(.pill){display:none}
       .hero{grid-template-columns:1fr; padding-top:42px;}
       .hero-card{order:-1}
@@ -462,7 +530,130 @@
       .cards,.product-grid{grid-template-columns:1fr}
       .row{grid-template-columns:1fr}
       .cell{border-bottom:1px solid rgba(148,163,184,.1)}
-      h1{font-size:clamp(3.2rem, 18vw, 5.4rem)}
+      .hero-title{font-size:clamp(3.2rem, 15vw, 5.4rem)}
+      .hero{gap:30px}
+      .hero-copy{max-width:100%;}
+      .wrap{width:min(1180px, calc(100% - 28px));}
+    }
+    @media (max-width:768px){
+      .nav{
+        width:100%;
+      }
+      .nav-inner{
+        width:100%;
+        gap:10px;
+        min-width:0;
+      }
+      .brand{
+        min-width:0;
+        max-width:52%;
+      }
+      .nav-links{
+        flex-wrap:nowrap;
+        gap:8px;
+        min-width:0;
+      }
+      .lang-switch{
+        margin-left:0;
+        flex-wrap:nowrap;
+      }
+      .lang-btn{
+        padding:7px 10px;
+      }
+      .pill{
+        white-space:nowrap;
+        padding:9px 11px;
+      }
+      .hero{
+        grid-template-columns:1fr;
+        gap:28px;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+      }
+      .hero-inner,
+      .hero-grid,
+      .hero-content{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        padding-inline:16px;
+        overflow:visible;
+      }
+      .hero-visual,
+      .system-card,
+      .lab-card,
+      .mockup,
+      .browser-card{
+        width:min(100%, calc(100vw - 32px));
+        max-width:100%;
+        margin-inline:auto;
+        transform:none !important;
+        left:auto !important;
+        right:auto !important;
+      }
+      .hero-card{
+        padding:16px;
+      }
+      .screen,
+      .hero-visual .screen{
+        width:min(100%, calc(100vw - 32px));
+        max-width:100%;
+        min-width:0;
+      }
+      .hero-actions{
+        width:100%;
+        max-width:100%;
+      }
+      .mini{
+        min-width:0;
+      }
+      .hero-title,
+      .hero p,
+      .hero-copy{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+      }
+      .wrap{width:min(1180px, calc(100% - 32px));}
+    }
+    @media (max-width:640px){
+      .hero{padding:30px 0 52px;}
+      .lang-es .hero-title{font-size:clamp(2.9rem, 11.2vw, 4.6rem)}
+      .hero-title{font-size:clamp(2.6rem, 12vw, 4.4rem)}
+      .hero-dynamic,
+      .metric-dynamic{white-space:normal;}
+      .hero p{font-size:clamp(.98rem, 4.1vw, 1.12rem)}
+      .hero-actions{margin-top:24px;}
+      .hero-card{padding:16px;}
+      .screen{min-height:410px;}
+      .grid-mini{grid-template-columns:1fr}
+      .lang-es .grid-mini{gap:12px}
+      .lang-es .mini{min-height:auto}
+      .final h2{line-height:1}
+    }
+    @media (max-width:390px){
+      .hero{padding-top:24px; padding-bottom:40px;}
+      .lang-es .hero-title{font-size:clamp(2.28rem, 10.3vw, 3.2rem); line-height:.98;}
+      .hero-title{font-size:clamp(2.3rem, 11vw, 3.2rem); line-height:.98;}
+      .hero p{font-size:clamp(.94rem, 4.3vw, 1.02rem);}
+      .lang-btn{padding:7px 10px; font-size:.78rem;}
+      .screen{min-height:390px}
+    }
+    @media (max-width:520px){
+      .grid-mini{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+      .grid-mini .mini{
+        min-width:0;
+      }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .typewriter-cursor::after{
+        animation:none;
+        opacity:0;
+      }
     }
   </style>
 </head>
@@ -508,11 +699,15 @@
 
   <main>
     <header class="wrap hero">
-      <div>
+      <div class="hero-content hero-inner">
         <div class="eyebrow"><span class="pulse"></span> <span data-i18n="hero_eyebrow">Clinical Intelligence Studio</span></div>
-        <h1 data-i18n="hero_title" data-i18n-html="true">Building the<br><span class="grad">clinical OS</span><br>for modern medicine.</h1>
-        <p data-i18n="hero_desc">
-          R³ LAB diseña software médico, inteligencia artificial clínica y flujos digitales para que los profesionales de la salud dediquen menos tiempo a capturar datos y más tiempo a practicar medicina.
+        <h1 class="hero-title" id="dynamic-hero-title">
+          <span data-i18n="hero_title_start">Construyendo el</span><br>
+          <span class="grad hero-dynamic typewriter-cursor" data-dynamic-vertical>OS clínico</span><br>
+          <span class="hero-market-line"><span data-i18n="hero_title_for">para</span> <span class="hero-market" data-dynamic-market>medicina moderna.</span></span>
+        </h1>
+        <p class="hero-copy" data-i18n="hero_desc">
+          R³ LAB construye software médico, IA clínica y flujos digitales para equipos de salud modernos.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#products" data-i18n="hero_primary">Explore products →</a>
@@ -520,12 +715,15 @@
         </div>
       </div>
 
-      <div class="hero-card reveal">
+      <div class="hero-card reveal hero-visual system-card lab-card">
         <div class="screen">
           <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
           <div class="dashboard">
             <div class="status-line" data-i18n="dashboard_status">R³ SYSTEM // ONLINE</div>
-            <div class="big-metric" data-i18n="dashboard_metric" data-i18n-html="true">Less admin.<br><span class="grad">More medicine.</span></div>
+            <div class="big-metric" id="dynamic-dashboard-metric">
+              <span data-i18n="dashboard_metric_base">Menos trabajo manual.</span><br>
+              <span class="metric-line"><span data-i18n="dashboard_metric_prefix">Más</span> <span class="grad metric-dynamic" data-dynamic-outcome>medicina</span><span data-dynamic-outcome-period>.</span><span class="typewriter-cursor metric-cursor"></span></span>
+            </div>
             <div class="submetric" data-i18n="dashboard_submetric">
               Clinical workflows, AI copilots, specialty templates, medical records, imaging and operational intelligence.
             </div>
@@ -702,21 +900,30 @@
         lang_es_aria: "Cambiar idioma a español",
         lang_en_aria: "Cambiar idioma a inglés",
         hero_eyebrow: "Clinical Intelligence Studio",
-        hero_title: "Construyendo la<br><span class=\"grad\">operación clínica</span><br>para la medicina moderna.",
-        hero_desc: "R³ LAB diseña software médico, inteligencia artificial clínica y flujos digitales para que especialistas y equipos dediquen menos tiempo a captura de datos y más a práctica médica de calidad.",
+        hero_title_start: "Construyendo el",
+        hero_title_for: "para",
+        hero_desc: "Software con IA para industrias que todavía operan con hojas de cálculo, WhatsApp y trabajo manual.",
         hero_primary: "Explorar productos →",
         hero_secondary: "Qué construimos",
         dashboard_status: "R³ SYSTEM // EN LÍNEA",
-        dashboard_metric: "Menos admin.<br><span class=\"grad\">Más medicina.</span>",
-        dashboard_submetric: "Workflows clínicos, copilotos de IA, plantillas por especialidad, expediente, imagenología e inteligencia operativa.",
+        dashboard_metric_base: "Menos trabajo manual.",
+        dashboard_metric_prefix: "Más",
+        dashboard_submetric: "Workflows clínicos, copilotos de IA, expediente e inteligencia operativa.",
+        hero_cycle: [
+          { vertical: "OS clínico", market: "medicina moderna.", outcome: "medicina", submetric: "Workflows clínicos, copilotos de IA, expediente e inteligencia operativa." },
+          { vertical: "OS inmobiliario", market: "equipos inmobiliarios modernos.", outcome: "cierres", submetric: "Leads, inventario, CRM, cierres e inteligencia operativa." },
+          { vertical: "OS de hospitalidad", market: "operadores de renta corta.", outcome: "huéspedes", submetric: "Huéspedes, turnovers, mantenimiento, dueños e inteligencia operativa." },
+          { vertical: "OS de construcción", market: "desarrolladores modernos.", outcome: "avance", submetric: "Avance, presupuestos, equipos, documentos e inteligencia operativa." },
+          { vertical: "siguiente OS vertical", market: "industrias que aún operan manualmente.", outcome: "crecimiento", submetric: "Sistemas con IA para industrias que aún operan manualmente." }
+        ],
         mini1_title: "Clinical AI",
-        mini1_text: "SOAP, resúmenes y reconocimiento de patrones.",
+        mini1_text: "SOAP, resúmenes y patrones.",
         mini2_title: "Workflow Engine",
-        mini2_text: "Ingreso, seguimiento, recetas, estudios.",
+        mini2_text: "Ingreso, seguimiento, recetas y estudios.",
         mini3_title: "Specialty Layer",
-        mini3_text: "Pediatría, neumología de adultos, sueño e imagen.",
+        mini3_text: "Pediatría, neumología, sueño e imagen.",
         mini4_title: "Medical Ops",
-        mini4_text: "Agenda, facturación, roles, inteligencia de clínica.",
+        mini4_text: "Agenda, cobros, roles e inteligencia clínica.",
         terminal_line1_prefix: "r3@lab:",
         terminal_line1: " inicializando stack clínico...",
         terminal_line2: "NeumoPractice Pediatrics",
@@ -785,13 +992,22 @@
         lang_es_aria: "Switch language to Spanish",
         lang_en_aria: "Switch language to English",
         hero_eyebrow: "Clinical Intelligence Studio",
-        hero_title: "Building the<br><span class=\"grad\">clinical OS</span><br>for modern medicine.",
-        hero_desc: "R³ LAB builds medical software, clinical AI, and digital workflows so healthcare professionals spend less time capturing data and more time delivering care.",
+        hero_title_start: "Building the",
+        hero_title_for: "for",
+        hero_desc: "AI-native software for industries that still run on spreadsheets, WhatsApp and manual work.",
         hero_primary: "Explore products →",
         hero_secondary: "What we build",
         dashboard_status: "R³ SYSTEM // ONLINE",
-        dashboard_metric: "Less admin.<br><span class=\"grad\">More medicine.</span>",
-        dashboard_submetric: "Clinical workflows, AI copilots, specialty templates, medical records, imaging, and operational intelligence.",
+        dashboard_metric_base: "Less busywork.",
+        dashboard_metric_prefix: "More",
+        dashboard_submetric: "Clinical workflows, AI copilots, records and operational intelligence.",
+        hero_cycle: [
+          { vertical: "Clinical OS", market: "modern medicine.", outcome: "medicine", submetric: "Clinical workflows, AI copilots, records and operational intelligence." },
+          { vertical: "Real Estate OS", market: "modern property teams.", outcome: "deals", submetric: "Leads, listings, CRM, dealflow and operational intelligence." },
+          { vertical: "Hospitality OS", market: "short-term rental operators.", outcome: "guests", submetric: "Guests, turnovers, maintenance, owners and operational intelligence." },
+          { vertical: "Construction OS", market: "modern builders.", outcome: "progress", submetric: "Progress, budgets, teams, documents and operational intelligence." },
+          { vertical: "Next Vertical OS", market: "industries that run on manual work.", outcome: "growth", submetric: "AI-native systems for industries still running on manual work." }
+        ],
         mini1_title: "Clinical AI",
         mini1_text: "SOAP, summaries, pattern recognition.",
         mini2_title: "Workflow Engine",
@@ -863,12 +1079,120 @@
     const initialLang = storedLang === "es" || storedLang === "en"
       ? storedLang
       : (browserLang.startsWith("es") ? "es" : "en");
+    const dynamicHeroTitle = document.getElementById("dynamic-hero-title");
+    const dynamicDashboardMetric = document.getElementById("dynamic-dashboard-metric");
+    const dynamicVertical = document.querySelector("[data-dynamic-vertical]");
+    const dynamicMarket = document.querySelector("[data-dynamic-market]");
+    const dynamicOutcome = document.querySelector("[data-dynamic-outcome]");
+    const dynamicOutcomePeriod = document.querySelector("[data-dynamic-outcome-period]");
+    const dynamicSubmetric = document.querySelector(".submetric");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const typewriterPauseMs = 1400;
+    const typewriterWriteMs = 55;
+    const typewriterEraseMs = 30;
+    let dynamicHeroIndex = 0;
+    let dynamicHeroRunId = 0;
+    let currentLang = initialLang;
+
+    function wait(ms) {
+      return new Promise((resolve) => window.setTimeout(resolve, ms));
+    }
+
+    function getDynamicHeroState(lang, index) {
+      const cycle = translations[lang]?.hero_cycle;
+      return cycle?.[index];
+    }
+
+    function applyDynamicHeroState(lang, index, { tokensOnly = false } = {}) {
+      const state = getDynamicHeroState(lang, index);
+      if (!state || !dynamicVertical || !dynamicMarket || !dynamicOutcome) return;
+
+      dynamicVertical.textContent = state.vertical;
+      dynamicOutcome.textContent = state.outcome;
+      if (dynamicOutcomePeriod) {
+        dynamicOutcomePeriod.style.visibility = state.outcome ? "visible" : "hidden";
+      }
+      if (!tokensOnly) {
+        dynamicMarket.textContent = state.market;
+        if (dynamicSubmetric && state.submetric) {
+          dynamicSubmetric.textContent = state.submetric;
+        }
+      }
+    }
+
+    async function typeTokens(targets, runId, mode) {
+      const maxLength = Math.max(...targets.map(({ text }) => text.length));
+      const delay = mode === "erase" ? typewriterEraseMs : typewriterWriteMs;
+
+      for (let step = 0; step <= maxLength; step += 1) {
+        if (runId !== dynamicHeroRunId) return false;
+        targets.forEach(({ element, text }) => {
+          if (!element) return;
+          const length = mode === "erase"
+            ? Math.max(text.length - step, 0)
+            : Math.min(step, text.length);
+          element.textContent = text.slice(0, length);
+          if (element === dynamicOutcome && dynamicOutcomePeriod) {
+            dynamicOutcomePeriod.style.visibility = length > 0 ? "visible" : "hidden";
+          }
+        });
+        await wait(delay);
+      }
+
+      return runId === dynamicHeroRunId;
+    }
+
+    async function runDynamicHeroCycle(lang, runId) {
+      if (reducedMotionQuery.matches) return;
+
+      while (runId === dynamicHeroRunId) {
+        await wait(typewriterPauseMs);
+        const cycle = translations[lang]?.hero_cycle || [];
+        const current = getDynamicHeroState(lang, dynamicHeroIndex);
+        if (!cycle.length || !current || runId !== dynamicHeroRunId) return;
+
+        const nextIndex = (dynamicHeroIndex + 1) % cycle.length;
+        const next = getDynamicHeroState(lang, nextIndex);
+        if (!next) return;
+
+        const erased = await typeTokens([
+          { element: dynamicVertical, text: current.vertical },
+          { element: dynamicOutcome, text: current.outcome }
+        ], runId, "erase");
+        if (!erased || runId !== dynamicHeroRunId) return;
+
+        const typed = await typeTokens([
+          { element: dynamicVertical, text: next.vertical },
+          { element: dynamicOutcome, text: next.outcome }
+        ], runId, "write");
+        if (!typed || runId !== dynamicHeroRunId) return;
+
+        dynamicMarket.textContent = next.market;
+        if (dynamicSubmetric && next.submetric) {
+          dynamicSubmetric.textContent = next.submetric;
+        }
+        dynamicHeroIndex = nextIndex;
+      }
+    }
+
+    function resetDynamicHeroCycle(lang) {
+      dynamicHeroRunId += 1;
+      dynamicHeroIndex = 0;
+      applyDynamicHeroState(lang, dynamicHeroIndex);
+
+      if (!reducedMotionQuery.matches) {
+        runDynamicHeroCycle(lang, dynamicHeroRunId);
+      }
+    }
 
     function setLanguage(lang) {
       const dict = translations[lang];
       if (!dict) return;
+      currentLang = lang;
 
       document.documentElement.lang = dict.lang;
+      document.documentElement.classList.remove("lang-es", "lang-en");
+      document.documentElement.classList.add(`lang-${lang}`);
       document.title = dict.page_title;
 
       document.querySelector('meta[name="description"]').setAttribute("content", dict.meta_description);
@@ -900,6 +1224,7 @@
       if (enButton) enButton.setAttribute("aria-label", dict.lang_en_aria);
 
       localStorage.setItem(langStorageKey, lang);
+      resetDynamicHeroCycle(lang);
     }
 
     langButtons.forEach((button) => {
@@ -907,6 +1232,10 @@
         const selected = button.dataset.lang;
         setLanguage(selected);
       });
+    });
+
+    reducedMotionQuery.addEventListener?.("change", () => {
+      resetDynamicHeroCycle(currentLang);
     });
 
     const observer = new IntersectionObserver((entries)=>{
@@ -918,6 +1247,15 @@
     document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
     setLanguage(initialLang);
+    const logViewport = () => {
+      console.log(
+        'window width', window.innerWidth,
+        'doc width', document.documentElement.scrollWidth,
+        'fit', document.documentElement.scrollWidth <= window.innerWidth
+      );
+    };
+    window.addEventListener('load', logViewport);
+    window.addEventListener('resize', logViewport);
   </script>
 </body>
 </html>
