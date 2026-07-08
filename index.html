@@ -894,6 +894,147 @@
     .cell strong{color:var(--white); font-family:"Space Grotesk"; font-size:1.1rem;}
     .cell:nth-child(1){color:#BAE6FD; font-weight:900; letter-spacing:.05em;}
 
+    .os-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:14px;
+      margin-top:36px;
+    }
+    .os-card{
+      border:1px solid rgba(148,163,184,.14);
+      background:linear-gradient(180deg, rgba(15,23,42,.54), rgba(15,23,42,.22));
+      border-radius:22px;
+      padding:22px;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .os-card h3,
+    .method-step h3,
+    .layer-card h3,
+    .thesis-item h3,
+    .roadmap-item h3{
+      font-family:"Space Grotesk";
+      color:var(--white);
+      letter-spacing:-.025em;
+      margin:0;
+    }
+    .os-label{
+      color:#BAE6FD;
+      font-size:.78rem;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .os-status{
+      width:max-content;
+      max-width:100%;
+      border:1px solid rgba(34,211,238,.22);
+      background:rgba(6,182,212,.07);
+      color:#BAE6FD;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:.72rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .os-card p,
+    .method-step p,
+    .layer-card p,
+    .thesis-item p,
+    .roadmap-item p{
+      margin:0;
+      color:rgba(226,232,240,.66);
+      line-height:1.62;
+    }
+    .method-steps{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:0;
+      margin-top:40px;
+      border-top:1px solid rgba(148,163,184,.16);
+      border-bottom:1px solid rgba(148,163,184,.16);
+    }
+    .method-step{
+      padding:26px 18px;
+      border-right:1px solid rgba(148,163,184,.14);
+    }
+    .method-step:last-child{border-right:0}
+    .method-step span,
+    .layer-card span,
+    .thesis-item span,
+    .roadmap-item span{
+      display:block;
+      color:var(--cyan2);
+      font-weight:900;
+      font-size:.74rem;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .architecture-stack{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:36px;
+    }
+    .layer-card{
+      border:1px solid rgba(148,163,184,.14);
+      background:rgba(2,6,23,.38);
+      border-radius:22px;
+      padding:22px;
+      min-height:178px;
+    }
+    .vertical-ai{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .vertical-ai h2{white-space:pre-line;}
+    .thesis-ladder{
+      display:grid;
+      gap:10px;
+    }
+    .thesis-item{
+      border:1px solid rgba(148,163,184,.14);
+      background:linear-gradient(90deg, rgba(15,23,42,.62), rgba(15,23,42,.24));
+      border-radius:20px;
+      padding:18px 20px;
+    }
+    .thesis-item.is-strong{
+      border-color:rgba(34,211,238,.28);
+      box-shadow:0 18px 50px rgba(6,182,212,.08);
+    }
+    .roadmap{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:12px;
+      margin-top:38px;
+    }
+    .roadmap-item{
+      position:relative;
+      border-top:1px solid rgba(148,163,184,.22);
+      padding:24px 14px 0;
+    }
+    .roadmap-item:before{
+      content:"";
+      position:absolute;
+      top:-6px;
+      left:14px;
+      width:11px;
+      height:11px;
+      border-radius:999px;
+      background:var(--cyan2);
+      box-shadow:0 0 0 6px rgba(34,211,238,.10);
+    }
+    .studio-statement{
+      max-width:820px;
+      margin:0 auto 28px;
+    }
+
     .final{
       text-align:center;
       padding:110px 0 95px;
@@ -935,6 +1076,13 @@
       }
       .screen{min-height:430px}
       .cards,.product-grid{grid-template-columns:1fr}
+      .os-grid{grid-template-columns:1fr 1fr;}
+      .method-steps{grid-template-columns:1fr 1fr;}
+      .method-step:nth-child(2n){border-right:0}
+      .method-step:last-child{grid-column:1/-1; border-right:0}
+      .architecture-stack{grid-template-columns:1fr 1fr;}
+      .vertical-ai{grid-template-columns:1fr;}
+      .roadmap{grid-template-columns:1fr 1fr;}
       .second-hero{
         --r3-box-min-height:940px;
         --r3-mini-min-height:168px;
@@ -982,6 +1130,13 @@
       .hero p{min-height:calc(1.06rem * 1.7 * 4);}
       .hero-actions{margin-top:30px;}
       .second-hero{padding-top:36px;}
+      .os-grid,
+      .method-steps,
+      .architecture-stack,
+      .roadmap{grid-template-columns:1fr;}
+      .method-step{border-right:0; border-bottom:1px solid rgba(148,163,184,.14);}
+      .method-step:last-child{border-bottom:0;}
+      .roadmap-item{padding-left:18px;}
       .second-hero{
         --r3-box-min-height:1500px;
         --r3-mini-min-height:188px;
@@ -1308,110 +1463,213 @@
       </div>
     </section>
 
-    <section id="studio" class="wrap reveal">
+    <section id="products" class="wrap reveal">
       <div class="section-head">
-        <div class="kicker" data-i18n="studio_kicker">The Studio</div>
-        <h2 data-i18n="studio_title">Not another software company. A clinical product laboratory.</h2>
-        <p class="lead" data-i18n="studio_lead">
-          Construimos herramientas junto a especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para estorbarlo.
+        <div class="kicker" data-i18n="products_kicker">Operating Systems</div>
+        <h2 data-i18n="products_title">Operating Systems built by R³</h2>
+        <p class="lead" data-i18n="products_lead">
+          Purpose-built AI software for industries still running on fragmented tools.
         </p>
       </div>
 
-      <div class="cards">
-        <article class="card">
-          <div class="icon">01</div>
-          <h3 data-i18n="studio_card1_title">Clinical-first design</h3>
-          <p data-i18n="studio_card1_text">Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, estudios, recetas, equipo y operación diaria.</p>
+      <div class="os-grid">
+        <article class="os-card">
+          <span class="os-status" data-i18n="os_neumo_status">Founder Beta</span>
+          <h3>NeumoPractice</h3>
+          <div class="os-label" data-i18n="os_neumo_label">Clinical OS</div>
+          <p data-i18n="os_neumo_desc">Clinical workflows, AI copilots and specialty medical operations.</p>
         </article>
-        <article class="card">
-          <div class="icon">02</div>
-          <h3 data-i18n="studio_card2_title">AI that assists</h3>
-          <p data-i18n="studio_card2_text">IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.</p>
+        <article class="os-card">
+          <span class="os-status" data-i18n="os_atlas_status">Private Beta</span>
+          <h3>Atlas</h3>
+          <div class="os-label" data-i18n="os_atlas_label">Real Estate OS</div>
+          <p data-i18n="os_atlas_desc">Lead generation, CRM, property operations and AI workflows.</p>
         </article>
-        <article class="card">
-          <div class="icon">03</div>
-          <h3 data-i18n="studio_card3_title">Specialty engines</h3>
-          <p data-i18n="studio_card3_text">Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.</p>
+        <article class="os-card">
+          <span class="os-status" data-i18n="os_propierato_status">Private Beta</span>
+          <h3>Propierato</h3>
+          <div class="os-label" data-i18n="os_propierato_label">Hospitality OS</div>
+          <p data-i18n="os_propierato_desc">Short-term rental operations, maintenance intelligence and owner experience.</p>
+        </article>
+        <article class="os-card">
+          <span class="os-status" data-i18n="os_construction_status">Coming Soon</span>
+          <h3>Construction OS</h3>
+          <div class="os-label" data-i18n="os_construction_label">Construction OS</div>
+          <p data-i18n="os_construction_desc">The next operating system currently being developed inside R³.</p>
         </article>
       </div>
     </section>
 
-    <section id="products" class="wrap reveal">
+    <section id="studio" class="wrap reveal">
       <div class="section-head">
-        <div class="kicker" data-i18n="products_kicker">Product Stack</div>
-        <h2 data-i18n="products_title">One lab. Multiple clinical systems.</h2>
-        <p class="lead" data-i18n="products_lead">
-          R³ LAB es la casa detrás de productos médicos especializados. Algunos ya están en beta. Otros están cargando.
+        <div class="kicker" data-i18n="studio_kicker">How We Build</div>
+        <h2 data-i18n="studio_title">A studio methodology for vertical systems.</h2>
+        <p class="lead" data-i18n="studio_lead">
+          We study the work, map the operating model, then turn it into software that learns.
         </p>
       </div>
 
-      <div class="product-grid">
-        <article class="product main">
-          <span class="tag" data-i18n="tag_beta">Beta active</span>
-          <h3>NeumoPractice<br><span class="grad">Pediatrics</span></h3>
-          <p data-i18n="product_primary_text">
-            Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, estudios, calculadoras, timeline y operación de clínica.
-          </p>
-          <div class="launch"><div class="loader"><span></span></div><span data-i18n="product_primary_launch">Founder beta</span></div>
+      <div class="method-steps">
+        <article class="method-step">
+          <span>01</span>
+          <h3 data-i18n="method_1_title">Industry Research</h3>
+          <p data-i18n="method_1_desc">Understand the operators, constraints and invisible work.</p>
         </article>
-
-        <div class="product-list">
-          <article class="product small-product">
-            <span class="tag" data-i18n="tag_upcoming">Upcoming</span>
-            <h4>NeumoPractice Adults</h4>
-            <p data-i18n="product_secondary_text">Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.</p>
-          </article>
-          <article class="product small-product">
-            <span class="tag" data-i18n="tag_loading">Loading</span>
-            <h4 data-i18n="product_tertiary_title">Sleep Intelligence</h4>
-            <p data-i18n="product_tertiary_text">Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.</p>
-          </article>
-        </div>
+        <article class="method-step">
+          <span>02</span>
+          <h3 data-i18n="method_2_title">Workflow Mapping</h3>
+          <p data-i18n="method_2_desc">Turn fragmented processes into a clear operating model.</p>
+        </article>
+        <article class="method-step">
+          <span>03</span>
+          <h3 data-i18n="method_3_title">AI Layer</h3>
+          <p data-i18n="method_3_desc">Place intelligence where decisions and handoffs happen.</p>
+        </article>
+        <article class="method-step">
+          <span>04</span>
+          <h3 data-i18n="method_4_title">Operating System</h3>
+          <p data-i18n="method_4_desc">Ship the shared source of truth for daily work.</p>
+        </article>
+        <article class="method-step">
+          <span>05</span>
+          <h3 data-i18n="method_5_title">Continuous Learning</h3>
+          <p data-i18n="method_5_desc">Use real activity to improve the system over time.</p>
+        </article>
       </div>
     </section>
 
     <section id="architecture" class="wrap reveal">
       <div class="section-head">
-        <div class="kicker" data-i18n="architecture_kicker">Architecture</div>
-        <h2 data-i18n="architecture_title">A clinical operating layer for specialists.</h2>
+        <div class="kicker" data-i18n="architecture_kicker">The R³ Architecture</div>
+        <h2 data-i18n="architecture_title">One philosophy. Many verticals.</h2>
         <p class="lead" data-i18n="architecture_lead">
-          La visión no es crear apps aisladas. Es construir un núcleo clínico reusable que permita lanzar productos especializados más rápido y con mayor precisión.
+          Every R³ product is built around the same operating logic: intelligence, workflow, data and feedback.
         </p>
       </div>
 
-      <div class="matrix">
-        <div class="row">
-          <div class="cell"><strong data-i18n="matrix_core_title">Core SaaS</strong></div>
-          <div class="cell" data-i18n="matrix_core_desc">Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.</div>
-          <div class="cell" data-i18n="matrix_core_benefit">Base común para todos los productos.</div>
+      <div class="architecture-stack">
+        <article class="layer-card">
+          <span>01</span>
+          <h3 data-i18n="layer_ai_title">AI Copilots</h3>
+          <p data-i18n="layer_ai_desc">Assistants that understand context, decisions and next actions.</p>
+        </article>
+        <article class="layer-card">
+          <span>02</span>
+          <h3 data-i18n="layer_workflow_title">Workflow Engine</h3>
+          <p data-i18n="layer_workflow_desc">Repeatable flows for the work that used to live in messages.</p>
+        </article>
+        <article class="layer-card">
+          <span>03</span>
+          <h3 data-i18n="layer_database_title">Operational Database</h3>
+          <p data-i18n="layer_database_desc">A shared source of truth for people, assets, events and outcomes.</p>
+        </article>
+        <article class="layer-card">
+          <span>04</span>
+          <h3 data-i18n="layer_intelligence_title">Industry Intelligence</h3>
+          <p data-i18n="layer_intelligence_desc">Domain-specific signals that make the system sharper.</p>
+        </article>
+        <article class="layer-card">
+          <span>05</span>
+          <h3 data-i18n="layer_integrations_title">Integrations</h3>
+          <p data-i18n="layer_integrations_desc">Connections to the tools each industry already uses.</p>
+        </article>
+        <article class="layer-card">
+          <span>06</span>
+          <h3 data-i18n="layer_feedback_title">Continuous Feedback</h3>
+          <p data-i18n="layer_feedback_desc">Product loops informed by real usage and operator behavior.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal">
+      <div class="vertical-ai">
+        <div class="section-head">
+          <div class="kicker" data-i18n="vertical_ai_kicker">Why Vertical AI</div>
+          <h2 data-i18n="vertical_ai_title">General AI helps.
+Vertical AI transforms industries.</h2>
+          <p class="lead" data-i18n="vertical_ai_lead">
+            The advantage is not a chatbot. It is a system that understands how an industry actually runs.
+          </p>
         </div>
-        <div class="row">
-          <div class="cell"><strong data-i18n="matrix_specialty_title">Specialty Layer</strong></div>
-          <div class="cell" data-i18n="matrix_specialty_desc">Templates, calculadoras, formularios, labels, estudios y flujos por especialidad.</div>
-          <div class="cell" data-i18n="matrix_specialty_benefit">Pediatría, adultos, alergia, sueño, imagen.</div>
+
+        <div class="thesis-ladder">
+          <article class="thesis-item">
+            <span data-i18n="thesis_1_label">Step 01</span>
+            <h3 data-i18n="thesis_1_title">Traditional SaaS</h3>
+            <p data-i18n="thesis_1_desc">Systems of record, often disconnected from daily decisions.</p>
+          </article>
+          <article class="thesis-item">
+            <span data-i18n="thesis_2_label">Step 02</span>
+            <h3 data-i18n="thesis_2_title">Horizontal AI</h3>
+            <p data-i18n="thesis_2_desc">Helpful tools, but usually detached from the operating context.</p>
+          </article>
+          <article class="thesis-item is-strong">
+            <span data-i18n="thesis_3_label">Step 03</span>
+            <h3 data-i18n="thesis_3_title">Vertical Operating Systems</h3>
+            <p data-i18n="thesis_3_desc">Software that owns the workflow, data and intelligence layer.</p>
+          </article>
+          <article class="thesis-item">
+            <span data-i18n="thesis_4_label">Step 04</span>
+            <h3 data-i18n="thesis_4_title">Industry Intelligence</h3>
+            <p data-i18n="thesis_4_desc">The system learns the patterns that matter inside one market.</p>
+          </article>
+          <article class="thesis-item">
+            <span data-i18n="thesis_5_label">Step 05</span>
+            <h3 data-i18n="thesis_5_title">Compounding Knowledge</h3>
+            <p data-i18n="thesis_5_desc">Every workflow makes the product more useful for the vertical.</p>
+          </article>
         </div>
-        <div class="row">
-          <div class="cell"><strong data-i18n="matrix_ai_title">Clinical AI</strong></div>
-          <div class="cell" data-i18n="matrix_ai_desc">SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.</div>
-          <div class="cell" data-i18n="matrix_ai_benefit">Diseñada para asistir, no sustituir.</div>
-        </div>
-        <div class="row">
-          <div class="cell"><strong data-i18n="matrix_practice_title">Real Practice</strong></div>
-          <div class="cell" data-i18n="matrix_practice_desc">Productos construidos con feedback de especialistas y uso real en consulta.</div>
-          <div class="cell" data-i18n="matrix_practice_benefit">Menos captura. Más medicina.</div>
-        </div>
+      </div>
+    </section>
+
+    <section class="wrap reveal">
+      <div class="section-head">
+        <div class="kicker" data-i18n="roadmap_kicker">Roadmap</div>
+        <h2 data-i18n="roadmap_title">Building one vertical at a time.</h2>
+        <p class="lead" data-i18n="roadmap_lead">
+          The roadmap is a sequence of operating systems, not a list of features.
+        </p>
+      </div>
+
+      <div class="roadmap">
+        <article class="roadmap-item">
+          <span data-i18n="roadmap_clinical_status">Founder Beta</span>
+          <h3 data-i18n="roadmap_clinical_title">Clinical OS</h3>
+          <p>NeumoPractice</p>
+        </article>
+        <article class="roadmap-item">
+          <span data-i18n="roadmap_realestate_status">Private Beta</span>
+          <h3 data-i18n="roadmap_realestate_title">Real Estate OS</h3>
+          <p>Atlas</p>
+        </article>
+        <article class="roadmap-item">
+          <span data-i18n="roadmap_hospitality_status">Private Beta</span>
+          <h3 data-i18n="roadmap_hospitality_title">Hospitality OS</h3>
+          <p>Propierato</p>
+        </article>
+        <article class="roadmap-item">
+          <span data-i18n="roadmap_construction_status">In Development</span>
+          <h3 data-i18n="roadmap_construction_title">Construction OS</h3>
+          <p>R³ Construction</p>
+        </article>
+        <article class="roadmap-item">
+          <span data-i18n="roadmap_next_status">Research</span>
+          <h3 data-i18n="roadmap_next_title">Next Vertical</h3>
+          <p>R³ Studio</p>
+        </article>
       </div>
     </section>
 
     <section id="contact" class="wrap final reveal">
       <img class="logo-hero" src="r3-lab-logo.png" alt="R3 LAB logo">
+      <div class="kicker" data-i18n="final_kicker">The Studio</div>
       <h2>R<sup>3</sup> LAB</h2>
       <p data-i18n="final_text">
-        Clinical Intelligence Studio. Construyendo la siguiente generación de software médico especializado, IA clínica y sistemas operativos para la práctica moderna.
+        We believe every industry deserves its own operating system. We are building them one vertical at a time.
       </p>
       <div class="hero-actions" style="justify-content:center">
-        <a class="btn btn-primary" href="mailto:hola@neuropractice.com?subject=R3%20LAB" data-i18n="final_primary">Contact the Lab →</a>
-        <a class="btn btn-ghost" href="#products" data-i18n="final_secondary">View roadmap</a>
+        <a class="btn btn-primary" href="#products" data-i18n="final_primary">Explore our products →</a>
+        <a class="btn btn-ghost" href="mailto:hola@neuropractice.com?subject=R3%20LAB" data-i18n="final_secondary">Enter the Lab</a>
       </div>
     </section>
   </main>
@@ -1458,44 +1716,84 @@
         terminal_status_upcoming: "/ upcoming",
         terminal_status_research: "/ research",
         terminal_status_loading: "/ loading",
-        studio_kicker: "The Studio",
-        studio_title: "Not another software company. A clinical product laboratory.",
-        studio_lead: "We build tools with specialists, tested in real care and designed to fit naturally into the physician's workflow rather than slow it down.",
-        studio_card1_title: "Clinical-first design",
-        studio_card1_text: "Interfaces shaped by real clinical flow: visits, follow-ups, studies, prescriptions, team coordination and daily operations.",
-        studio_card2_title: "AI that assists",
-        studio_card2_text: "Clinical AI as structured support: it summarizes, organizes, suggests and reduces administrative load without replacing medical judgment.",
-        studio_card3_title: "Specialty engines",
-        studio_card3_text: "A shared technology foundation with specialty layers for pediatric pulmonology, adults, sleep, imaging and more.",
-        products_kicker: "Product Stack",
-        products_title: "One lab. Multiple clinical systems.",
-        products_lead: "R³ LAB is the home behind specialized medical products. Some are already in beta. Others are loading.",
-        tag_beta: "Beta active",
-        tag_upcoming: "Upcoming",
-        tag_loading: "Loading",
-        product_primary_text: "Clinical system for pediatric pulmonology: scheduling, records, prescriptions, clinical AI, studies, calculators, timeline and clinic operations.",
-        product_primary_launch: "Founder beta",
-        product_secondary_text: "Foundation for adult pulmonology: COPD, asthma, sleep, respiratory studies, longitudinal follow-up and clinical AI.",
-        product_tertiary_title: "Sleep Intelligence",
-        product_tertiary_text: "Flows for sleep, risk, follow-up, CPAP, reports and assisted clinical analysis.",
-        architecture_kicker: "Architecture",
-        architecture_title: "A clinical operating layer for specialists.",
-        architecture_lead: "The vision is not isolated apps. It is a reusable clinical core that enables specialized products to launch faster and with greater precision.",
-        matrix_core_title: "Core SaaS",
-        matrix_core_desc: "Auth, roles, multi-clinic, scheduling, patients, prescriptions, finance, files and billing.",
-        matrix_core_benefit: "Shared foundation for every product.",
-        matrix_specialty_title: "Specialty Layer",
-        matrix_specialty_desc: "Templates, calculators, forms, labels, studies and specialty-specific flows.",
-        matrix_specialty_benefit: "Pediatrics, adults, allergy, sleep and imaging.",
-        matrix_ai_title: "Clinical AI",
-        matrix_ai_desc: "SOAP, clinical summaries, checklists, contextual interpretation and document support.",
-        matrix_ai_benefit: "Designed to assist, not replace.",
-        matrix_practice_title: "Real Practice",
-        matrix_practice_desc: "Products built with specialist feedback and real use in care.",
-        matrix_practice_benefit: "Less capture. More medicine.",
-        final_text: "Clinical Intelligence Studio. Building the next generation of specialized medical software, clinical AI and operating systems for modern practice.",
-        final_primary: "Contact the Lab →",
-        final_secondary: "View roadmap",
+        products_kicker: "Operating Systems",
+        products_title: "Operating Systems built by R³",
+        products_lead: "Purpose-built AI software for industries still running on fragmented tools.",
+        os_neumo_status: "Founder Beta",
+        os_neumo_label: "Clinical OS",
+        os_neumo_desc: "Clinical workflows, AI copilots and specialty medical operations.",
+        os_atlas_status: "Private Beta",
+        os_atlas_label: "Real Estate OS",
+        os_atlas_desc: "Lead generation, CRM, property operations and AI workflows.",
+        os_propierato_status: "Private Beta",
+        os_propierato_label: "Hospitality OS",
+        os_propierato_desc: "Short-term rental operations, maintenance intelligence and owner experience.",
+        os_construction_status: "Coming Soon",
+        os_construction_label: "Construction OS",
+        os_construction_desc: "The next operating system currently being developed inside R³.",
+        studio_kicker: "How We Build",
+        studio_title: "A studio methodology for vertical systems.",
+        studio_lead: "We study the work, map the operating model, then turn it into software that learns.",
+        method_1_title: "Industry Research",
+        method_1_desc: "Understand the operators, constraints and invisible work.",
+        method_2_title: "Workflow Mapping",
+        method_2_desc: "Turn fragmented processes into a clear operating model.",
+        method_3_title: "AI Layer",
+        method_3_desc: "Place intelligence where decisions and handoffs happen.",
+        method_4_title: "Operating System",
+        method_4_desc: "Ship the shared source of truth for daily work.",
+        method_5_title: "Continuous Learning",
+        method_5_desc: "Use real activity to improve the system over time.",
+        architecture_kicker: "The R³ Architecture",
+        architecture_title: "One philosophy. Many verticals.",
+        architecture_lead: "Every R³ product is built around the same operating logic: intelligence, workflow, data and feedback.",
+        layer_ai_title: "AI Copilots",
+        layer_ai_desc: "Assistants that understand context, decisions and next actions.",
+        layer_workflow_title: "Workflow Engine",
+        layer_workflow_desc: "Repeatable flows for the work that used to live in messages.",
+        layer_database_title: "Operational Database",
+        layer_database_desc: "A shared source of truth for people, assets, events and outcomes.",
+        layer_intelligence_title: "Industry Intelligence",
+        layer_intelligence_desc: "Domain-specific signals that make the system sharper.",
+        layer_integrations_title: "Integrations",
+        layer_integrations_desc: "Connections to the tools each industry already uses.",
+        layer_feedback_title: "Continuous Feedback",
+        layer_feedback_desc: "Product loops informed by real usage and operator behavior.",
+        vertical_ai_kicker: "Why Vertical AI",
+        vertical_ai_title: "General AI helps.\nVertical AI transforms industries.",
+        vertical_ai_lead: "The advantage is not a chatbot. It is a system that understands how an industry actually runs.",
+        thesis_1_label: "Step 01",
+        thesis_1_title: "Traditional SaaS",
+        thesis_1_desc: "Systems of record, often disconnected from daily decisions.",
+        thesis_2_label: "Step 02",
+        thesis_2_title: "Horizontal AI",
+        thesis_2_desc: "Helpful tools, but usually detached from the operating context.",
+        thesis_3_label: "Step 03",
+        thesis_3_title: "Vertical Operating Systems",
+        thesis_3_desc: "Software that owns the workflow, data and intelligence layer.",
+        thesis_4_label: "Step 04",
+        thesis_4_title: "Industry Intelligence",
+        thesis_4_desc: "The system learns the patterns that matter inside one market.",
+        thesis_5_label: "Step 05",
+        thesis_5_title: "Compounding Knowledge",
+        thesis_5_desc: "Every workflow makes the product more useful for the vertical.",
+        roadmap_kicker: "Roadmap",
+        roadmap_title: "Building one vertical at a time.",
+        roadmap_lead: "The roadmap is a sequence of operating systems, not a list of features.",
+        roadmap_clinical_status: "Founder Beta",
+        roadmap_clinical_title: "Clinical OS",
+        roadmap_realestate_status: "Private Beta",
+        roadmap_realestate_title: "Real Estate OS",
+        roadmap_hospitality_status: "Private Beta",
+        roadmap_hospitality_title: "Hospitality OS",
+        roadmap_construction_status: "In Development",
+        roadmap_construction_title: "Construction OS",
+        roadmap_next_status: "Research",
+        roadmap_next_title: "Next Vertical",
+        final_kicker: "The Studio",
+        final_text: "We believe every industry deserves its own operating system. We are building them one vertical at a time.",
+        final_primary: "Explore our products →",
+        final_secondary: "Enter the Lab",
         footer_text: "R³ LAB. Clinical Intelligence Studio.",
         footer_link_health: "Healthcare AI",
         footer_link_software: "Clinical Software",
@@ -1600,44 +1898,84 @@
         terminal_status_upcoming: "/ próximo",
         terminal_status_research: "/ investigación",
         terminal_status_loading: "/ cargando",
-        studio_kicker: "El Laboratorio",
-        studio_title: "No somos otra empresa tecnológica. Somos un laboratorio clínico de producto.",
-        studio_lead: "Construimos herramientas junto a especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para estorbarlo.",
-        studio_card1_title: "Diseño clínico primero",
-        studio_card1_text: "Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, pruebas, recetas, equipo y operación diaria.",
-        studio_card2_title: "IA que asiste",
-        studio_card2_text: "IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.",
-        studio_card3_title: "Motores por especialidad",
-        studio_card3_text: "Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.",
-        products_kicker: "Stack de producto",
-        products_title: "Un laboratorio. Múltiples sistemas clínicos.",
-        products_lead: "R³ LAB es la casa detrás de productos médicos especializados. Algunos ya están en beta. Otros están cargando.",
-        tag_beta: "Beta activa",
-        tag_upcoming: "Próximamente",
-        tag_loading: "Cargando",
-        product_primary_text: "Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, pruebas, calculadoras, timeline y operación de clínica.",
-        product_primary_launch: "Beta fundador",
-        product_secondary_text: "Base para neumología de adultos: EPOC, asma, sueño, pruebas respiratorias, seguimiento longitudinal e IA clínica.",
-        product_tertiary_title: "Inteligencia de sueño",
-        product_tertiary_text: "Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.",
-        architecture_kicker: "Arquitectura",
-        architecture_title: "Una capa operativa clínica para especialistas.",
-        architecture_lead: "La visión no es crear apps aisladas. Es construir un núcleo clínico reusable que permita lanzar productos especializados más rápido y con mayor precisión.",
-        matrix_core_title: "Núcleo SaaS",
-        matrix_core_desc: "Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.",
-        matrix_core_benefit: "Base común para todos los productos.",
-        matrix_specialty_title: "Capa por especialidad",
-        matrix_specialty_desc: "Plantillas, calculadoras, formularios, etiquetas, pruebas y flujos por especialidad.",
-        matrix_specialty_benefit: "Pediatría, adultos, alergia, sueño e imagen.",
-        matrix_ai_title: "IA clínica",
-        matrix_ai_desc: "SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.",
-        matrix_ai_benefit: "Diseñada para asistir, no sustituir.",
-        matrix_practice_title: "Práctica real",
-        matrix_practice_desc: "Productos construidos con feedback de especialistas y uso real en consulta.",
-        matrix_practice_benefit: "Menos captura. Más medicina.",
-        final_text: "Laboratorio de inteligencia clínica. Construyendo la siguiente generación de herramientas médicas especializadas, IA clínica y sistemas operativos para la práctica moderna.",
-        final_primary: "Hablar con el Lab →",
-        final_secondary: "Ver roadmap",
+        products_kicker: "Sistemas operativos",
+        products_title: "Los sistemas operativos construidos por R³",
+        products_lead: "Software con IA diseñado específicamente para industrias que todavía operan con herramientas fragmentadas.",
+        os_neumo_status: "Beta fundador",
+        os_neumo_label: "OS clínico",
+        os_neumo_desc: "Flujos clínicos, copilotos de IA y operación médica especializada.",
+        os_atlas_status: "Beta privada",
+        os_atlas_label: "OS inmobiliario",
+        os_atlas_desc: "Generación de leads, CRM, operación de propiedades y workflows con IA.",
+        os_propierato_status: "Beta privada",
+        os_propierato_label: "OS de hospitalidad",
+        os_propierato_desc: "Operación de renta corta, inteligencia de mantenimiento y experiencia para dueños.",
+        os_construction_status: "Próximamente",
+        os_construction_label: "OS de construcción",
+        os_construction_desc: "El siguiente sistema operativo actualmente en desarrollo dentro de R³.",
+        studio_kicker: "Cómo construimos",
+        studio_title: "Una metodología de estudio para sistemas verticales.",
+        studio_lead: "Estudiamos el trabajo, mapeamos el modelo operativo y lo convertimos en software que aprende.",
+        method_1_title: "Investigación de industria",
+        method_1_desc: "Entender operadores, restricciones y trabajo invisible.",
+        method_2_title: "Mapeo de workflows",
+        method_2_desc: "Convertir procesos fragmentados en un modelo operativo claro.",
+        method_3_title: "Capa de IA",
+        method_3_desc: "Colocar inteligencia donde ocurren decisiones y handoffs.",
+        method_4_title: "Sistema operativo",
+        method_4_desc: "Lanzar la fuente de verdad compartida para el trabajo diario.",
+        method_5_title: "Aprendizaje continuo",
+        method_5_desc: "Usar actividad real para mejorar el sistema con el tiempo.",
+        architecture_kicker: "La arquitectura de R³",
+        architecture_title: "Una filosofía. Muchas verticales.",
+        architecture_lead: "Cada producto de R³ se construye alrededor de la misma lógica operativa: inteligencia, workflow, datos y feedback.",
+        layer_ai_title: "Copilotos de IA",
+        layer_ai_desc: "Asistentes que entienden contexto, decisiones y siguientes acciones.",
+        layer_workflow_title: "Motor de workflows",
+        layer_workflow_desc: "Flujos repetibles para el trabajo que antes vivía en mensajes.",
+        layer_database_title: "Base operativa",
+        layer_database_desc: "Una fuente de verdad para personas, activos, eventos y resultados.",
+        layer_intelligence_title: "Inteligencia de industria",
+        layer_intelligence_desc: "Señales específicas del dominio que hacen más preciso el sistema.",
+        layer_integrations_title: "Integraciones",
+        layer_integrations_desc: "Conexiones con las herramientas que cada industria ya usa.",
+        layer_feedback_title: "Feedback continuo",
+        layer_feedback_desc: "Loops de producto informados por uso real y comportamiento operativo.",
+        vertical_ai_kicker: "Por qué IA vertical",
+        vertical_ai_title: "La IA general ayuda.\nLa IA vertical transforma industrias.",
+        vertical_ai_lead: "La ventaja no es un chatbot. Es un sistema que entiende cómo opera realmente una industria.",
+        thesis_1_label: "Paso 01",
+        thesis_1_title: "SaaS tradicional",
+        thesis_1_desc: "Sistemas de registro, a menudo desconectados de las decisiones diarias.",
+        thesis_2_label: "Paso 02",
+        thesis_2_title: "IA horizontal",
+        thesis_2_desc: "Herramientas útiles, pero separadas del contexto operativo.",
+        thesis_3_label: "Paso 03",
+        thesis_3_title: "Sistemas operativos verticales",
+        thesis_3_desc: "Software que concentra workflow, datos e inteligencia.",
+        thesis_4_label: "Paso 04",
+        thesis_4_title: "Inteligencia de industria",
+        thesis_4_desc: "El sistema aprende los patrones importantes de un mercado.",
+        thesis_5_label: "Paso 05",
+        thesis_5_title: "Conocimiento acumulado",
+        thesis_5_desc: "Cada workflow vuelve al producto más útil para la vertical.",
+        roadmap_kicker: "Roadmap",
+        roadmap_title: "Construyendo una vertical a la vez.",
+        roadmap_lead: "El roadmap es una secuencia de sistemas operativos, no una lista de features.",
+        roadmap_clinical_status: "Beta fundador",
+        roadmap_clinical_title: "OS clínico",
+        roadmap_realestate_status: "Beta privada",
+        roadmap_realestate_title: "OS inmobiliario",
+        roadmap_hospitality_status: "Beta privada",
+        roadmap_hospitality_title: "OS de hospitalidad",
+        roadmap_construction_status: "En desarrollo",
+        roadmap_construction_title: "OS de construcción",
+        roadmap_next_status: "Investigación",
+        roadmap_next_title: "Siguiente vertical",
+        final_kicker: "El estudio",
+        final_text: "Creemos que cada industria merece su propio sistema operativo. Estamos construyéndolos, una industria a la vez.",
+        final_primary: "Explorar productos →",
+        final_secondary: "Entrar al Lab",
         footer_text: "R³ LAB. Laboratorio de inteligencia clínica.",
         footer_link_health: "IA en salud",
         footer_link_software: "Herramientas clínicas",
