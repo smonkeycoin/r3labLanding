@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" class="lang-es">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,12 +33,6 @@
     }
 
     *{box-sizing:border-box}
-    *, *::before, *::after {box-sizing:border-box}
-    html, body{
-      width:100%;
-      max-width:100%;
-      overflow-x:hidden;
-    }
     html{scroll-behavior:smooth}
     body{
       margin:0;
@@ -130,25 +124,23 @@
       font-size:.92rem;
       font-weight:600;
     }
-    .lang-switch{display:flex; gap:8px; margin-left:auto;}
+    .nav-links a:hover{color:var(--cyan2)}
+    .lang-switch{display:flex; gap:8px; align-items:center;}
     .lang-btn{
-      border:1px solid rgba(148,163,184,.35);
-      background:rgba(15,23,42,.72);
-      color:rgba(226,232,240,.86);
+      border:1px solid rgba(148,163,184,.22);
+      color:rgba(226,232,240,.76);
+      background:rgba(15,23,42,.38);
       border-radius:999px;
-      padding:8px 13px;
-      font-size:.85rem;
+      padding:8px 11px;
       font-weight:800;
-      letter-spacing:.04em;
+      font-size:.78rem;
       cursor:pointer;
     }
     .lang-btn.active{
-      color:var(--cyan2);
-      border-color:rgba(34,211,238,.6);
-      background:rgba(6,182,212,.18);
-      box-shadow:0 0 22px rgba(34,211,238,.24);
+      color:var(--white);
+      border-color:rgba(34,211,238,.58);
+      box-shadow:0 0 24px rgba(34,211,238,.16);
     }
-    .nav-links a:hover{color:var(--cyan2)}
     .pill{
       border:1px solid rgba(34,211,238,.34);
       color:var(--white)!important;
@@ -159,15 +151,19 @@
     }
 
     .hero{
-      min-height:calc(100vh - 78px);
+      min-height:calc(78vh - 78px);
       display:grid;
-      grid-template-columns:1.08fr .92fr;
-      align-items:center;
-      gap:54px;
-      padding:64px 0 70px;
+      place-items:center;
+      padding:82px 0 58px;
       position:relative;
+      text-align:center;
     }
-    .hero-content{min-width:0;}
+    .hero-main{
+      width:100%;
+      max-width:960px;
+      margin:0 auto;
+      min-width:0;
+    }
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -192,17 +188,13 @@
       70%{box-shadow:0 0 0 14px rgba(34,211,238,0)}
       100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
     }
-    .hero-title{
+    h1{
       margin:24px 0 20px;
       font-family:"Space Grotesk",Inter,sans-serif;
       font-size:clamp(3.2rem, 8vw, 7.8rem);
-      line-height:.92;
+      line-height:.88;
       letter-spacing:-.075em;
       color:var(--white);
-    }
-    .lang-es .hero-title{
-      font-size:clamp(3.7rem, 6.7vw, 6.8rem);
-      line-height:.96;
     }
     .grad{
       background:linear-gradient(90deg, #fff 0%, #67E8F9 42%, #A78BFA 78%, #fff 105%);
@@ -215,22 +207,18 @@
     .metric-dynamic{
       display:inline-block;
       min-height:1em;
-      white-space:nowrap;
       vertical-align:baseline;
     }
-    .hero-market{
+    .hero-dynamic{
       max-width:100%;
+      white-space:normal;
     }
     .hero-market-line{
       display:inline-block;
       margin-top:.05em;
       max-width:100%;
     }
-    .hero-dynamic{
-      min-width:0;
-      max-width:100%;
-      white-space:normal;
-    }
+    .hero-market{max-width:100%;}
     .typewriter-cursor::after{
       content:"|";
       display:inline-block;
@@ -249,20 +237,21 @@
       display:inline-block;
       max-width:100%;
       white-space:nowrap;
+      min-height:1.05em;
     }
-    .metric-line [data-i18n="dashboard_metric_prefix"]{margin-right:.18em;}
+    .metric-prefix{margin-right:.18em;}
+    .box-outcome{
+      display:inline-block;
+      min-width:10ch;
+    }
     .hero p{
       max-width:680px;
-      margin:0;
+      margin:0 auto;
       color:rgba(226,232,240,.74);
       font-size:clamp(1.06rem, 1.7vw, 1.28rem);
       line-height:1.7;
     }
-    .lang-es .hero p{
-      max-width:730px;
-      line-height:1.68;
-    }
-    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;}
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; justify-content:center;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       min-height:52px;
@@ -335,7 +324,6 @@
       max-width:100%;
       text-wrap:balance;
     }
-    .lang-es .big-metric{font-size:clamp(2.4rem, 4vw, 4.2rem);}
     .metric-dynamic{min-width:0;}
     .submetric{color:var(--muted); line-height:1.6;}
     .grid-mini{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px;}
@@ -347,6 +335,7 @@
       padding:16px;
     }
     .mini b{display:block; color:var(--white); margin-bottom:9px;}
+    .mini-text{display:block;}
     .bar{height:8px; border-radius:99px; background:rgba(148,163,184,.18); overflow:hidden; margin-top:18px;}
     .bar span{display:block; height:100%; width:72%; border-radius:99px; background:linear-gradient(90deg,var(--cyan2),var(--violet2)); box-shadow:0 0 18px rgba(34,211,238,.4);}
     .terminal{
@@ -362,8 +351,37 @@
     }
     .terminal .violet{color:#C4B5FD}.terminal .muted{color:#64748B}
 
-    .lang-es .grid-mini{gap:11px;}
-    .lang-es .mini{min-height:auto;}
+    .second-hero{
+      padding:12px 0 96px;
+    }
+    .second-hero-head{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 28px;
+    }
+    .second-hero-head h2{
+      margin-bottom:0;
+    }
+    .second-hero .hero-card{
+      width:min(100%, 1040px);
+      margin:0 auto;
+    }
+    .second-hero .screen{
+      min-height:auto;
+    }
+    .second-hero .dashboard{
+      padding:30px;
+    }
+    .second-hero .big-metric{
+      max-width:760px;
+    }
+    .second-hero .submetric{
+      max-width:720px;
+    }
+    .second-hero .grid-mini{
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
 
     section{padding:90px 0; position:relative;}
     .section-head{max-width:760px; margin-bottom:34px;}
@@ -522,132 +540,30 @@
     .reveal{opacity:0; transform:translateY(18px); transition:.7s ease;}
     .reveal.on{opacity:1; transform:none;}
 
-    @media (max-width:900px){
+    @media (max-width:920px){
       .nav-links a:not(.pill){display:none}
-      .hero{grid-template-columns:1fr; padding-top:42px;}
-      .hero-card{order:-1}
+      .nav-links{gap:8px;}
+      .lang-switch{gap:6px;}
+      .lang-btn{padding:7px 10px;}
+      .hero{padding:52px 0 42px; min-height:auto;}
       .screen{min-height:430px}
       .cards,.product-grid{grid-template-columns:1fr}
+      .second-hero{padding:0 0 74px;}
+      .second-hero .hero-card{width:min(100%, calc(100vw - 32px));}
+      .second-hero .dashboard{padding:22px;}
+      .second-hero .grid-mini{grid-template-columns:1fr 1fr;}
       .row{grid-template-columns:1fr}
       .cell{border-bottom:1px solid rgba(148,163,184,.1)}
-      .hero-title{font-size:clamp(3.2rem, 15vw, 5.4rem)}
-      .hero{gap:30px}
-      .hero-copy{max-width:100%;}
-      .wrap{width:min(1180px, calc(100% - 28px));}
-    }
-    @media (max-width:768px){
-      .nav{
-        width:100%;
-      }
-      .nav-inner{
-        width:100%;
-        gap:10px;
-        min-width:0;
-      }
-      .brand{
-        min-width:0;
-        max-width:52%;
-      }
-      .nav-links{
-        flex-wrap:nowrap;
-        gap:8px;
-        min-width:0;
-      }
-      .lang-switch{
-        margin-left:0;
-        flex-wrap:nowrap;
-      }
-      .lang-btn{
-        padding:7px 10px;
-      }
-      .pill{
-        white-space:nowrap;
-        padding:9px 11px;
-      }
-      .hero{
-        grid-template-columns:1fr;
-        gap:28px;
-        width:100%;
-        max-width:100%;
-        min-width:0;
-      }
-      .hero-inner,
-      .hero-grid,
-      .hero-content{
-        width:100%;
-        max-width:100%;
-        min-width:0;
-        padding-inline:16px;
-        overflow:visible;
-      }
-      .hero-visual,
-      .system-card,
-      .lab-card,
-      .mockup,
-      .browser-card{
-        width:min(100%, calc(100vw - 32px));
-        max-width:100%;
-        margin-inline:auto;
-        transform:none !important;
-        left:auto !important;
-        right:auto !important;
-      }
-      .hero-card{
-        padding:16px;
-      }
-      .screen,
-      .hero-visual .screen{
-        width:min(100%, calc(100vw - 32px));
-        max-width:100%;
-        min-width:0;
-      }
-      .hero-actions{
-        width:100%;
-        max-width:100%;
-      }
-      .mini{
-        min-width:0;
-      }
-      .hero-title,
-      .hero p,
-      .hero-copy{
-        width:100%;
-        max-width:100%;
-        min-width:0;
-      }
-      .wrap{width:min(1180px, calc(100% - 32px));}
-    }
-    @media (max-width:640px){
-      .hero{padding:30px 0 52px;}
-      .lang-es .hero-title{font-size:clamp(2.9rem, 11.2vw, 4.6rem)}
-      .hero-title{font-size:clamp(2.6rem, 12vw, 4.4rem)}
-      .hero-dynamic,
-      .metric-dynamic{white-space:normal;}
-      .hero p{font-size:clamp(.98rem, 4.1vw, 1.12rem)}
-      .hero-actions{margin-top:24px;}
-      .hero-card{padding:16px;}
-      .screen{min-height:410px;}
-      .grid-mini{grid-template-columns:1fr}
-      .lang-es .grid-mini{gap:12px}
-      .lang-es .mini{min-height:auto}
-      .final h2{line-height:1}
-    }
-    @media (max-width:390px){
-      .hero{padding-top:24px; padding-bottom:40px;}
-      .lang-es .hero-title{font-size:clamp(2.28rem, 10.3vw, 3.2rem); line-height:.98;}
-      .hero-title{font-size:clamp(2.3rem, 11vw, 3.2rem); line-height:.98;}
-      .hero p{font-size:clamp(.94rem, 4.3vw, 1.02rem);}
-      .lang-btn{padding:7px 10px; font-size:.78rem;}
-      .screen{min-height:390px}
+      h1{font-size:clamp(3.2rem, 18vw, 5.4rem)}
     }
     @media (max-width:520px){
-      .grid-mini{
-        grid-template-columns:1fr;
-        gap:14px;
-      }
-      .grid-mini .mini{
-        min-width:0;
-      }
+      .hero{padding:42px 0 34px;}
+      h1{font-size:clamp(2.7rem, 14vw, 4.2rem); line-height:.94;}
+      .hero-actions{margin-top:26px;}
+      .second-hero .grid-mini{grid-template-columns:1fr;}
+      .second-hero .screen{min-height:auto;}
+      .second-hero .big-metric{font-size:clamp(2.35rem, 12vw, 3.5rem);}
+      .second-hero .terminal{font-size:.7rem;}
     }
     @media (prefers-reduced-motion:reduce){
       .typewriter-cursor::after{
@@ -673,25 +589,9 @@
         <a href="#products" data-i18n="nav_products">Products</a>
         <a href="#architecture" data-i18n="nav_architecture">Architecture</a>
         <a class="pill" href="#contact" data-i18n="nav_cta">Enter the Lab</a>
-        <div class="lang-switch">
-          <button
-            type="button"
-            class="lang-btn"
-            id="lang-es"
-            data-lang="es"
-            data-i18n="lang_es"
-            aria-pressed="true"
-            aria-label="Switch language to Spanish"
-          >ES</button>
-          <button
-            type="button"
-            class="lang-btn"
-            id="lang-en"
-            data-lang="en"
-            data-i18n="lang_en"
-            aria-pressed="false"
-            aria-label="Switch language to English"
-          >EN</button>
+        <div class="lang-switch" aria-label="Language">
+          <button class="lang-btn" type="button" data-lang="es" id="lang-es">ES</button>
+          <button class="lang-btn active" type="button" data-lang="en" id="lang-en">EN</button>
         </div>
       </div>
     </div>
@@ -699,69 +599,76 @@
 
   <main>
     <header class="wrap hero">
-      <div class="hero-content hero-inner">
+      <div class="hero-main">
         <div class="eyebrow"><span class="pulse"></span> <span data-i18n="hero_eyebrow">Clinical Intelligence Studio</span></div>
-        <h1 class="hero-title" id="dynamic-hero-title">
-          <span data-i18n="hero_title_start">Construyendo el</span><br>
-          <span class="grad hero-dynamic typewriter-cursor" data-dynamic-vertical>OS clínico</span><br>
-          <span class="hero-market-line"><span data-i18n="hero_title_for">para</span> <span class="hero-market" data-dynamic-market>medicina moderna.</span></span>
+        <h1 id="dynamic-hero-title">
+          <span data-i18n="hero_title_start">Building the</span><br>
+          <span class="grad hero-dynamic typewriter-cursor" data-dynamic-vertical>Clinical OS</span><br>
+          <span class="hero-market-line"><span data-i18n="hero_title_for">for</span> <span class="hero-market" data-dynamic-market>modern medicine.</span></span>
         </h1>
-        <p class="hero-copy" data-i18n="hero_desc">
-          R³ LAB construye software médico, IA clínica y flujos digitales para equipos de salud modernos.
+        <p data-i18n="hero_desc">
+          R³ LAB diseña software médico, inteligencia artificial clínica y flujos digitales para que los profesionales de la salud dediquen menos tiempo a capturar datos y más tiempo a practicar medicina.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#products" data-i18n="hero_primary">Explore products →</a>
           <a class="btn btn-ghost" href="#studio" data-i18n="hero_secondary">What we build</a>
         </div>
       </div>
+    </header>
 
-      <div class="hero-card reveal hero-visual system-card lab-card">
+    <section class="wrap second-hero reveal" aria-label="The R3 Operating Layer" data-i18n-aria="second_aria">
+      <div class="second-hero-head">
+        <div class="kicker" data-i18n="second_kicker">The R³ Operating Layer</div>
+        <h2 data-i18n="second_title">The R³ Operating Layer</h2>
+      </div>
+
+      <div class="hero-card">
         <div class="screen">
           <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
           <div class="dashboard">
             <div class="status-line" data-i18n="dashboard_status">R³ SYSTEM // ONLINE</div>
             <div class="big-metric" id="dynamic-dashboard-metric">
-              <span data-i18n="dashboard_metric_base">Menos trabajo manual.</span><br>
-              <span class="metric-line"><span data-i18n="dashboard_metric_prefix">Más</span> <span class="grad metric-dynamic" data-dynamic-outcome>medicina</span><span data-dynamic-outcome-period>.</span><span class="typewriter-cursor metric-cursor"></span></span>
+              <span data-i18n="box_claim_base">Less busywork.</span><br>
+              <span class="metric-line"><span data-i18n="box_claim_prefix">More</span> <span class="grad box-outcome" data-box-outcome>medicine</span><span>.</span></span>
             </div>
-            <div class="submetric" data-i18n="dashboard_submetric">
-              Clinical workflows, AI copilots, specialty templates, medical records, imaging and operational intelligence.
+            <div class="submetric" data-box-description>
+              AI-native systems for industries still running on manual work.
             </div>
 
             <div class="grid-mini">
               <div class="mini">
-                <b data-i18n="mini1_title">Clinical AI</b>
-                <span data-i18n="mini1_text">SOAP, summaries, pattern recognition.</span>
+                <b data-card-title="0">AI Clinical Copilot</b>
+                <span class="mini-text" data-card-text="0">Summaries, decisions and clinical next actions.</span>
                 <div class="bar"><span></span></div>
               </div>
               <div class="mini">
-                <b data-i18n="mini2_title">Workflow Engine</b>
-                <span data-i18n="mini2_text">Intake, follow-up, prescriptions, studies.</span>
+                <b data-card-title="1">Specialty workflows</b>
+                <span class="mini-text" data-card-text="1">Templates, tasks and care pathways.</span>
                 <div class="bar"><span style="width:61%"></span></div>
               </div>
               <div class="mini">
-                <b data-i18n="mini3_title">Specialty Layer</b>
-                <span data-i18n="mini3_text">Pediatrics, adult pulmonology, sleep, imaging.</span>
+                <b data-card-title="2">Patient records</b>
+                <span class="mini-text" data-card-text="2">Records, timelines and shared context.</span>
                 <div class="bar"><span style="width:48%"></span></div>
               </div>
               <div class="mini">
-                <b data-i18n="mini4_title">Medical Ops</b>
-                <span data-i18n="mini4_text">Agenda, billing, roles, clinic intelligence.</span>
+                <b data-card-title="3">Medical operations</b>
+                <span class="mini-text" data-card-text="3">Scheduling, roles, alerts and visibility.</span>
                 <div class="bar"><span style="width:78%"></span></div>
               </div>
             </div>
 
             <div class="terminal">
-              <span class="muted" data-i18n="terminal_line1_prefix">r3@lab:</span><span data-i18n="terminal_line1" class="muted"> initializing product stack...</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_line2">NeumoPractice Pediatrics</span> <span class="muted" data-i18n="terminal_line2_status">/ beta</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_line3">NeumoPractice Adults</span> <span class="muted" data-i18n="terminal_line3_status">/ upcoming</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_line4">Imaging AI</span> <span class="muted" data-i18n="terminal_line4_status">/ research</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_line5">Sleep Platform</span> <span class="muted" data-i18n="terminal_line5_status">/ loading</span>
+              <span class="muted">r3@lab:</span> <span data-i18n="terminal_line1">initializing product stack...</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_product_pediatrics">NeumoPractice Pediatrics</span> <span class="muted" data-i18n="terminal_status_beta">/ beta</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_product_adults">NeumoPractice Adults</span> <span class="muted" data-i18n="terminal_status_upcoming">/ upcoming</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_product_imaging">Imaging AI</span> <span class="muted" data-i18n="terminal_status_research">/ research</span><br>
+              <span class="violet">→</span> <span data-i18n="terminal_product_sleep">Sleep Platform</span> <span class="muted" data-i18n="terminal_status_loading">/ loading</span>
             </div>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
     <section id="studio" class="wrap reveal">
       <div class="section-head">
@@ -775,18 +682,18 @@
       <div class="cards">
         <article class="card">
           <div class="icon">01</div>
-          <h3 data-i18n="card1_title">Clinical-first design</h3>
-          <p data-i18n="card1_text">Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, estudios, recetas, equipo y operación diaria.</p>
+          <h3 data-i18n="studio_card1_title">Clinical-first design</h3>
+          <p data-i18n="studio_card1_text">Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, estudios, recetas, equipo y operación diaria.</p>
         </article>
         <article class="card">
           <div class="icon">02</div>
-          <h3 data-i18n="card2_title">AI that assists</h3>
-          <p data-i18n="card2_text">IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.</p>
+          <h3 data-i18n="studio_card2_title">AI that assists</h3>
+          <p data-i18n="studio_card2_text">IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.</p>
         </article>
         <article class="card">
           <div class="icon">03</div>
-          <h3 data-i18n="card3_title">Specialty engines</h3>
-          <p data-i18n="card3_text">Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.</p>
+          <h3 data-i18n="studio_card3_title">Specialty engines</h3>
+          <p data-i18n="studio_card3_text">Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.</p>
         </article>
       </div>
     </section>
@@ -802,8 +709,8 @@
 
       <div class="product-grid">
         <article class="product main">
-          <span class="tag" data-i18n="tag_beta_active">Beta active</span>
-          <h3 data-i18n="product_primary_title" data-i18n-html="true">NeumoPractice<br><span class="grad">Pediatrics</span></h3>
+          <span class="tag" data-i18n="tag_beta">Beta active</span>
+          <h3>NeumoPractice<br><span class="grad">Pediatrics</span></h3>
           <p data-i18n="product_primary_text">
             Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, estudios, calculadoras, timeline y operación de clínica.
           </p>
@@ -813,7 +720,7 @@
         <div class="product-list">
           <article class="product small-product">
             <span class="tag" data-i18n="tag_upcoming">Upcoming</span>
-            <h4 data-i18n="product_secondary_title">NeumoPractice Adults</h4>
+            <h4>NeumoPractice Adults</h4>
             <p data-i18n="product_secondary_text">Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.</p>
           </article>
           <article class="product small-product">
@@ -836,7 +743,7 @@
 
       <div class="matrix">
         <div class="row">
-          <div class="cell"><strong>Core SaaS</strong></div>
+          <div class="cell"><strong data-i18n="matrix_core_title">Core SaaS</strong></div>
           <div class="cell" data-i18n="matrix_core_desc">Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.</div>
           <div class="cell" data-i18n="matrix_core_benefit">Base común para todos los productos.</div>
         </div>
@@ -846,14 +753,14 @@
           <div class="cell" data-i18n="matrix_specialty_benefit">Pediatría, adultos, alergia, sueño, imagen.</div>
         </div>
         <div class="row">
-          <div class="cell"><strong>Clinical AI</strong></div>
+          <div class="cell"><strong data-i18n="matrix_ai_title">Clinical AI</strong></div>
           <div class="cell" data-i18n="matrix_ai_desc">SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.</div>
           <div class="cell" data-i18n="matrix_ai_benefit">Diseñada para asistir, no sustituir.</div>
         </div>
         <div class="row">
-          <div class="cell" data-i18n="matrix_real_practice_title">Real Practice</div>
-          <div class="cell" data-i18n="matrix_real_practice_desc">Productos construidos con feedback de especialistas y uso real en consulta.</div>
-          <div class="cell" data-i18n="matrix_real_practice_benefit">Menos captura. Más medicina.</div>
+          <div class="cell"><strong data-i18n="matrix_practice_title">Real Practice</strong></div>
+          <div class="cell" data-i18n="matrix_practice_desc">Productos construidos con feedback de especialistas y uso real en consulta.</div>
+          <div class="cell" data-i18n="matrix_practice_benefit">Menos captura. Más medicina.</div>
         </div>
       </div>
     </section>
@@ -861,12 +768,12 @@
     <section id="contact" class="wrap final reveal">
       <img class="logo-hero" src="r3-lab-logo.png" alt="R3 LAB logo">
       <h2>R<sup>3</sup> LAB</h2>
-      <p data-i18n="final_cta_text">
+      <p data-i18n="final_text">
         Clinical Intelligence Studio. Construyendo la siguiente generación de software médico especializado, IA clínica y sistemas operativos para la práctica moderna.
       </p>
       <div class="hero-actions" style="justify-content:center">
-        <a class="btn btn-primary" href="mailto:hola@neuropractice.com?subject=R3%20LAB" data-i18n="final_cta_primary">Contact the Lab →</a>
-        <a class="btn btn-ghost" href="#products" data-i18n="final_cta_secondary">View roadmap</a>
+        <a class="btn btn-primary" href="mailto:hola@neuropractice.com?subject=R3%20LAB" data-i18n="final_primary">Contact the Lab →</a>
+        <a class="btn btn-ghost" href="#products" data-i18n="final_secondary">View roadmap</a>
       </div>
     </section>
   </main>
@@ -884,239 +791,357 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
     const translations = {
-      es: {
-        lang: "es",
-        page_title: "R³ LAB — Clinical Intelligence Studio",
-        meta_description: "R³ LAB desarrolla software médico de nueva generación, IA clínica y flujos digitales para que los especialistas dediquen más tiempo a la práctica clínica.",
-        og_title: "R³ LAB — Clinical Intelligence Studio",
-        og_description: "R³ LAB desarrolla software médico, IA clínica y flujos digitales para transformar la práctica médica.",
-        nav_studio: "El Estudio",
-        nav_products: "Productos",
-        nav_architecture: "Arquitectura",
-        nav_cta: "Entrar al Lab",
-        lang_es: "ES",
-        lang_en: "EN",
-        lang_es_aria: "Cambiar idioma a español",
-        lang_en_aria: "Cambiar idioma a inglés",
-        hero_eyebrow: "Clinical Intelligence Studio",
-        hero_title_start: "Construyendo el",
-        hero_title_for: "para",
-        hero_desc: "Software con IA para industrias que todavía operan con hojas de cálculo, WhatsApp y trabajo manual.",
-        hero_primary: "Explorar productos →",
-        hero_secondary: "Qué construimos",
-        dashboard_status: "R³ SYSTEM // EN LÍNEA",
-        dashboard_metric_base: "Menos trabajo manual.",
-        dashboard_metric_prefix: "Más",
-        dashboard_submetric: "Workflows clínicos, copilotos de IA, expediente e inteligencia operativa.",
-        hero_cycle: [
-          { vertical: "OS clínico", market: "medicina moderna.", outcome: "medicina", submetric: "Workflows clínicos, copilotos de IA, expediente e inteligencia operativa." },
-          { vertical: "OS inmobiliario", market: "equipos inmobiliarios modernos.", outcome: "cierres", submetric: "Leads, inventario, CRM, cierres e inteligencia operativa." },
-          { vertical: "OS de hospitalidad", market: "operadores de renta corta.", outcome: "huéspedes", submetric: "Huéspedes, turnovers, mantenimiento, dueños e inteligencia operativa." },
-          { vertical: "OS de construcción", market: "desarrolladores modernos.", outcome: "avance", submetric: "Avance, presupuestos, equipos, documentos e inteligencia operativa." },
-          { vertical: "siguiente OS vertical", market: "industrias que aún operan manualmente.", outcome: "crecimiento", submetric: "Sistemas con IA para industrias que aún operan manualmente." }
-        ],
-        mini1_title: "Clinical AI",
-        mini1_text: "SOAP, resúmenes y patrones.",
-        mini2_title: "Workflow Engine",
-        mini2_text: "Ingreso, seguimiento, recetas y estudios.",
-        mini3_title: "Specialty Layer",
-        mini3_text: "Pediatría, neumología, sueño e imagen.",
-        mini4_title: "Medical Ops",
-        mini4_text: "Agenda, cobros, roles e inteligencia clínica.",
-        terminal_line1_prefix: "r3@lab:",
-        terminal_line1: " inicializando stack clínico...",
-        terminal_line2: "NeumoPractice Pediatrics",
-        terminal_line2_status: "/ beta",
-        terminal_line3: "NeumoPractice Adults",
-        terminal_line3_status: "/ próximo",
-        terminal_line4: "Imaging AI",
-        terminal_line4_status: "/ investigación",
-        terminal_line5: "Sleep Platform",
-        terminal_line5_status: "/ cargando",
-        studio_kicker: "El Estudio",
-        studio_title: "No somos una empresa de software más. Somos un laboratorio clínico de producto.",
-        studio_lead: "Construimos herramientas con especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para frenar su trabajo.",
-        card1_title: "Diseño orientado a lo clínico",
-        card1_text: "Interfaces diseñadas desde el flujo real de consulta: primera visita, seguimiento, estudios, recetas, equipo y operación diaria.",
-        card2_title: "IA que asiste",
-        card2_text: "IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.",
-        card3_title: "Motores por especialidad",
-        card3_text: "Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagenología y más.",
-        products_kicker: "Stack de producto",
-        products_title: "Un laboratorio. Múltiples sistemas clínicos.",
-        products_lead: "R³ LAB es la base detrás de productos médicos especializados. Algunos ya están en beta. Otros están en ejecución.",
-        tag_beta_active: "Beta activa",
-        product_primary_title: "NeumoPractice<br><span class=\"grad\">Pediatrics</span>",
-        product_primary_text: "Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, estudios, calculadoras, timeline y operación de clínica.",
-        product_primary_launch: "Founder beta",
-        tag_upcoming: "Próximamente",
-        product_secondary_title: "NeumoPractice Adults",
-        product_secondary_text: "Base para neumología de adultos: EPOC, asma, sueño, estudios respiratorios, seguimiento longitudinal e IA clínica.",
-        tag_loading: "Cargando",
-        product_tertiary_title: "Sleep Intelligence",
-        product_tertiary_text: "Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.",
-        architecture_kicker: "Arquitectura",
-        architecture_title: "Una capa operativa clínica para especialistas.",
-        architecture_lead: "No diseñamos apps aisladas. Construimos un núcleo clínico reutilizable para lanzar productos especializados más rápido y con mayor precisión.",
-        matrix_core_desc: "Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.",
-        matrix_core_benefit: "Base común para toda la plataforma.",
-        matrix_specialty_title: "Specialty Layer",
-        matrix_specialty_desc: "Plantillas, calculadoras, formularios, etiquetas, estudios y flujos por especialidad.",
-        matrix_specialty_benefit: "Pediatría, adultos, alergia, sueño e imagenología.",
-        matrix_ai_desc: "SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.",
-        matrix_ai_benefit: "Diseñada para asistir, no para sustituir.",
-        matrix_real_practice_title: "Real Practice",
-        matrix_real_practice_desc: "Productos construidos con feedback continuo de especialistas y uso real en consulta.",
-        matrix_real_practice_benefit: "Menos captura. Más medicina.",
-        final_cta_text: "Clinical Intelligence Studio. Construyendo la siguiente generación de software médico especializado, IA clínica y sistemas operativos para la práctica moderna.",
-        final_cta_primary: "Contactar al Lab →",
-        final_cta_secondary: "Ver roadmap",
-        footer_text: "R³ LAB. Clinical Intelligence Studio.",
-        footer_link_health: "IA en salud",
-        footer_link_software: "Software clínico",
-        footer_link_workflows: "Flujos clínicos"
-      },
       en: {
         lang: "en",
-        page_title: "R³ LAB — Clinical Intelligence Studio",
-        meta_description: "R³ LAB builds medical software, clinical AI and digital workflows for healthcare teams to spend less time on data capture and more time on care.",
-        og_title: "R³ LAB — Clinical Intelligence Studio",
-        og_description: "Build clinical software, AI assistants, and operational stacks for modern medical practice.",
         nav_studio: "Studio",
         nav_products: "Products",
         nav_architecture: "Architecture",
         nav_cta: "Enter the Lab",
-        lang_es: "ES",
-        lang_en: "EN",
-        lang_es_aria: "Switch language to Spanish",
-        lang_en_aria: "Switch language to English",
         hero_eyebrow: "Clinical Intelligence Studio",
         hero_title_start: "Building the",
         hero_title_for: "for",
         hero_desc: "AI-native software for industries that still run on spreadsheets, WhatsApp and manual work.",
         hero_primary: "Explore products →",
         hero_secondary: "What we build",
+        second_kicker: "The R³ Operating Layer",
+        second_title: "The R³ Operating Layer",
+        second_aria: "The R3 Operating Layer",
         dashboard_status: "R³ SYSTEM // ONLINE",
-        dashboard_metric_base: "Less busywork.",
-        dashboard_metric_prefix: "More",
-        dashboard_submetric: "Clinical workflows, AI copilots, records and operational intelligence.",
-        hero_cycle: [
-          { vertical: "Clinical OS", market: "modern medicine.", outcome: "medicine", submetric: "Clinical workflows, AI copilots, records and operational intelligence." },
-          { vertical: "Real Estate OS", market: "modern property teams.", outcome: "deals", submetric: "Leads, listings, CRM, dealflow and operational intelligence." },
-          { vertical: "Hospitality OS", market: "short-term rental operators.", outcome: "guests", submetric: "Guests, turnovers, maintenance, owners and operational intelligence." },
-          { vertical: "Construction OS", market: "modern builders.", outcome: "progress", submetric: "Progress, budgets, teams, documents and operational intelligence." },
-          { vertical: "Next Vertical OS", market: "industries that run on manual work.", outcome: "growth", submetric: "AI-native systems for industries still running on manual work." }
-        ],
-        mini1_title: "Clinical AI",
-        mini1_text: "SOAP, summaries, pattern recognition.",
-        mini2_title: "Workflow Engine",
-        mini2_text: "Intake, follow-up, prescriptions, studies.",
-        mini3_title: "Specialty Layer",
-        mini3_text: "Pediatrics, adult pulmonology, sleep, imaging.",
-        mini4_title: "Medical Ops",
-        mini4_text: "Agenda, billing, roles, clinic intelligence.",
-        terminal_line1_prefix: "r3@lab:",
-        terminal_line1: " initializing product stack...",
-        terminal_line2: "NeumoPractice Pediatrics",
-        terminal_line2_status: "/ beta",
-        terminal_line3: "NeumoPractice Adults",
-        terminal_line3_status: "/ upcoming",
-        terminal_line4: "Imaging AI",
-        terminal_line4_status: "/ research",
-        terminal_line5: "Sleep Platform",
-        terminal_line5_status: "/ loading",
+        box_claim_base: "Less busywork.",
+        box_claim_prefix: "More",
+        terminal_line1: "initializing product stack...",
+        terminal_product_pediatrics: "NeumoPractice Pediatrics",
+        terminal_product_adults: "NeumoPractice Adults",
+        terminal_product_imaging: "Imaging AI",
+        terminal_product_sleep: "Sleep Platform",
+        terminal_status_beta: "/ beta",
+        terminal_status_upcoming: "/ upcoming",
+        terminal_status_research: "/ research",
+        terminal_status_loading: "/ loading",
         studio_kicker: "The Studio",
         studio_title: "Not another software company. A clinical product laboratory.",
-        studio_lead: "We build products with specialists, validated in real clinical care, designed to fit naturally into a physician's workflow rather than disrupt it.",
-        card1_title: "Clinical-first design",
-        card1_text: "Interfaces shaped by real clinical flow: visits, follow-ups, studies, prescriptions, team coordination, and daily operations.",
-        card2_title: "AI that assists",
-        card2_text: "Structured clinical AI support that summarizes, prioritizes, suggests, and reduces administrative load without replacing medical judgment.",
-        card3_title: "Specialty engines",
-        card3_text: "A shared technology foundation with specialty layers for pediatric pulmonology, adults, sleep, imaging, and future specialties.",
+        studio_lead: "We build tools with specialists, tested in real care and designed to fit naturally into the physician's workflow rather than slow it down.",
+        studio_card1_title: "Clinical-first design",
+        studio_card1_text: "Interfaces shaped by real clinical flow: visits, follow-ups, studies, prescriptions, team coordination and daily operations.",
+        studio_card2_title: "AI that assists",
+        studio_card2_text: "Clinical AI as structured support: it summarizes, organizes, suggests and reduces administrative load without replacing medical judgment.",
+        studio_card3_title: "Specialty engines",
+        studio_card3_text: "A shared technology foundation with specialty layers for pediatric pulmonology, adults, sleep, imaging and more.",
         products_kicker: "Product Stack",
         products_title: "One lab. Multiple clinical systems.",
-        products_lead: "R³ LAB is the foundation for focused clinical products. Some are in beta. Others are in active development.",
-        tag_beta_active: "Beta active",
-        product_primary_title: "NeumoPractice<br><span class=\"grad\">Pediatrics</span>",
-        product_primary_text: "Clinical platform for pediatric pulmonology: scheduling, charting, prescribing, clinical AI, studies, calculators, timeline, and clinic operations.",
-        product_primary_launch: "Founder beta",
+        products_lead: "R³ LAB is the home behind specialized medical products. Some are already in beta. Others are loading.",
+        tag_beta: "Beta active",
         tag_upcoming: "Upcoming",
-        product_secondary_title: "NeumoPractice Adults",
-        product_secondary_text: "Core platform for adult pulmonology: COPD, asthma, sleep, respiratory studies, longitudinal follow-up, and clinical AI support.",
         tag_loading: "Loading",
+        product_primary_text: "Clinical system for pediatric pulmonology: scheduling, records, prescriptions, clinical AI, studies, calculators, timeline and clinic operations.",
+        product_primary_launch: "Founder beta",
+        product_secondary_text: "Foundation for adult pulmonology: COPD, asthma, sleep, respiratory studies, longitudinal follow-up and clinical AI.",
         product_tertiary_title: "Sleep Intelligence",
-        product_tertiary_text: "Flows for sleep risk, monitoring, CPAP guidance, reporting, and assisted clinical analysis.",
+        product_tertiary_text: "Flows for sleep, risk, follow-up, CPAP, reports and assisted clinical analysis.",
         architecture_kicker: "Architecture",
         architecture_title: "A clinical operating layer for specialists.",
-        architecture_lead: "The objective is not isolated apps. It is a reusable clinical core that enables faster launch of specialized products with higher precision.",
-        matrix_core_desc: "Auth, roles, multi-clinic, scheduling, patients, prescriptions, finance, file storage, and billing.",
-        matrix_core_benefit: "A shared foundation for every product.",
+        architecture_lead: "The vision is not isolated apps. It is a reusable clinical core that enables specialized products to launch faster and with greater precision.",
+        matrix_core_title: "Core SaaS",
+        matrix_core_desc: "Auth, roles, multi-clinic, scheduling, patients, prescriptions, finance, files and billing.",
+        matrix_core_benefit: "Shared foundation for every product.",
         matrix_specialty_title: "Specialty Layer",
-        matrix_specialty_desc: "Templates, calculators, forms, labels, studies, and specialty-specific clinical flows.",
-        matrix_specialty_benefit: "Pediatrics, adults, allergy, sleep, imaging.",
-        matrix_ai_desc: "SOAP, clinical summaries, checklists, contextual interpretation, and document support.",
-        matrix_ai_benefit: "Built to assist, not replace.",
-        matrix_real_practice_title: "Real Practice",
-        matrix_real_practice_desc: "Products shaped with specialist feedback and validated in real clinical environments.",
-        matrix_real_practice_benefit: "Less capture. More medicine.",
-        final_cta_text: "Clinical Intelligence Studio. Building the next generation of specialized medical software, clinical AI, and operating systems for modern care.",
-        final_cta_primary: "Contact the Lab →",
-        final_cta_secondary: "View roadmap",
+        matrix_specialty_desc: "Templates, calculators, forms, labels, studies and specialty-specific flows.",
+        matrix_specialty_benefit: "Pediatrics, adults, allergy, sleep and imaging.",
+        matrix_ai_title: "Clinical AI",
+        matrix_ai_desc: "SOAP, clinical summaries, checklists, contextual interpretation and document support.",
+        matrix_ai_benefit: "Designed to assist, not replace.",
+        matrix_practice_title: "Real Practice",
+        matrix_practice_desc: "Products built with specialist feedback and real use in care.",
+        matrix_practice_benefit: "Less capture. More medicine.",
+        final_text: "Clinical Intelligence Studio. Building the next generation of specialized medical software, clinical AI and operating systems for modern practice.",
+        final_primary: "Contact the Lab →",
+        final_secondary: "View roadmap",
         footer_text: "R³ LAB. Clinical Intelligence Studio.",
         footer_link_health: "Healthcare AI",
         footer_link_software: "Clinical Software",
-        footer_link_workflows: "Medical Workflows"
+        footer_link_workflows: "Medical Workflows",
+        cycle: [
+          {
+            vertical: "Clinical OS",
+            market: "modern medicine",
+            outcome: "medicine",
+            description: "Clinical workflows, AI copilots, records and operational intelligence.",
+            cards: [
+              ["AI Clinical Copilot", "Summaries, decisions and clinical next actions."],
+              ["Specialty workflows", "Templates, tasks and care pathways."],
+              ["Patient records", "Records, timelines and shared context."],
+              ["Medical operations", "Scheduling, roles, alerts and visibility."]
+            ]
+          },
+          {
+            vertical: "Real Estate OS",
+            market: "modern property teams",
+            outcome: "deals",
+            description: "Leads, listings, CRM, dealflow and operational intelligence.",
+            cards: [
+              ["Lead engine", "Capture, qualify and route demand."],
+              ["Property CRM", "Listings, owners, buyers and follow-up."],
+              ["Deal pipeline", "Stages, tasks, offers and closings."],
+              ["Market intelligence", "Signals, pricing and commercial visibility."]
+            ]
+          },
+          {
+            vertical: "Hospitality OS",
+            market: "short-term rental operators",
+            outcome: "guests",
+            description: "Guests, turnovers, maintenance, owners and operational intelligence.",
+            cards: [
+              ["Guest operations", "Reservations, requests and service moments."],
+              ["Turnover engine", "Cleaning, checklists and readiness flows."],
+              ["Owner hub", "Reporting, approvals and portfolio context."],
+              ["Maintenance intelligence", "Issues, vendors, alerts and resolution."]
+            ]
+          },
+          {
+            vertical: "Construction OS",
+            market: "modern builders",
+            outcome: "progress",
+            description: "Progress, budgets, teams, documents and operational intelligence.",
+            cards: [
+              ["Progress tracking", "Milestones, site updates and blockers."],
+              ["Budget control", "Costs, approvals and variance visibility."],
+              ["Team coordination", "Tasks, crews, vendors and accountability."],
+              ["Document layer", "Plans, files, versions and field context."]
+            ]
+          },
+          {
+            vertical: "Next Vertical OS",
+            market: "industries that still run on manual work",
+            outcome: "growth",
+            description: "AI-native systems for industries still running on manual work.",
+            cards: [
+              ["AI copilots", "Assistants for decisions, tasks and context."],
+              ["Workflow engines", "Repeatable flows for daily operations."],
+              ["Data layer", "Entities, timelines and shared truth."],
+              ["Operating intelligence", "Metrics, roles, alerts and visibility."]
+            ]
+          }
+        ]
+      },
+      es: {
+        lang: "es",
+        nav_studio: "Laboratorio",
+        nav_products: "Productos",
+        nav_architecture: "Arquitectura",
+        nav_cta: "Entrar al Lab",
+        hero_eyebrow: "Laboratorio de inteligencia clínica",
+        hero_title_start: "Construyendo el",
+        hero_title_for: "para",
+        hero_desc: "Herramientas con IA para industrias que todavía operan con hojas de cálculo, WhatsApp y trabajo manual.",
+        hero_primary: "Explorar productos →",
+        hero_secondary: "Qué construimos",
+        second_kicker: "La capa operativa de R³",
+        second_title: "La capa operativa de R³",
+        second_aria: "La capa operativa de R3",
+        dashboard_status: "R³ SYSTEM // EN LÍNEA",
+        box_claim_base: "Menos trabajo manual.",
+        box_claim_prefix: "Más",
+        terminal_line1: "inicializando stack de producto...",
+        terminal_product_pediatrics: "NeumoPractice Pediatrics",
+        terminal_product_adults: "NeumoPractice Adults",
+        terminal_product_imaging: "IA de imagen",
+        terminal_product_sleep: "Plataforma de sueño",
+        terminal_status_beta: "/ beta",
+        terminal_status_upcoming: "/ próximo",
+        terminal_status_research: "/ investigación",
+        terminal_status_loading: "/ cargando",
+        studio_kicker: "El Laboratorio",
+        studio_title: "No somos otra empresa tecnológica. Somos un laboratorio clínico de producto.",
+        studio_lead: "Construimos herramientas junto a especialistas, probadas en consulta real y diseñadas para integrarse al ritmo natural del médico, no para estorbarlo.",
+        studio_card1_title: "Diseño clínico primero",
+        studio_card1_text: "Interfaces pensadas desde el flujo clínico real: consulta, seguimiento, pruebas, recetas, equipo y operación diaria.",
+        studio_card2_title: "IA que asiste",
+        studio_card2_text: "IA clínica como apoyo estructurado: resume, ordena, sugiere y reduce carga administrativa sin reemplazar el criterio médico.",
+        studio_card3_title: "Motores por especialidad",
+        studio_card3_text: "Una base tecnológica común con capas por especialidad: neumología pediátrica, adultos, sueño, imagen y más.",
+        products_kicker: "Stack de producto",
+        products_title: "Un laboratorio. Múltiples sistemas clínicos.",
+        products_lead: "R³ LAB es la casa detrás de productos médicos especializados. Algunos ya están en beta. Otros están cargando.",
+        tag_beta: "Beta activa",
+        tag_upcoming: "Próximamente",
+        tag_loading: "Cargando",
+        product_primary_text: "Sistema clínico para neumología pediátrica: agenda, expediente, recetas, IA clínica, pruebas, calculadoras, timeline y operación de clínica.",
+        product_primary_launch: "Beta fundador",
+        product_secondary_text: "Base para neumología de adultos: EPOC, asma, sueño, pruebas respiratorias, seguimiento longitudinal e IA clínica.",
+        product_tertiary_title: "Inteligencia de sueño",
+        product_tertiary_text: "Flujos para sueño, riesgo, seguimiento, CPAP, reportes y análisis clínico asistido.",
+        architecture_kicker: "Arquitectura",
+        architecture_title: "Una capa operativa clínica para especialistas.",
+        architecture_lead: "La visión no es crear apps aisladas. Es construir un núcleo clínico reusable que permita lanzar productos especializados más rápido y con mayor precisión.",
+        matrix_core_title: "Núcleo SaaS",
+        matrix_core_desc: "Auth, roles, multi-clínica, agenda, pacientes, recetas, finanzas, archivos y billing.",
+        matrix_core_benefit: "Base común para todos los productos.",
+        matrix_specialty_title: "Capa por especialidad",
+        matrix_specialty_desc: "Plantillas, calculadoras, formularios, etiquetas, pruebas y flujos por especialidad.",
+        matrix_specialty_benefit: "Pediatría, adultos, alergia, sueño e imagen.",
+        matrix_ai_title: "IA clínica",
+        matrix_ai_desc: "SOAP, resumen clínico, checklist, interpretación contextual y apoyo documental.",
+        matrix_ai_benefit: "Diseñada para asistir, no sustituir.",
+        matrix_practice_title: "Práctica real",
+        matrix_practice_desc: "Productos construidos con feedback de especialistas y uso real en consulta.",
+        matrix_practice_benefit: "Menos captura. Más medicina.",
+        final_text: "Laboratorio de inteligencia clínica. Construyendo la siguiente generación de herramientas médicas especializadas, IA clínica y sistemas operativos para la práctica moderna.",
+        final_primary: "Hablar con el Lab →",
+        final_secondary: "Ver roadmap",
+        footer_text: "R³ LAB. Laboratorio de inteligencia clínica.",
+        footer_link_health: "IA en salud",
+        footer_link_software: "Herramientas clínicas",
+        footer_link_workflows: "Flujos médicos",
+        cycle: [
+          {
+            vertical: "OS clínico",
+            market: "medicina moderna",
+            outcome: "medicina",
+            description: "Flujos clínicos, copilotos de IA, expediente e inteligencia operativa.",
+            cards: [
+              ["Copiloto clínico IA", "Resúmenes, decisiones y siguientes acciones clínicas."],
+              ["Flujos por especialidad", "Plantillas, tareas y rutas de atención."],
+              ["Expediente clínico", "Expediente, timeline y contexto compartido."],
+              ["Operación médica", "Agenda, roles, alertas y visibilidad."]
+            ]
+          },
+          {
+            vertical: "OS inmobiliario",
+            market: "equipos inmobiliarios modernos",
+            outcome: "cierres",
+            description: "Leads, inventario, CRM, cierres e inteligencia operativa.",
+            cards: [
+              ["Motor de leads", "Captura, calificación y asignación de demanda."],
+              ["CRM inmobiliario", "Inventario, dueños, compradores y seguimiento."],
+              ["Pipeline de cierres", "Etapas, tareas, ofertas y cierres."],
+              ["Inteligencia comercial", "Señales, precios y visibilidad comercial."]
+            ]
+          },
+          {
+            vertical: "OS de hospitalidad",
+            market: "operadores de renta corta",
+            outcome: "huéspedes",
+            description: "Huéspedes, turnovers, mantenimiento, dueños e inteligencia operativa.",
+            cards: [
+              ["Operación de huéspedes", "Reservas, solicitudes y momentos de servicio."],
+              ["Motor de turnovers", "Limpieza, checklists y preparación."],
+              ["Portal de dueños", "Reportes, aprobaciones y contexto del portafolio."],
+              ["Inteligencia de mantenimiento", "Incidencias, proveedores, alertas y resolución."]
+            ]
+          },
+          {
+            vertical: "OS de construcción",
+            market: "desarrolladores modernos",
+            outcome: "avance",
+            description: "Avance, presupuestos, equipos, documentos e inteligencia operativa.",
+            cards: [
+              ["Seguimiento de avance", "Hitos, obra, actualizaciones y bloqueos."],
+              ["Control presupuestal", "Costos, aprobaciones y variaciones."],
+              ["Coordinación de equipos", "Tareas, cuadrillas, proveedores y responsables."],
+              ["Capa documental", "Planos, archivos, versiones y contexto en campo."]
+            ]
+          },
+          {
+            vertical: "siguiente OS vertical",
+            market: "industrias que aún operan manualmente",
+            outcome: "crecimiento",
+            description: "Sistemas con IA para industrias que aún operan manualmente.",
+            cards: [
+              ["Copilotos IA", "Asistentes para decisiones, tareas y contexto."],
+              ["Motores de flujos", "Flujos repetibles para la operación diaria."],
+              ["Capa de datos", "Entidades, timelines y verdad compartida."],
+              ["Inteligencia operativa", "Métricas, roles, alertas y visibilidad."]
+            ]
+          }
+        ]
       }
     };
 
     const langStorageKey = "r3lab_lang";
     const localeEls = document.querySelectorAll("[data-i18n]");
+    const placeholderEls = document.querySelectorAll("[data-i18n-placeholder]");
+    const ariaEls = document.querySelectorAll("[data-i18n-aria]");
     const langButtons = document.querySelectorAll(".lang-btn");
-    const storedLang = localStorage.getItem(langStorageKey);
-    const browserLang = (navigator.language || "en").toLowerCase();
-    const initialLang = storedLang === "es" || storedLang === "en"
-      ? storedLang
-      : (browserLang.startsWith("es") ? "es" : "en");
-    const dynamicHeroTitle = document.getElementById("dynamic-hero-title");
-    const dynamicDashboardMetric = document.getElementById("dynamic-dashboard-metric");
     const dynamicVertical = document.querySelector("[data-dynamic-vertical]");
     const dynamicMarket = document.querySelector("[data-dynamic-market]");
-    const dynamicOutcome = document.querySelector("[data-dynamic-outcome]");
-    const dynamicOutcomePeriod = document.querySelector("[data-dynamic-outcome-period]");
-    const dynamicSubmetric = document.querySelector(".submetric");
+    const boxOutcome = document.querySelector("[data-box-outcome]");
+    const boxDescription = document.querySelector("[data-box-description]");
+    const cardTitles = document.querySelectorAll("[data-card-title]");
+    const cardTexts = document.querySelectorAll("[data-card-text]");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const typewriterPauseMs = 1400;
     const typewriterWriteMs = 55;
     const typewriterEraseMs = 30;
-    let dynamicHeroIndex = 0;
+    let activeLang = localStorage.getItem(langStorageKey) === "es" ? "es" : "en";
+    let currentVerticalIndex = 0;
     let dynamicHeroRunId = 0;
-    let currentLang = initialLang;
 
     function wait(ms) {
       return new Promise((resolve) => window.setTimeout(resolve, ms));
     }
 
-    function getDynamicHeroState(lang, index) {
-      const cycle = translations[lang]?.hero_cycle;
-      return cycle?.[index];
+    function getActiveCycle() {
+      return translations[activeLang].cycle;
     }
 
-    function applyDynamicHeroState(lang, index, { tokensOnly = false } = {}) {
-      const state = getDynamicHeroState(lang, index);
-      if (!state || !dynamicVertical || !dynamicMarket || !dynamicOutcome) return;
+    function formatMarket(state) {
+      return `${state.market}.`;
+    }
+
+    function setLanguage(lang, { restartCycle = true } = {}) {
+      if (!translations[lang]) return;
+      activeLang = lang;
+      const dict = translations[activeLang];
+      document.documentElement.lang = dict.lang;
+      document.body.classList.remove("lang-en", "lang-es");
+      document.body.classList.add(`lang-${activeLang}`);
+
+      localeEls.forEach((el) => {
+        const value = dict[el.dataset.i18n];
+        if (value !== undefined) el.textContent = value;
+      });
+
+      placeholderEls.forEach((el) => {
+        const value = dict[el.dataset.i18nPlaceholder];
+        if (value !== undefined) el.setAttribute("placeholder", value);
+      });
+
+      ariaEls.forEach((el) => {
+        const value = dict[el.dataset.i18nAria];
+        if (value !== undefined) el.setAttribute("aria-label", value);
+      });
+
+      langButtons.forEach((button) => {
+        const isActive = button.dataset.lang === activeLang;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      localStorage.setItem(langStorageKey, activeLang);
+      applyVerticalState(currentVerticalIndex);
+
+      if (restartCycle) {
+        restartDynamicHeroCycle();
+      }
+    }
+
+    function applyVerticalState(index, { tokensOnly = false } = {}) {
+      const state = getActiveCycle()[index];
+      if (!state || !dynamicVertical || !dynamicMarket) return;
 
       dynamicVertical.textContent = state.vertical;
-      dynamicOutcome.textContent = state.outcome;
-      if (dynamicOutcomePeriod) {
-        dynamicOutcomePeriod.style.visibility = state.outcome ? "visible" : "hidden";
-      }
       if (!tokensOnly) {
-        dynamicMarket.textContent = state.market;
-        if (dynamicSubmetric && state.submetric) {
-          dynamicSubmetric.textContent = state.submetric;
-        }
+        dynamicMarket.textContent = formatMarket(state);
+        if (boxOutcome) boxOutcome.textContent = state.outcome;
+        if (boxDescription) boxDescription.textContent = state.description;
+        state.cards.forEach((card, cardIndex) => {
+          const title = cardTitles[cardIndex];
+          const text = cardTexts[cardIndex];
+          if (title) title.textContent = card[0];
+          if (text) text.textContent = card[1];
+        });
       }
     }
 
@@ -1132,9 +1157,6 @@
             ? Math.max(text.length - step, 0)
             : Math.min(step, text.length);
           element.textContent = text.slice(0, length);
-          if (element === dynamicOutcome && dynamicOutcomePeriod) {
-            dynamicOutcomePeriod.style.visibility = length > 0 ? "visible" : "hidden";
-          }
         });
         await wait(delay);
       }
@@ -1142,101 +1164,51 @@
       return runId === dynamicHeroRunId;
     }
 
-    async function runDynamicHeroCycle(lang, runId) {
+    async function runDynamicHeroCycle(runId) {
       if (reducedMotionQuery.matches) return;
 
       while (runId === dynamicHeroRunId) {
         await wait(typewriterPauseMs);
-        const cycle = translations[lang]?.hero_cycle || [];
-        const current = getDynamicHeroState(lang, dynamicHeroIndex);
-        if (!cycle.length || !current || runId !== dynamicHeroRunId) return;
-
-        const nextIndex = (dynamicHeroIndex + 1) % cycle.length;
-        const next = getDynamicHeroState(lang, nextIndex);
-        if (!next) return;
+        const cycle = getActiveCycle();
+        const current = cycle[currentVerticalIndex];
+        const nextIndex = (currentVerticalIndex + 1) % cycle.length;
+        const next = cycle[nextIndex];
+        if (!current || !next || runId !== dynamicHeroRunId) return;
 
         const erased = await typeTokens([
-          { element: dynamicVertical, text: current.vertical },
-          { element: dynamicOutcome, text: current.outcome }
+          { element: dynamicVertical, text: current.vertical }
         ], runId, "erase");
         if (!erased || runId !== dynamicHeroRunId) return;
 
         const typed = await typeTokens([
-          { element: dynamicVertical, text: next.vertical },
-          { element: dynamicOutcome, text: next.outcome }
+          { element: dynamicVertical, text: next.vertical }
         ], runId, "write");
         if (!typed || runId !== dynamicHeroRunId) return;
 
-        dynamicMarket.textContent = next.market;
-        if (dynamicSubmetric && next.submetric) {
-          dynamicSubmetric.textContent = next.submetric;
-        }
-        dynamicHeroIndex = nextIndex;
+        currentVerticalIndex = nextIndex;
+        applyVerticalState(currentVerticalIndex);
       }
     }
 
-    function resetDynamicHeroCycle(lang) {
+    function restartDynamicHeroCycle({ preserveVisual = false } = {}) {
       dynamicHeroRunId += 1;
-      dynamicHeroIndex = 0;
-      applyDynamicHeroState(lang, dynamicHeroIndex);
+      setLanguage(activeLang, { restartCycle: false });
 
       if (!reducedMotionQuery.matches) {
-        runDynamicHeroCycle(lang, dynamicHeroRunId);
+        runDynamicHeroCycle(dynamicHeroRunId);
       }
-    }
-
-    function setLanguage(lang) {
-      const dict = translations[lang];
-      if (!dict) return;
-      currentLang = lang;
-
-      document.documentElement.lang = dict.lang;
-      document.documentElement.classList.remove("lang-es", "lang-en");
-      document.documentElement.classList.add(`lang-${lang}`);
-      document.title = dict.page_title;
-
-      document.querySelector('meta[name="description"]').setAttribute("content", dict.meta_description);
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      const ogDescription = document.querySelector('meta[property="og:description"]');
-      if (ogTitle) ogTitle.setAttribute("content", dict.og_title);
-      if (ogDescription) ogDescription.setAttribute("content", dict.og_description);
-
-      localeEls.forEach((el) => {
-        const key = el.dataset.i18n;
-        const value = dict[key];
-        if (value === undefined) return;
-        if (el.dataset.i18nHtml === "true") {
-          el.innerHTML = value;
-        } else {
-          el.textContent = value;
-        }
-      });
-
-      langButtons.forEach((button) => {
-        const isActive = button.dataset.lang === lang;
-        button.classList.toggle("active", isActive);
-        button.setAttribute("aria-pressed", isActive ? "true" : "false");
-      });
-
-      const esButton = document.getElementById("lang-es");
-      const enButton = document.getElementById("lang-en");
-      if (esButton) esButton.setAttribute("aria-label", dict.lang_es_aria);
-      if (enButton) enButton.setAttribute("aria-label", dict.lang_en_aria);
-
-      localStorage.setItem(langStorageKey, lang);
-      resetDynamicHeroCycle(lang);
     }
 
     langButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        const selected = button.dataset.lang;
-        setLanguage(selected);
+        if (!translations[button.dataset.lang]) return;
+        if (button.dataset.lang === activeLang) return;
+        setLanguage(button.dataset.lang);
       });
     });
 
-    reducedMotionQuery.addEventListener?.("change", () => {
-      resetDynamicHeroCycle(currentLang);
-    });
+    setLanguage(activeLang);
+    reducedMotionQuery.addEventListener?.("change", () => restartDynamicHeroCycle());
 
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
@@ -1245,17 +1217,7 @@
     }, {threshold:.14});
 
     document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
-    setLanguage(initialLang);
-    const logViewport = () => {
-      console.log(
-        'window width', window.innerWidth,
-        'doc width', document.documentElement.scrollWidth,
-        'fit', document.documentElement.scrollWidth <= window.innerWidth
-      );
-    };
-    window.addEventListener('load', logViewport);
-    window.addEventListener('resize', logViewport);
+    document.currentScript.textContent = "";
   </script>
 </body>
 </html>
