@@ -33,7 +33,7 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth; overflow-x:hidden;}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -151,10 +151,13 @@
     }
 
     .hero{
+      --r3-hero-dynamic-lines:2;
+      --r3-hero-market-lines:3;
       min-height:calc(78vh - 78px);
       display:grid;
       place-items:center;
-      padding:82px 0 58px;
+      padding:82px 0 108px;
+      margin-bottom:30px;
       position:relative;
       text-align:center;
     }
@@ -189,12 +192,22 @@
       100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
     }
     h1{
-      margin:24px 0 20px;
+      --r3-hero-line:clamp(3.2rem, 8vw, 7.8rem);
+      --r3-hero-line-box:calc(var(--r3-hero-line) * 1.02);
+      margin:24px 0 34px;
       font-family:"Space Grotesk",Inter,sans-serif;
-      font-size:clamp(3.2rem, 8vw, 7.8rem);
-      line-height:.88;
+      font-size:var(--r3-hero-line);
+      line-height:.92;
       letter-spacing:-.075em;
       color:var(--white);
+      display:grid;
+      grid-template-rows:
+        var(--r3-hero-line-box)
+        calc(var(--r3-hero-line-box) * var(--r3-hero-dynamic-lines))
+        calc(var(--r3-hero-line-box) * var(--r3-hero-market-lines));
+      height:calc(var(--r3-hero-line-box) * (1 + var(--r3-hero-dynamic-lines) + var(--r3-hero-market-lines)) + 10px);
+      align-items:start;
+      overflow:visible;
     }
     .grad{
       background:linear-gradient(90deg, #fff 0%, #67E8F9 42%, #A78BFA 78%, #fff 105%);
@@ -206,23 +219,24 @@
     .hero-dynamic,
     .metric-dynamic{
       display:inline-block;
-      min-height:1em;
       vertical-align:baseline;
     }
     .hero-dynamic{
       max-width:100%;
+      min-height:calc(var(--r3-hero-line-box) * var(--r3-hero-dynamic-lines));
       white-space:normal;
     }
     .hero-market-line{
       display:inline-block;
       margin-top:.05em;
       max-width:100%;
+      min-height:calc(var(--r3-hero-line-box) * var(--r3-hero-market-lines));
     }
-    .hero-market{max-width:100%;}
+    .hero-market{display:inline; max-width:100%;}
     .typewriter-cursor::after{
       content:"|";
-      display:inline-block;
-      margin-left:.04em;
+      display:inline;
+      margin-left:0;
       color:#67E8F9;
       -webkit-text-fill-color:#67E8F9;
       background:none;
@@ -242,9 +256,10 @@
     .metric-prefix{margin-right:.18em;}
     .box-outcome{
       display:inline-block;
-      min-width:10ch;
+      min-width:12ch;
     }
     .hero p{
+      min-height:calc(1.28rem * 1.7 * 2);
       max-width:680px;
       margin:0 auto;
       color:rgba(226,232,240,.74);
@@ -352,12 +367,18 @@
     .terminal .violet{color:#C4B5FD}.terminal .muted{color:#64748B}
 
     .second-hero{
-      padding:12px 0 96px;
+      --r3-box-min-height:880px;
+      --r3-mini-min-height:178px;
+      --r3-card-title-lines:2;
+      --r3-card-text-lines:3;
+      --r3-stage-height:420px;
+      padding:42px 0 96px;
     }
     .second-hero-head{
       text-align:center;
       max-width:760px;
       margin:0 auto 28px;
+      min-height:92px;
     }
     .second-hero-head h2{
       margin-bottom:0;
@@ -365,23 +386,383 @@
     .second-hero .hero-card{
       width:min(100%, 1040px);
       margin:0 auto;
+      height:var(--r3-box-min-height);
+      min-height:var(--r3-box-min-height);
     }
     .second-hero .screen{
-      min-height:auto;
+      height:calc(var(--r3-box-min-height) - 44px);
+      min-height:calc(var(--r3-box-min-height) - 44px);
     }
     .second-hero .dashboard{
       padding:30px;
+      height:calc(var(--r3-box-min-height) - 94px);
+      min-height:0;
+    }
+    .product-showcase{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+      height:100%;
+      min-height:0;
+    }
+    .showcase-copy{
+      transition:opacity .5s ease, transform .5s ease;
+    }
+    .showcase-copy.is-switching{
+      opacity:.2;
+      transform:translateY(8px);
+    }
+    .product-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      max-width:100%;
+      border:1px solid rgba(34,211,238,.24);
+      background:rgba(6,182,212,.08);
+      border-radius:999px;
+      padding:7px 10px;
+      color:#BAE6FD;
+      font-size:.76rem;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .product-kicker:before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:var(--cyan2);
+      box-shadow:0 0 18px rgba(34,211,238,.48);
+      flex:0 0 auto;
     }
     .second-hero .big-metric{
       max-width:760px;
+      min-height:calc(4.8rem * 1.05 * 2);
     }
     .second-hero .submetric{
       max-width:720px;
+      min-height:calc(1rem * 1.6 * 2);
     }
     .second-hero .grid-mini{
       grid-template-columns:repeat(4,1fr);
       gap:14px;
     }
+    .second-hero .mini{
+      height:var(--r3-mini-min-height);
+      min-height:var(--r3-mini-min-height);
+    }
+    .second-hero .mini b{
+      min-height:calc(1.05rem * 1.25 * var(--r3-card-title-lines));
+      line-height:1.25;
+    }
+    .second-hero .mini-text{
+      min-height:calc(.98rem * 1.45 * var(--r3-card-text-lines));
+      line-height:1.45;
+    }
+    .product-stage{
+      position:relative;
+      flex:0 0 var(--r3-stage-height);
+      height:var(--r3-stage-height);
+      min-height:var(--r3-stage-height);
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.16);
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(34,211,238,.12), transparent 30%),
+        linear-gradient(180deg, rgba(15,23,42,.66), rgba(2,6,23,.88));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+      transition:opacity .5s ease, transform .5s ease;
+    }
+    .product-stage.is-switching{
+      opacity:.28;
+      transform:translateY(10px);
+    }
+    .product-preview{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transform:translateY(16px) scale(.985);
+      transition:opacity .55s ease, transform .55s ease;
+      pointer-events:none;
+      padding:22px;
+      overflow:hidden;
+    }
+    .product-preview.is-active{
+      opacity:1;
+      transform:none;
+      pointer-events:auto;
+    }
+    .preview-browser{
+      height:100%;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.18);
+      background:#F8FAFC;
+      box-shadow:0 24px 70px rgba(2,6,23,.28);
+    }
+    .preview-topbar{
+      height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:0 14px;
+      border-bottom:1px solid rgba(148,163,184,.22);
+      background:rgba(255,255,255,.92);
+      color:#64748B;
+      font-size:.72rem;
+      font-weight:900;
+    }
+    .preview-dots{display:flex;gap:6px}
+    .preview-dots span{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:#CBD5E1;
+    }
+    .preview-dots span:nth-child(1){background:#FCA5A5}
+    .preview-dots span:nth-child(2){background:#FDE68A}
+    .preview-dots span:nth-child(3){background:#86EFAC}
+    .preview-body{
+      min-height:calc(100% - 42px);
+      display:grid;
+      grid-template-columns:148px 1fr;
+      color:#0F172A;
+    }
+    .preview-sidebar{
+      padding:14px;
+      display:grid;
+      align-content:start;
+      gap:8px;
+      border-right:1px solid rgba(148,163,184,.24);
+      background:linear-gradient(180deg,#EFF6FF,#F8FAFC);
+    }
+    .preview-brand{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:8px;
+      color:#111827;
+      font-weight:950;
+      font-size:.74rem;
+    }
+    .preview-mark{
+      width:26px;
+      height:26px;
+      border-radius:9px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:linear-gradient(135deg,#2563EB,#38BDF8);
+      font-weight:950;
+    }
+    .preview-nav{
+      min-height:32px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border-radius:11px;
+      padding:0 10px;
+      color:#64748B;
+      font-size:.72rem;
+      font-weight:900;
+    }
+    .preview-nav.is-active{
+      background:#2563EB;
+      color:#fff;
+      box-shadow:0 12px 24px rgba(37,99,235,.22);
+    }
+    .preview-main{
+      min-width:0;
+      padding:16px;
+      background:linear-gradient(180deg,#fff,#F8FAFC);
+      overflow:hidden;
+    }
+    .preview-grid{
+      display:grid;
+      gap:12px;
+    }
+    .preview-grid.two{grid-template-columns:1fr 1fr}
+    .preview-grid.three{grid-template-columns:repeat(3,1fr)}
+    .preview-panel{
+      border:1px solid #E5E7EB;
+      background:rgba(255,255,255,.88);
+      border-radius:16px;
+      padding:13px;
+      box-shadow:0 10px 28px rgba(15,23,42,.045);
+      min-width:0;
+    }
+    .preview-panel h4{
+      margin:0 0 10px;
+      font-size:.84rem;
+      color:#111827;
+      letter-spacing:0;
+    }
+    .preview-panel p{
+      margin:0;
+      color:#64748B;
+      font-size:.72rem;
+      line-height:1.45;
+    }
+    .preview-chip{
+      display:inline-flex;
+      align-items:center;
+      border-radius:999px;
+      padding:5px 8px;
+      background:#DBEAFE;
+      color:#1D4ED8;
+      font-size:.62rem;
+      font-weight:950;
+    }
+    .preview-row{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:10px;
+      align-items:center;
+      padding:9px 0;
+      border-top:1px solid #EEF2F7;
+      font-size:.72rem;
+    }
+    .preview-row:first-child{border-top:0}
+    .preview-row b{color:#111827}
+    .preview-row span{color:#64748B}
+    .preview-time{font-weight:950;color:#2563EB}
+    .preview-progress{
+      height:8px;
+      border-radius:999px;
+      background:#E2E8F0;
+      overflow:hidden;
+      margin-top:8px;
+    }
+    .preview-progress span{
+      display:block;
+      height:100%;
+      width:74%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,#2563EB,#38BDF8);
+    }
+    .preview-actionbar{
+      position:absolute;
+      left:38px;
+      right:38px;
+      bottom:34px;
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      padding:10px;
+      border:1px solid rgba(191,219,254,.86);
+      border-radius:16px;
+      background:rgba(255,255,255,.88);
+      box-shadow:0 18px 46px rgba(15,23,42,.12);
+      backdrop-filter:blur(16px);
+    }
+    .preview-actionbar span{
+      border-radius:999px;
+      padding:8px 11px;
+      font-size:.68rem;
+      font-weight:950;
+      color:#1D4ED8;
+      background:#EFF6FF;
+    }
+    .preview-actionbar span:last-child{
+      color:#fff;
+      background:linear-gradient(90deg,#2563EB,#38BDF8);
+    }
+    .preview-atlas .preview-browser{background:#07101F}
+    .preview-atlas .preview-topbar{
+      background:#0B1220;
+      color:#DBEAFE;
+      border-color:rgba(148,163,184,.18);
+    }
+    .preview-atlas .preview-body{
+      color:#E2E8F0;
+      background:#0B1220;
+    }
+    .preview-atlas .preview-sidebar{
+      background:linear-gradient(180deg,#07101F,#0B1220);
+      border-color:rgba(148,163,184,.14);
+    }
+    .preview-atlas .preview-brand{color:#F8FAFC}
+    .preview-atlas .preview-mark{background:linear-gradient(135deg,#1D4ED8,#38BDF8)}
+    .preview-atlas .preview-nav{color:#93C5FD}
+    .preview-atlas .preview-nav.is-active{background:#1D4ED8}
+    .preview-atlas .preview-main{
+      background:
+        radial-gradient(circle at 88% 0%, rgba(56,189,248,.20), transparent 30%),
+        linear-gradient(180deg,#0F172A,#07101F);
+    }
+    .preview-atlas .preview-panel{
+      background:rgba(15,23,42,.82);
+      border-color:rgba(148,163,184,.20);
+      box-shadow:0 18px 42px rgba(2,6,23,.22);
+    }
+    .preview-atlas .preview-panel h4,
+    .preview-atlas .preview-row b{color:#F8FAFC}
+    .preview-atlas .preview-panel p,
+    .preview-atlas .preview-row span{color:#CBD5E1}
+    .preview-atlas .preview-row{border-color:rgba(148,163,184,.14)}
+    .preview-atlas .preview-chip{background:rgba(56,189,248,.12);color:#7DD3FC}
+    .preview-atlas .preview-progress{background:rgba(148,163,184,.18)}
+    .preview-propierato .preview-browser{background:#FBF7EF}
+    .preview-propierato .preview-topbar{
+      background:#FFFDF8;
+      color:#5C726D;
+      border-color:#E8E0D0;
+    }
+    .preview-propierato .preview-body{color:#15302B}
+    .preview-propierato .preview-sidebar{
+      background:linear-gradient(180deg,#0E5E57,#0A4942);
+      border-color:#0A4942;
+    }
+    .preview-propierato .preview-brand{color:#fff}
+    .preview-propierato .preview-mark{background:linear-gradient(135deg,#0E5E57,#16A89A)}
+    .preview-propierato .preview-nav{color:#CFE7E2}
+    .preview-propierato .preview-nav.is-active{
+      background:rgba(255,255,255,.14);
+      color:#fff;
+      box-shadow:none;
+    }
+    .preview-propierato .preview-main{background:#FBF7EF}
+    .preview-propierato .preview-panel{
+      border-color:#E8E0D0;
+      background:#fff;
+      box-shadow:0 10px 34px rgba(14,94,87,.08);
+    }
+    .preview-propierato .preview-chip{background:#E6F5EE;color:#0E5E57}
+    .preview-propierato .preview-time{color:#0E5E57}
+    .preview-propierato .preview-progress span{background:linear-gradient(90deg,#0E5E57,#16A89A)}
+    .preview-construction .preview-browser{background:#0E1014}
+    .preview-construction .preview-topbar{
+      background:#111827;
+      color:#CBD5E1;
+      border-color:rgba(148,163,184,.18);
+    }
+    .preview-construction .preview-sidebar{
+      background:linear-gradient(180deg,#111827,#020617);
+      border-color:rgba(148,163,184,.14);
+    }
+    .preview-construction .preview-main{
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+        #0B1120;
+      background-size:34px 34px;
+    }
+    .preview-construction .preview-brand,
+    .preview-construction .preview-panel h4,
+    .preview-construction .preview-row b{color:#F8FAFC}
+    .preview-construction .preview-panel{
+      background:rgba(15,23,42,.84);
+      border-color:rgba(148,163,184,.20);
+    }
+    .preview-construction .preview-panel p,
+    .preview-construction .preview-row span{color:#CBD5E1}
+    .preview-construction .preview-row{border-color:rgba(148,163,184,.14)}
+    .preview-construction .preview-chip{background:rgba(167,139,250,.14);color:#C4B5FD}
+    .preview-construction .preview-progress{background:rgba(148,163,184,.18)}
+    .preview-construction .preview-progress span{background:linear-gradient(90deg,#A78BFA,#22D3EE)}
 
     section{padding:90px 0; position:relative;}
     .section-head{max-width:760px; margin-bottom:34px;}
@@ -545,24 +926,121 @@
       .nav-links{gap:8px;}
       .lang-switch{gap:6px;}
       .lang-btn{padding:7px 10px;}
-      .hero{padding:52px 0 42px; min-height:auto;}
+      .hero{
+        --r3-hero-dynamic-lines:2;
+        --r3-hero-market-lines:3;
+        padding:58px 0 78px;
+        margin-bottom:26px;
+        min-height:auto;
+      }
       .screen{min-height:430px}
       .cards,.product-grid{grid-template-columns:1fr}
-      .second-hero{padding:0 0 74px;}
+      .second-hero{
+        --r3-box-min-height:940px;
+        --r3-mini-min-height:168px;
+        --r3-stage-height:430px;
+        padding:0 0 74px;
+      }
       .second-hero .hero-card{width:min(100%, calc(100vw - 32px));}
       .second-hero .dashboard{padding:22px;}
       .second-hero .grid-mini{grid-template-columns:1fr 1fr;}
+      .product-stage{min-height:var(--r3-stage-height);}
+      .product-preview{padding:16px;}
+      .preview-body{grid-template-columns:126px 1fr;}
+      .preview-sidebar{padding:12px;}
+      .preview-nav{font-size:.68rem; padding:0 8px;}
+      .preview-main{padding:12px;}
+      .preview-grid.three{grid-template-columns:repeat(3,1fr);}
+      .preview-panel{padding:11px;}
       .row{grid-template-columns:1fr}
       .cell{border-bottom:1px solid rgba(148,163,184,.1)}
-      h1{font-size:clamp(3.2rem, 18vw, 5.4rem)}
+      h1{
+        --r3-hero-line:clamp(3.2rem, 18vw, 5.4rem);
+        --r3-hero-line-box:calc(var(--r3-hero-line) * 1.06);
+        font-size:var(--r3-hero-line);
+      }
     }
     @media (max-width:520px){
-      .hero{padding:42px 0 34px;}
-      h1{font-size:clamp(2.7rem, 14vw, 4.2rem); line-height:.94;}
-      .hero-actions{margin-top:26px;}
+      .hero{
+        --r3-hero-dynamic-lines:3;
+        --r3-hero-market-lines:4;
+        padding:46px 0 76px;
+      }
+      h1{
+        --r3-hero-line:clamp(1.9rem, 8.8vw, 2.55rem);
+        --r3-hero-line-box:calc(var(--r3-hero-line) * 1.14);
+        font-size:var(--r3-hero-line);
+        line-height:1;
+        grid-template-rows:
+          var(--r3-hero-line-box)
+          calc(var(--r3-hero-line-box) * var(--r3-hero-dynamic-lines))
+          calc(var(--r3-hero-line-box) * var(--r3-hero-market-lines));
+        height:calc(var(--r3-hero-line-box) * (1 + var(--r3-hero-dynamic-lines) + var(--r3-hero-market-lines)) + 10px);
+      }
+      .hero-dynamic{min-height:calc(var(--r3-hero-line-box) * var(--r3-hero-dynamic-lines));}
+      .hero-market-line{min-height:calc(var(--r3-hero-line-box) * var(--r3-hero-market-lines));}
+      .hero p{min-height:calc(1.06rem * 1.7 * 4);}
+      .hero-actions{margin-top:30px;}
+      .second-hero{padding-top:36px;}
+      .second-hero{
+        --r3-box-min-height:1500px;
+        --r3-mini-min-height:188px;
+        --r3-stage-height:930px;
+      }
       .second-hero .grid-mini{grid-template-columns:1fr;}
-      .second-hero .screen{min-height:auto;}
-      .second-hero .big-metric{font-size:clamp(2.35rem, 12vw, 3.5rem);}
+      .second-hero .screen{
+        height:calc(var(--r3-box-min-height) - 44px);
+        min-height:calc(var(--r3-box-min-height) - 44px);
+      }
+      .second-hero .big-metric{
+        font-size:clamp(2.35rem, 12vw, 3.5rem);
+        min-height:calc(3.5rem * 1.05 * 2);
+      }
+      .second-hero .submetric{min-height:calc(1rem * 1.6 * 4);}
+      .metric-line{white-space:normal;}
+      .box-outcome{min-width:0;}
+      .product-kicker{font-size:.66rem;}
+      .product-stage{min-height:var(--r3-stage-height); border-radius:22px;}
+      .product-preview{padding:10px;}
+      .preview-browser{border-radius:18px;}
+      .preview-topbar{height:36px; padding:0 10px; font-size:.62rem;}
+      .preview-body{
+        min-height:calc(100% - 36px);
+        grid-template-columns:1fr;
+      }
+      .preview-sidebar{
+        display:flex;
+        flex-wrap:wrap;
+        align-content:start;
+        gap:6px;
+        padding:10px;
+        border-right:0;
+        border-bottom:1px solid rgba(148,163,184,.22);
+      }
+      .preview-brand{width:100%; margin-bottom:2px;}
+      .preview-mark{width:24px; height:24px; border-radius:8px;}
+      .preview-nav{
+        min-height:28px;
+        font-size:.62rem;
+        padding:0 8px;
+      }
+      .preview-main{padding:10px;}
+      .preview-grid.two,
+      .preview-grid.three{grid-template-columns:1fr;}
+      .preview-grid.three .preview-panel:nth-child(n+3){display:none;}
+      .preview-panel{border-radius:14px; padding:10px;}
+      .preview-panel h4{font-size:.78rem; margin-bottom:7px;}
+      .preview-panel p,
+      .preview-row{font-size:.66rem;}
+      .preview-row{grid-template-columns:34px 1fr auto; gap:7px; padding:7px 0;}
+      .preview-actionbar{
+        left:20px;
+        right:20px;
+        bottom:20px;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
+      .preview-actionbar span{font-size:.62rem; padding:7px 9px;}
       .second-hero .terminal{font-size:.7rem;}
     }
     @media (prefers-reduced-motion:reduce){
@@ -602,8 +1080,8 @@
       <div class="hero-main">
         <div class="eyebrow"><span class="pulse"></span> <span data-i18n="hero_eyebrow">Clinical Intelligence Studio</span></div>
         <h1 id="dynamic-hero-title">
-          <span data-i18n="hero_title_start">Building the</span><br>
-          <span class="grad hero-dynamic typewriter-cursor" data-dynamic-vertical>Clinical OS</span><br>
+          <span data-i18n="hero_title_start">Building the</span>
+          <span class="grad hero-dynamic typewriter-cursor" data-dynamic-vertical>Clinical OS</span>
           <span class="hero-market-line"><span data-i18n="hero_title_for">for</span> <span class="hero-market" data-dynamic-market>modern medicine.</span></span>
         </h1>
         <p data-i18n="hero_desc">
@@ -625,45 +1103,205 @@
       <div class="hero-card">
         <div class="screen">
           <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="dashboard">
-            <div class="status-line" data-i18n="dashboard_status">R³ SYSTEM // ONLINE</div>
-            <div class="big-metric" id="dynamic-dashboard-metric">
-              <span data-i18n="box_claim_base">Less busywork.</span><br>
-              <span class="metric-line"><span data-i18n="box_claim_prefix">More</span> <span class="grad box-outcome" data-box-outcome>medicine</span><span>.</span></span>
-            </div>
-            <div class="submetric" data-box-description>
-              AI-native systems for industries still running on manual work.
-            </div>
-
-            <div class="grid-mini">
-              <div class="mini">
-                <b data-card-title="0">AI Clinical Copilot</b>
-                <span class="mini-text" data-card-text="0">Summaries, decisions and clinical next actions.</span>
-                <div class="bar"><span></span></div>
+          <div class="dashboard product-showcase">
+            <div class="showcase-copy" data-showcase-copy>
+              <div class="status-line" data-i18n="dashboard_status">R³ PRODUCT // LIVE PREVIEW</div>
+              <div class="product-kicker" data-product-name>NeumoPractice</div>
+              <div class="big-metric" id="dynamic-dashboard-metric">
+                <span data-i18n="box_claim_base">Less busywork.</span><br>
+                <span class="metric-line"><span data-i18n="box_claim_prefix">More</span> <span class="grad box-outcome" data-box-outcome>medicine</span><span>.</span></span>
               </div>
-              <div class="mini">
-                <b data-card-title="1">Specialty workflows</b>
-                <span class="mini-text" data-card-text="1">Templates, tasks and care pathways.</span>
-                <div class="bar"><span style="width:61%"></span></div>
-              </div>
-              <div class="mini">
-                <b data-card-title="2">Patient records</b>
-                <span class="mini-text" data-card-text="2">Records, timelines and shared context.</span>
-                <div class="bar"><span style="width:48%"></span></div>
-              </div>
-              <div class="mini">
-                <b data-card-title="3">Medical operations</b>
-                <span class="mini-text" data-card-text="3">Scheduling, roles, alerts and visibility.</span>
-                <div class="bar"><span style="width:78%"></span></div>
+              <div class="submetric" data-box-description>
+                Patient-centered clinical workflows for agenda, consultation, prescriptions and longitudinal timeline.
               </div>
             </div>
 
-            <div class="terminal">
-              <span class="muted">r3@lab:</span> <span data-i18n="terminal_line1">initializing product stack...</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_product_pediatrics">NeumoPractice Pediatrics</span> <span class="muted" data-i18n="terminal_status_beta">/ beta</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_product_adults">NeumoPractice Adults</span> <span class="muted" data-i18n="terminal_status_upcoming">/ upcoming</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_product_imaging">Imaging AI</span> <span class="muted" data-i18n="terminal_status_research">/ research</span><br>
-              <span class="violet">→</span> <span data-i18n="terminal_product_sleep">Sleep Platform</span> <span class="muted" data-i18n="terminal_status_loading">/ loading</span>
+            <div class="product-stage" data-product-stage>
+              <article class="product-preview preview-neumo is-active" data-product-preview="neumo" aria-label="NeumoPractice preview">
+                <div class="preview-browser">
+                  <div class="preview-topbar"><div class="preview-dots"><span></span><span></span><span></span></div><span>NeumoPractice · Consulta de hoy</span></div>
+                  <div class="preview-body">
+                    <aside class="preview-sidebar">
+                      <div class="preview-brand"><span class="preview-mark">N</span><span>NeumoPractice</span></div>
+                      <div class="preview-nav is-active">Agenda</div>
+                      <div class="preview-nav">Paciente</div>
+                      <div class="preview-nav">Consulta</div>
+                      <div class="preview-nav">Receta</div>
+                      <div class="preview-nav">Timeline</div>
+                    </aside>
+                    <div class="preview-main">
+                      <div class="preview-grid three">
+                        <div class="preview-panel"><h4>Agenda clínica</h4><p>09:30 Mateo G. · En consulta</p><div class="preview-progress"><span style="width:68%"></span></div></div>
+                        <div class="preview-panel"><h4>Paciente</h4><p>Sofía R. · 9 años · Asma leve persistente</p><div class="preview-progress"><span style="width:82%"></span></div></div>
+                        <div class="preview-panel"><h4>IA clínica</h4><p>SOAP listo, próximos pasos y checklist de control.</p><div class="preview-progress"><span style="width:74%"></span></div></div>
+                      </div>
+                      <div class="preview-grid two" style="margin-top:12px">
+                        <section class="preview-panel">
+                          <h4>Nueva consulta <span class="preview-chip">SOAP</span></h4>
+                          <div class="preview-row"><span class="preview-time">S</span><div><b>Tos nocturna</b><span>3 veces por semana, sin fiebre</span></div><span>98%</span></div>
+                          <div class="preview-row"><span class="preview-time">O</span><div><b>Exploración</b><span>SatO2 98%, FR 22, sibilancias leves</span></div><span>OK</span></div>
+                          <div class="preview-row"><span class="preview-time">Rx</span><div><b>Receta lista</b><span>Budesonida + salbutamol archivados</span></div><span>Enviar</span></div>
+                        </section>
+                        <section class="preview-panel">
+                          <h4>Timeline longitudinal</h4>
+                          <div class="preview-row"><span class="preview-time">Hoy</span><div><b>Consulta generada</b><span>Plan actualizado y receta creada</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">12 Jun</span><div><b>Espirometría</b><span>Cargada por recepción</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">30d</span><div><b>Seguimiento</b><span>Contexto listo para WhatsApp/correo</span></div><span></span></div>
+                        </section>
+                      </div>
+                      <div class="preview-actionbar"><span>Enviar / imprimir</span><span>Guardar consulta</span></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-preview preview-atlas" data-product-preview="atlas" aria-label="Atlas preview">
+                <div class="preview-browser">
+                  <div class="preview-topbar"><div class="preview-dots"><span></span><span></span><span></span></div><span>ATLAS OS · Property Engine</span></div>
+                  <div class="preview-body">
+                    <aside class="preview-sidebar">
+                      <div class="preview-brand"><span class="preview-mark">A</span><span>ATLAS</span></div>
+                      <div class="preview-nav is-active">Property</div>
+                      <div class="preview-nav">CRM</div>
+                      <div class="preview-nav">Pipeline</div>
+                      <div class="preview-nav">WhatsApp</div>
+                      <div class="preview-nav">Analytics</div>
+                    </aside>
+                    <div class="preview-main">
+                      <div class="preview-grid three">
+                        <div class="preview-panel"><h4>Leads nuevos</h4><p>42 · +18% vs semana</p><div class="preview-progress"><span style="width:78%"></span></div></div>
+                        <div class="preview-panel"><h4>Pipeline</h4><p>$31.8M · Mariana lidera conversión</p><div class="preview-progress"><span style="width:88%"></span></div></div>
+                        <div class="preview-panel"><h4>Web Sync</h4><p>8 cambios listos para publicar</p><div class="preview-progress"><span style="width:64%"></span></div></div>
+                      </div>
+                      <div class="preview-grid two" style="margin-top:12px">
+                        <section class="preview-panel">
+                          <h4>Lead Intelligence <span class="preview-chip">Score 91</span></h4>
+                          <div class="preview-row"><span class="preview-time">WA</span><div><b>Carlos Méndez</b><span>Penthouse Arcos Vallarta</span></div><span>Hot</span></div>
+                          <div class="preview-row"><span class="preview-time">AI</span><div><b>Siguiente acción</b><span>Enviar ficha y agendar visita privada</span></div><span>Now</span></div>
+                          <div class="preview-row"><span class="preview-time">$</span><div><b>Deal creado</b><span>$18.4M · Mariana López</span></div><span>Calificado</span></div>
+                        </section>
+                        <section class="preview-panel">
+                          <h4>Pipeline snapshot</h4>
+                          <div class="preview-row"><span class="preview-time">N</span><div><b>Nuevo</b><span>Casa Bosques · Score 89</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">V</span><div><b>Visita agendada</b><span>Dpto. Providencia · Hoy 17:30</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">C</span><div><b>Cierre</b><span>Oferta lista para firma</span></div><span></span></div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-preview preview-propierato" data-product-preview="propierato" aria-label="Propierato preview">
+                <div class="preview-browser">
+                  <div class="preview-topbar"><div class="preview-dots"><span></span><span></span><span></span></div><span>Propierato · HomeSuite OS</span></div>
+                  <div class="preview-body">
+                    <aside class="preview-sidebar">
+                      <div class="preview-brand"><span class="preview-mark">P</span><span>Propierato</span></div>
+                      <div class="preview-nav is-active">Property Health</div>
+                      <div class="preview-nav">WhatsApp</div>
+                      <div class="preview-nav">Turnovers</div>
+                      <div class="preview-nav">Owners</div>
+                      <div class="preview-nav">Benchmark</div>
+                    </aside>
+                    <div class="preview-main">
+                      <div class="preview-grid three">
+                        <div class="preview-panel"><h4>Property Health</h4><p>Unidad 305 · 86/100</p><div class="preview-progress"><span style="width:86%"></span></div></div>
+                        <div class="preview-panel"><h4>Turnovers</h4><p>3 activos hoy · checkout → ready</p><div class="preview-progress"><span style="width:62%"></span></div></div>
+                        <div class="preview-panel"><h4>Owners</h4><p>Reporte preparado para Villa Coral</p><div class="preview-progress"><span style="width:76%"></span></div></div>
+                      </div>
+                      <div class="preview-grid two" style="margin-top:12px">
+                        <section class="preview-panel">
+                          <h4>WhatsApp Station <span class="preview-chip">Workflow</span></h4>
+                          <div class="preview-row"><span class="preview-time">10:41</span><div><b>Limpieza completada</b><span>Solicitar fotos y notificar supervisor</span></div><span>OK</span></div>
+                          <div class="preview-row"><span class="preview-time">10:46</span><div><b>Fotos recibidas</b><span>Vision AI analizando hallazgos</span></div><span>AI</span></div>
+                          <div class="preview-row"><span class="preview-time">WO</span><div><b>Aire no enfría</b><span>Proveedor asignado · $1,800 MXN</span></div><span>Crítico</span></div>
+                        </section>
+                        <section class="preview-panel">
+                          <h4>Owner Hub</h4>
+                          <div class="preview-row"><span class="preview-time">305</span><div><b>Unidad 305</b><span>2 abiertas · última inspección hoy</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">AK</span><div><b>Casa Akumal</b><span>Benchmark y reporte mensual listos</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">FX</span><div><b>Founder Hub</b><span>Demos, trials y adopción temprana</span></div><span></span></div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-preview preview-construction" data-product-preview="construction" aria-label="R3 Construction preview">
+                <div class="preview-browser">
+                  <div class="preview-topbar"><div class="preview-dots"><span></span><span></span><span></span></div><span>R³ Construction · Site OS</span></div>
+                  <div class="preview-body">
+                    <aside class="preview-sidebar">
+                      <div class="preview-brand"><span class="preview-mark">C</span><span>R³ Build</span></div>
+                      <div class="preview-nav is-active">Progress</div>
+                      <div class="preview-nav">Budget</div>
+                      <div class="preview-nav">Timeline</div>
+                      <div class="preview-nav">Documents</div>
+                      <div class="preview-nav">Workers</div>
+                    </aside>
+                    <div class="preview-main">
+                      <div class="preview-grid three">
+                        <div class="preview-panel"><h4>Obra</h4><p>Torre Norte · 68% avance</p><div class="preview-progress"><span style="width:68%"></span></div></div>
+                        <div class="preview-panel"><h4>Presupuesto</h4><p>2.4% variación contra plan</p><div class="preview-progress"><span style="width:72%"></span></div></div>
+                        <div class="preview-panel"><h4>Documentos</h4><p>14 planos · 3 RFIs pendientes</p><div class="preview-progress"><span style="width:54%"></span></div></div>
+                      </div>
+                      <div class="preview-grid two" style="margin-top:12px">
+                        <section class="preview-panel">
+                          <h4>Progress tracking <span class="preview-chip">AI</span></h4>
+                          <div class="preview-row"><span class="preview-time">P3</span><div><b>Colado nivel 8</b><span>Evidencia cargada y checklist aprobado</span></div><span>Done</span></div>
+                          <div class="preview-row"><span class="preview-time">RFI</span><div><b>Cambio eléctrico</b><span>Bloquea cuadrilla B hasta aprobación</span></div><span>Risk</span></div>
+                          <div class="preview-row"><span class="preview-time">Crew</span><div><b>24 trabajadores</b><span>Frente norte · turno AM</span></div><span>Live</span></div>
+                        </section>
+                        <section class="preview-panel">
+                          <h4>Operating timeline</h4>
+                          <div class="preview-row"><span class="preview-time">Hoy</span><div><b>Reporte de campo</b><span>Fotos, notas y costos sincronizados</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">48h</span><div><b>Compra acero</b><span>Aprobación financiera requerida</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">7d</span><div><b>Entrega parcial</b><span>Hito actualizado para dirección</span></div><span></span></div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="product-preview preview-construction" data-product-preview="next" aria-label="R3 Next Vertical preview">
+                <div class="preview-browser">
+                  <div class="preview-topbar"><div class="preview-dots"><span></span><span></span><span></span></div><span>R³ Studio · Next Vertical OS</span></div>
+                  <div class="preview-body">
+                    <aside class="preview-sidebar">
+                      <div class="preview-brand"><span class="preview-mark">R³</span><span>R³ Studio</span></div>
+                      <div class="preview-nav is-active">Discovery</div>
+                      <div class="preview-nav">Workflow</div>
+                      <div class="preview-nav">Data layer</div>
+                      <div class="preview-nav">Copilots</div>
+                      <div class="preview-nav">Launch</div>
+                    </aside>
+                    <div class="preview-main">
+                      <div class="preview-grid three">
+                        <div class="preview-panel"><h4>Manual work map</h4><p>WhatsApp, sheets and repeated decisions</p><div class="preview-progress"><span style="width:82%"></span></div></div>
+                        <div class="preview-panel"><h4>Workflow engine</h4><p>Triggers, actions and operational roles</p><div class="preview-progress"><span style="width:70%"></span></div></div>
+                        <div class="preview-panel"><h4>AI copilots</h4><p>Context-aware assistants for daily work</p><div class="preview-progress"><span style="width:76%"></span></div></div>
+                      </div>
+                      <div class="preview-grid two" style="margin-top:12px">
+                        <section class="preview-panel">
+                          <h4>Vertical blueprint <span class="preview-chip">Studio</span></h4>
+                          <div class="preview-row"><span class="preview-time">01</span><div><b>Operating model</b><span>Entities, permissions and moments of work</span></div><span>Map</span></div>
+                          <div class="preview-row"><span class="preview-time">02</span><div><b>Product core</b><span>Workflow, data and intelligence layers</span></div><span>Build</span></div>
+                          <div class="preview-row"><span class="preview-time">03</span><div><b>Launch loop</b><span>Usage, feedback and vertical expansion</span></div><span>Ship</span></div>
+                        </section>
+                        <section class="preview-panel">
+                          <h4>Reusable operating layer</h4>
+                          <div class="preview-row"><span class="preview-time">AI</span><div><b>Copilots</b><span>Decisions, summaries and next actions</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">WF</span><div><b>Workflow engines</b><span>Repeatable flows for messy operations</span></div><span></span></div>
+                          <div class="preview-row"><span class="preview-time">BI</span><div><b>Operating intelligence</b><span>Metrics, alerts and shared truth</span></div><span></span></div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </div>
@@ -866,8 +1504,10 @@
           {
             vertical: "Clinical OS",
             market: "modern medicine",
+            productKey: "neumo",
+            productName: "NeumoPractice",
             outcome: "medicine",
-            description: "Clinical workflows, AI copilots, records and operational intelligence.",
+            description: "Patient-centered clinical workflows for agenda, consultation, prescriptions and longitudinal timeline.",
             cards: [
               ["AI Clinical Copilot", "Summaries, decisions and clinical next actions."],
               ["Specialty workflows", "Templates, tasks and care pathways."],
@@ -878,8 +1518,10 @@
           {
             vertical: "Real Estate OS",
             market: "modern property teams",
+            productKey: "atlas",
+            productName: "Atlas",
             outcome: "deals",
-            description: "Leads, listings, CRM, dealflow and operational intelligence.",
+            description: "A Property OS for lead intelligence, live inventory, deal pipeline and commercial analytics.",
             cards: [
               ["Lead engine", "Capture, qualify and route demand."],
               ["Property CRM", "Listings, owners, buyers and follow-up."],
@@ -890,8 +1532,10 @@
           {
             vertical: "Hospitality OS",
             market: "short-term rental operators",
+            productKey: "propierato",
+            productName: "Propierato",
             outcome: "guests",
-            description: "Guests, turnovers, maintenance, owners and operational intelligence.",
+            description: "HomeSuite OS modules for property health, WhatsApp operations, turnovers, owners and maintenance.",
             cards: [
               ["Guest operations", "Reservations, requests and service moments."],
               ["Turnover engine", "Cleaning, checklists and readiness flows."],
@@ -902,8 +1546,10 @@
           {
             vertical: "Construction OS",
             market: "modern builders",
+            productKey: "construction",
+            productName: "R³ Construction",
             outcome: "progress",
-            description: "Progress, budgets, teams, documents and operational intelligence.",
+            description: "A conceptual Site OS for progress, budgets, field teams, documents and operating timelines.",
             cards: [
               ["Progress tracking", "Milestones, site updates and blockers."],
               ["Budget control", "Costs, approvals and variance visibility."],
@@ -914,8 +1560,10 @@
           {
             vertical: "Next Vertical OS",
             market: "industries that still run on manual work",
+            productKey: "next",
+            productName: "R³ Venture Studio",
             outcome: "growth",
-            description: "AI-native systems for industries still running on manual work.",
+            description: "The reusable R³ operating layer adapted to the next manual-work industry.",
             cards: [
               ["AI copilots", "Assistants for decisions, tasks and context."],
               ["Workflow engines", "Repeatable flows for daily operations."],
@@ -998,8 +1646,10 @@
           {
             vertical: "OS clínico",
             market: "medicina moderna",
+            productKey: "neumo",
+            productName: "NeumoPractice",
             outcome: "medicina",
-            description: "Flujos clínicos, copilotos de IA, expediente e inteligencia operativa.",
+            description: "Flujos clínicos centrados en paciente: agenda, consulta, receta y timeline longitudinal.",
             cards: [
               ["Copiloto clínico IA", "Resúmenes, decisiones y siguientes acciones clínicas."],
               ["Flujos por especialidad", "Plantillas, tareas y rutas de atención."],
@@ -1010,8 +1660,10 @@
           {
             vertical: "OS inmobiliario",
             market: "equipos inmobiliarios modernos",
+            productKey: "atlas",
+            productName: "Atlas",
             outcome: "cierres",
-            description: "Leads, inventario, CRM, cierres e inteligencia operativa.",
+            description: "Un Property OS para inteligencia de leads, inventario vivo, pipeline y analítica comercial.",
             cards: [
               ["Motor de leads", "Captura, calificación y asignación de demanda."],
               ["CRM inmobiliario", "Inventario, dueños, compradores y seguimiento."],
@@ -1022,8 +1674,10 @@
           {
             vertical: "OS de hospitalidad",
             market: "operadores de renta corta",
+            productKey: "propierato",
+            productName: "Propierato",
             outcome: "huéspedes",
-            description: "Huéspedes, turnovers, mantenimiento, dueños e inteligencia operativa.",
+            description: "Módulos HomeSuite OS para property health, WhatsApp, turnovers, dueños y mantenimiento.",
             cards: [
               ["Operación de huéspedes", "Reservas, solicitudes y momentos de servicio."],
               ["Motor de turnovers", "Limpieza, checklists y preparación."],
@@ -1034,8 +1688,10 @@
           {
             vertical: "OS de construcción",
             market: "desarrolladores modernos",
+            productKey: "construction",
+            productName: "R³ Construction",
             outcome: "avance",
-            description: "Avance, presupuestos, equipos, documentos e inteligencia operativa.",
+            description: "Un Site OS conceptual para avance, presupuesto, equipos de campo, documentos y timeline operativo.",
             cards: [
               ["Seguimiento de avance", "Hitos, obra, actualizaciones y bloqueos."],
               ["Control presupuestal", "Costos, aprobaciones y variaciones."],
@@ -1046,8 +1702,10 @@
           {
             vertical: "siguiente OS vertical",
             market: "industrias que aún operan manualmente",
+            productKey: "next",
+            productName: "R³ Venture Studio",
             outcome: "crecimiento",
-            description: "Sistemas con IA para industrias que aún operan manualmente.",
+            description: "La capa operativa reusable de R³ adaptada a la siguiente industria de trabajo manual.",
             cards: [
               ["Copilotos IA", "Asistentes para decisiones, tareas y contexto."],
               ["Motores de flujos", "Flujos repetibles para la operación diaria."],
@@ -1068,15 +1726,21 @@
     const dynamicMarket = document.querySelector("[data-dynamic-market]");
     const boxOutcome = document.querySelector("[data-box-outcome]");
     const boxDescription = document.querySelector("[data-box-description]");
+    const productName = document.querySelector("[data-product-name]");
+    const productStage = document.querySelector("[data-product-stage]");
+    const showcaseCopy = document.querySelector("[data-showcase-copy]");
+    const productPreviews = document.querySelectorAll("[data-product-preview]");
     const cardTitles = document.querySelectorAll("[data-card-title]");
     const cardTexts = document.querySelectorAll("[data-card-text]");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const typewriterPauseMs = 1400;
+    const typewriterHoldAfterTypingMs = 4200;
+    const typewriterHoldBeforeDeletingMs = 600;
     const typewriterWriteMs = 55;
-    const typewriterEraseMs = 30;
+    const typewriterEraseMs = 28;
     let activeLang = localStorage.getItem(langStorageKey) === "es" ? "es" : "en";
     let currentVerticalIndex = 0;
     let dynamicHeroRunId = 0;
+    let productShowcaseRunId = 0;
 
     function wait(ms) {
       return new Promise((resolve) => window.setTimeout(resolve, ms));
@@ -1134,8 +1798,7 @@
       dynamicVertical.textContent = state.vertical;
       if (!tokensOnly) {
         dynamicMarket.textContent = formatMarket(state);
-        if (boxOutcome) boxOutcome.textContent = state.outcome;
-        if (boxDescription) boxDescription.textContent = state.description;
+        applyProductShowcase(state);
         state.cards.forEach((card, cardIndex) => {
           const title = cardTitles[cardIndex];
           const text = cardTexts[cardIndex];
@@ -1143,6 +1806,41 @@
           if (text) text.textContent = card[1];
         });
       }
+    }
+
+    function setProductShowcaseContent(state) {
+      if (productName) productName.textContent = state.productName || "R³ Product";
+      if (boxOutcome) boxOutcome.textContent = state.outcome;
+      if (boxDescription) boxDescription.textContent = state.description;
+      productPreviews.forEach((preview) => {
+        preview.classList.toggle("is-active", preview.dataset.productPreview === state.productKey);
+      });
+      if (productStage) productStage.dataset.activeProduct = state.productKey || "";
+    }
+
+    function applyProductShowcase(state) {
+      if (!state) return;
+      const hasProductChanged = productStage?.dataset.activeProduct !== state.productKey;
+      const shouldAnimate = hasProductChanged && !reducedMotionQuery.matches;
+      productShowcaseRunId += 1;
+      const runId = productShowcaseRunId;
+
+      if (!shouldAnimate) {
+        setProductShowcaseContent(state);
+        return;
+      }
+
+      showcaseCopy?.classList.add("is-switching");
+      productStage?.classList.add("is-switching");
+      window.setTimeout(() => {
+        if (runId !== productShowcaseRunId) return;
+        setProductShowcaseContent(state);
+        window.requestAnimationFrame(() => {
+          if (runId !== productShowcaseRunId) return;
+          showcaseCopy?.classList.remove("is-switching");
+          productStage?.classList.remove("is-switching");
+        });
+      }, 180);
     }
 
     async function typeTokens(targets, runId, mode) {
@@ -1168,7 +1866,9 @@
       if (reducedMotionQuery.matches) return;
 
       while (runId === dynamicHeroRunId) {
-        await wait(typewriterPauseMs);
+        await wait(typewriterHoldAfterTypingMs);
+        if (runId !== dynamicHeroRunId) return;
+        await wait(typewriterHoldBeforeDeletingMs);
         const cycle = getActiveCycle();
         const current = cycle[currentVerticalIndex];
         const nextIndex = (currentVerticalIndex + 1) % cycle.length;
